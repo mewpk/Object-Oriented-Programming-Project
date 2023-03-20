@@ -1,8 +1,8 @@
 class Notification():
     def __init__(self,id,date,description):
-        self.id = id
-        self.date = date
-        self.description = description
+        self.__id = id
+        self.__date = date
+        self.__description = description
     def sent():
         pass
 
