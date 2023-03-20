@@ -1,6 +1,6 @@
 class CouponList():
     def __init__(self,type):
-        self._type = type
+        self.__type = type
     def check_coupon(self,code):
         pass
     def check_condition(self,coupon):
