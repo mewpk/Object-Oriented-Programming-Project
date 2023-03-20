@@ -1,8 +1,8 @@
 class Order():
     def __init__ (self,id,status,date):
-        self.id = id
-        self.status = status
-        self.order = order
+        self.__id = id
+        self.__status = status
+        self.__order = order
     def collect_order(status):
         pass
     def add_course(Course):
