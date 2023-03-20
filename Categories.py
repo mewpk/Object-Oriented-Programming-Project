@@ -6,3 +6,5 @@ class Categories():
         pass
     def search_categories(keyword) : 
         pass
+# create instances categories
+programming_language = Categories(id=1,name="Programming Language")
