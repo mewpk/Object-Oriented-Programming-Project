@@ -1,3 +1,4 @@
+
 class Account():
     def __init__(self,id,name,username,password,language ,email,role,about,active = True):
         self._id = id
@@ -9,6 +10,9 @@ class Account():
         self._role = role
         self._about = about
         self._active = active
+    def __str__(self):
+        return str([ { "id" : self._id , "name" : self._name , "username" : self._username , "password" : self._password , "language" : self._language , "email" : self._email , "role" : self._role , "about" : self._about , "active" : self._active }  ])
+    
 
 class Student(Account):
     def __init__(self,id,name,username,password,language,email,role,about,review,active= True ):
@@ -20,6 +24,9 @@ class Student(Account):
         pass
     def create_user(self,Account):
         pass
+    def __str__(self) -> str:
+        # return str(dict(super().__str__()).update( {"review" : self.__review }))
+        return str(super().__str__())
 
 # create 4 instances of Student
 student1 = Student(

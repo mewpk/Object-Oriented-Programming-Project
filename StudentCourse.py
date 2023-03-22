@@ -8,8 +8,8 @@ class StudentCourse():
     def remove_course(courses):
         pass
 
-StuC = StudentCourse{
-    all_progress = 37.5
-    student_id = "1111"
+StuC = StudentCourse(
+    all_progress = 37.5, 
+    student_id = "1111",
     course_id = "11111111"
-}
+)

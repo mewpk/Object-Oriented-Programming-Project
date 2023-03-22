@@ -1,4 +1,8 @@
+import weakref
+# import class 
+import Review  
 class Course():
+    instances = []
     def __init__(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories):
         self._id = id
         self._name = name
@@ -14,8 +18,13 @@ class Course():
         self._promotion = promotion
         self._info = info
         self._categories = categories
-    def check_course_review(course_id):
-        pass
+        self.all_instances()
+    def all_instances(self):
+        self.__class__.instances.append(weakref.proxy(self))
+    def check_course_review(self):
+        return [ str(instance) for instance in Review.Review.instances if instance.get_course_id() == self._id]
+        # return [ str(instance) for instance in Review.Review.instances]
+
     def calculate_promotion():
         pass
     def check_categories(course_id):
@@ -24,6 +33,10 @@ class Course():
         pass
     def search_name(keyword):
         pass
+    def view_course():
+        pass
+    def __str__(self) -> str:
+        return str ( [ {"id" : self._id  , "name" : self._name  , "short_description" : self._short_description  , "date" : self._date  , "language" : self._language  ,"purpose" : self._purpose , "chapter" : self._chapter  , "requirement" : self._requirement  , "description" : self._description  ,"target" : self._target  , "price" : self._price  , "promotion" : self._promotion  , "info" : self._info  , "categories" : self._categories} ])
 
 course1 = Course(
     id = "11111111",

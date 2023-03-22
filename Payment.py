@@ -8,4 +8,4 @@ class Payment():
 payment1 = Payment(country = "Thailand", method = "credit card")
 payment2 = Payment(country = "Laos", method = "credit card")
 payment3 = Payment(country = "Thailand", method = "debit card")
-payment4 = Payment(country = "Myanmar" method = "debit card")
+payment4 = Payment(country = "Myanmar", method = "debit card")
