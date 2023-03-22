@@ -4,9 +4,9 @@ class CourseViewChapter():
         self.__student_id = student_id
         self.__course_id = course_id
 
-chp = CourseViewChapter{
-    progress = [100,50,0,0]
-    student_id = "1111"
-    course_id = "11111111"
-}
+chp = CourseViewChapter (
+    progress = [100,50,0,0],
+    student_id = "1111",
+    course_id = "11111111",
+)
 
