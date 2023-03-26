@@ -4,7 +4,18 @@ class Promotion():
         self.__start_date = start_date
         self.__end_date = end_date
         self.__net = net
-
+    @property
+    def percent(self):
+        return self.__percent
+    @property
+    def start_date(self):
+        return self.__start_date
+    @property
+    def end_date(self):
+        return self.__end_date
+    @property
+    def net(self):
+        return self.__net
 promotion1 = Promotion(
     percent = '10',
     start_date = '21/01/66',
