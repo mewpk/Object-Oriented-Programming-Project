@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for file in *.py
+for file in backend/*;
 do
   if [ -f "$file" ]
   then
