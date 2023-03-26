@@ -3,6 +3,16 @@ class CourseViewChapter():
         self.__progress = progress
         self.__student_id = student_id
         self.__course_id = course_id
+    @property
+    def progress(self):
+        return self.__progress
+    @property
+    def student_id(self):
+        return self.__student_id
+    @property
+    def course_id(self):
+        return self.__course_id
+    
 
 chp = CourseViewChapter (
     progress = [100,50,0,0],

@@ -7,6 +7,18 @@ class Review():
         self.__course_id = course_id
         self.__description = description
         self.all_instances()
+    @property
+    def by(self):
+        return self.__by
+    @property
+    def rating(self):
+        return self.__rating
+    @property
+    def course_id(self):
+        return self.__course_id
+    @property
+    def description(self):
+        return self.__description
     def all_instances(self):
         self.__class__.instances.append(weakref.proxy(self))
     def get_course_id(self):

@@ -19,11 +19,56 @@ class Course():
         self._info = info
         self._categories = categories
         self.all_instances()
+    @property
+    def id(self):
+        return self._id
+    @property
+    def name(self):
+        return self._name
+    @property
+    def short_description(self):
+        return self._short_description
+    @property
+    def date(self):
+        return self._date
+    @property
+    def language(self):
+        return self._language
+    @property
+    def purpose(self):
+        return self._purpose
+    @property
+    def chapter(self):
+        return self._chapter
+    @property
+    def requirement(self):
+        return self._requirement
+    @property
+    def description(self):
+        return self._description
+    @property
+    def target(self):
+        return self._target
+    @property
+    def price(self):
+        return self._price
+    @property
+    def promotion(self):
+        return self._promotion
+    @property
+    def info(self):
+        return self._info
+    @property
+    def categories(self):
+        return self._categories
+    
+    
+
     def all_instances(self):
         self.__class__.instances.append(weakref.proxy(self))
     def check_course_review(self):
         return [ str(instance) for instance in Review.Review.instances if instance.get_course_id() == self._id]
-        # return [ str(instance) for instance in Review.Review.instances]
+
 
     def calculate_promotion():
         pass
