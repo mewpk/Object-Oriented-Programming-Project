@@ -13,9 +13,10 @@ import Review
 import StudentCourse
 print("-----------------------Program Starting-------------------")
 print("--------------------------------------------------------\n")
-print("Account : ",Account.student1)
+print("Preview : ",Course.course1.request_preview())
 print("--------------------------------------------------------\n")
 print("Course : ",Course.course1)
 print("--------------------------------------------------------\n")
-print("Course Review : ",Course.course1.check_course_review())
+print("Add payment method : ",Payment.payment1.add_payment_method('cash'))
 print("--------------------------------------------------------\n")
+print("New Payment : ",Payment.payment1)
