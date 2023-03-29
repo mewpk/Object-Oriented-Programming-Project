@@ -61,8 +61,12 @@ class Course():
     @property
     def categories(self):
         return self._categories
-    
-    
+    # @name.setter
+    # def set_name(self,name):
+    #     self._name = name
+    #     print(self._name)
+    #     return self._name
+
 
     def all_instances(self):
         self.__class__.instances.append(weakref.proxy(self))

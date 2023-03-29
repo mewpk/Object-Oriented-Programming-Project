@@ -1,4 +1,6 @@
-
+import Course
+import WishList
+import Order
 class Account():
     def __init__(self,id,name,username,password,language ,email,role,about,active = True):
         self._id = id
@@ -79,8 +81,6 @@ class Student(Account):
         return self.__review
     def add_payment_method(self,method):
         pass
-    def request_history(self,status) :
-        pass
     def create_user(self,Account):
         pass
     def edit_profile(self,name,language,about):
@@ -89,7 +89,28 @@ class Student(Account):
     def __str__(self) -> str:
         # return str(dict(super().__str__()).update( {"review" : self.__review }))
         return str(super().__str__())
-
+    
+    def add_to_wishlist(self,id_course):
+        wishlist = WishList.Wishlist.list_wishlist
+        for course in Course.Course.instances : 
+            if course.id == id_course :
+                wishlist.append(course)
+                return str(course)
+            
+    def remove_from_wishlist(self,id_course):
+        wishlist = WishList.Wishlist.list_wishlist
+        for course in Course.Course.instances : 
+            if course.id == id_course :
+                wishlist.remove(course)
+                return str(course)
+ 
+    def request_history(self,status):
+        list_order = []
+        for order in Order.Order.instances:
+            if order.status == status:
+                list_order.append(str(order))
+        return list_order
+        # return [str(order) for order in Order.Order.instances if order.id == order_id]
 # create 4 instances of Student
 student1 = Student(
     id=123,
@@ -155,8 +176,15 @@ class Instructor(Account):
         return self.__description
     def add_course(self,Course):
         pass
-    def edit_course(Course) : 
-        pass
+    def edit_course(self,course_id,new_name,new_promotion,new_description,new_price):
+        key_list = [new_name,new_promotion,new_description,new_price]
+        for course in Course.Course.instances : 
+            if course.id == course_id:
+                Course.Course.set_name = new_name
+                # for i in key_list:
+            return str(course)
+                    
+        
     def create_coupon(id,passcode,start_date,end_date,type) : 
         pass
     def edit_profile(Account)  : 
