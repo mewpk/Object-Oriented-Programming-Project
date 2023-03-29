@@ -1,6 +1,7 @@
 import weakref
 # import class 
-import Review  
+import Review 
+import Categories 
 class Course():
     instances = []
     def __init__(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories):
@@ -69,10 +70,9 @@ class Course():
     def check_course_review(self):
         return [ str(instance) for instance in Review.Review.instances if instance.get_course_id() == self._id]
 
-
+    def check_categories(self):
+        return [ str(instance) for instance in Categories.Categories.instances if instance.id == self.categories]
     def calculate_promotion():
-        pass
-    def check_categories(course_id):
         pass
     def check_student_course(student_id,course_id):
         pass
@@ -97,7 +97,7 @@ course1 = Course(
     price = 599,
     promotion = 0,
     info = "3 hours on-demand video , Access on mobile and TV , Certificate of completion",
-    categories = ["Development","Web Development","JavaScript"]
+    categories = 1
 )
 
 course2 = Course(
@@ -114,5 +114,5 @@ course2 = Course(
     price = 599,
     promotion = 0,
     info = "10.5 hours on-demand video,Certificate of completion",
-    categories = ["Development","Web Development","Bootstrap"]
+    categories = 2
 )

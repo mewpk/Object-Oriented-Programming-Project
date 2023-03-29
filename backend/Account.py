@@ -1,4 +1,4 @@
-
+import Order
 class Account():
     def __init__(self,id,name,username,password,language ,email,role,about,active = True):
         self._id = id
@@ -79,8 +79,8 @@ class Student(Account):
         return self.__review
     def add_payment_method(self,method):
         pass
-    def request_history(self,status) :
-        pass
+    def request_history(status) :
+        return [str(instance) for instance in Order.Order.instances if instance.status == status]
     def create_user(self,Account):
         pass
     def edit_profile(self,name,language,about):
