@@ -1,3 +1,5 @@
+import Course
+
 
 class Account():
     def __init__(self,id,name,username,password,language ,email,role,about,active = True):
@@ -153,8 +155,8 @@ class Instructor(Account):
     def description(self,description):
         self.__description = description
         return self.__description
-    def add_course(self,Course):
-        pass
+    def add_course(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories):
+        new_course =  Course.Course(id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories)
     def edit_course(Course) : 
         pass
     def create_coupon(id,passcode,start_date,end_date,type) : 
