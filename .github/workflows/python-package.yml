@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  TestFastApi:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +27,4 @@ jobs:
         cd backend
         uvicorn main:app --reload > /dev/null 2>&1 & echo $! > "app.pid"
         sleep 3
-
-    - name: Run tests
-      run: |
-        cat "backend/app.pid"
       
