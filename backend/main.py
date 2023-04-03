@@ -1,21 +1,11 @@
-import Account
-import Cart
-import Categories
-import Coupon
-import CouponList
-import Course
-import CourseViewChapter
-import Notification
-import Order
-import Payment
-import Promotion
-import Review
-import StudentCourse
-print("-----------------------Program Starting-------------------")
-print("--------------------------------------------------------\n")
-print("Account : ",Account.student1)
-print("--------------------------------------------------------\n")
-print("Course : ",Course.course1)
-print("--------------------------------------------------------\n")
-print("Course Review : ",Course.course1.check_course_review())
-print("--------------------------------------------------------\n")
+from app.main import app
+from settings import settings
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        app,
+        host=settings.api_host,
+        port=settings.api_port,
+        log_level=settings.log_level,
+    )
