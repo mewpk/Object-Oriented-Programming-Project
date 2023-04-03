@@ -6,6 +6,7 @@ if __name__ == "__main__":
     
     # pass the application as an import string
     uvicorn.run(
+        
         "app.main:app", # <--- updated line
         host=settings.api_host,
         port=settings.api_port,

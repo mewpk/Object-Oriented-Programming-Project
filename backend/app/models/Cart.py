@@ -34,13 +34,3 @@ class Cart():
     def net_price(self,net_price):
         self.__net_price = net_price
         return self.__net_price
-    
-    def check_condition(coupon):
-        pass
-
-cart_1245 = Cart(price = "1000", net_promotion = "20", net_coupon = "20", net_price = "600")
-cart_2345 = Cart(price = "2344", net_promotion = "15", net_coupon = "30", net_price = "1290")
-cart_4634 = Cart(price = "1034", net_promotion = "0", net_coupon = "40", net_price = "620")
-cart_5678 = Cart(price = "5432", net_promotion = "25", net_coupon = "50", net_price = "1358")
-
-print(cart_1245)
