@@ -89,6 +89,8 @@ class Course():
         pass
     def view_course():
         pass
+    def request_preview(self):
+        return str({"name" : self.name  , "short_description" : self.short_description, "price" : self.price  , "promotion" : self.promotion  , "info" : self.info })
     def __str__(self) -> str:
         return str ( [ {"id" : self._id  , "name" : self._name  , "short_description" : self._short_description  , "date" : self._date  , "language" : self._language  ,"purpose" : self._purpose , "chapter" : self._chapter  , "requirement" : self._requirement  , "description" : self._description  ,"target" : self._target  , "price" : self._price  , "promotion" : self._promotion  , "info" : self._info  , "categories" : self._categories} ])
 
