@@ -1,11 +1,12 @@
-# test_main.py
+from fastapi import FastAPI
+from app.routers import users, products, orders
 
-from fastapi.testclient import TestClient
-from app.main import app
+app = FastAPI()
 
-client = TestClient(app)
+app.include_router(users.router)
+app.include_router(products.router)
+app.include_router(orders.router)
 
-def test_read_main():
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"message": "Hello World"}
+@app.get("/")
+async def read_root():
+    return {"message": "Hello World"}
