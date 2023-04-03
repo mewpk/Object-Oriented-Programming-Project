@@ -20,7 +20,4 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run FastAPI application
-      run: |
-        cd backend
-        uvicorn main:app --reload && exit()
-
+      run: cd backend && uvicorn main:app --reload
