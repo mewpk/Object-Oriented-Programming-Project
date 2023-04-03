@@ -1,4 +1,6 @@
-import Order
+import Course
+
+
 class Account():
     def __init__(self,id,name,username,password,language ,email,role,about,active = True):
         self._id = id
@@ -79,8 +81,8 @@ class Student(Account):
         return self.__review
     def add_payment_method(self,method):
         pass
-    def request_history(status) :
-        return [str(instance) for instance in Order.Order.instances if instance.status == status]
+    def request_history(self,status) :
+        pass
     def create_user(self,Account):
         pass
     def edit_profile(self,name,language,about):
@@ -153,8 +155,8 @@ class Instructor(Account):
     def description(self,description):
         self.__description = description
         return self.__description
-    def add_course(self,Course):
-        pass
+    def add_course(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories):
+        new_course =  Course.Course(id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories)
     def edit_course(Course) : 
         pass
     def create_coupon(id,passcode,start_date,end_date,type) : 
