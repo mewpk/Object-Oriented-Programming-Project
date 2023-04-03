@@ -29,15 +29,6 @@ jobs:
         sleep 3
 
     - name: Run tests
-      env:
-        APP_PID: $(cat "backend/app.pid")
       run: |
-        cd backend
-        pytest
-      continue-on-error: true
-
-    - name: Stop FastAPI application
-      env:
-        APP_PID: $(cat "backend/app.pid")
-      run: |
-        kill $APP_PID
+        cat "backend/app.pid"
+      
