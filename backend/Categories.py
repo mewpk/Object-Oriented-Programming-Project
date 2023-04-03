@@ -27,4 +27,5 @@ class Categories():
 
 # create instances categories
 programming_language = Categories(id=1,name="Programming Language")
-devalopment = Categories(id=2,name="devalopment")
+development = Categories(id=2,name="development")
+web_development = Categories(id = 3 , name ="Web Development")
