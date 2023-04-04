@@ -1,5 +1,4 @@
 class Course():
-    instances = []
     def __init__(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories):
         self._id = id
         self._name = name
@@ -15,7 +14,6 @@ class Course():
         self._promotion = promotion
         self._info = info
         self._categories = categories
-        self.all_instances()
     @property
     def id(self):
         return self._id
