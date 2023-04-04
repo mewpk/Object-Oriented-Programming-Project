@@ -1,5 +1,7 @@
 from fastapi import APIRouter
+
 from ..services.Users import UsersService
+
 
 router = APIRouter()
 

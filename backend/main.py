@@ -1,4 +1,3 @@
-from app.main import app
 from settings import settings
 
 if __name__ == "__main__":
