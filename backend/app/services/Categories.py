@@ -1,3 +1,4 @@
+
 from ..config.database import categories_collection
 class CategoriesService():
     def get_categories(self):

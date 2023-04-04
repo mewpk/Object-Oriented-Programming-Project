@@ -1,3 +1,4 @@
+
 from ..config.database import coupon_collection
 
 class CouponService():
