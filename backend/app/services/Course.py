@@ -1,6 +1,9 @@
-from ..models.Course import Course
+# from ..models.Course import Course
 from ..config.Course import CourseCollection
+
+Course_Collection = CourseCollection()
 class CourseService():
-    Course_Collection = CourseCollection()
     def add_course(self,course):
-        self.Course = Course_Collection.get_course(course)
+        course_list = Course_Collection.get_courses
+        return course_list.append(course)
+    

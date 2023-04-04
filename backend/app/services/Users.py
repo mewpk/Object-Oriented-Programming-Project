@@ -1,19 +1,16 @@
-from ..config.Users import UsersCollection
+from ..config.database import user_collection
 
 class UsersService :
     def get_users():
-        try: 
-            return str(UsersCollection.users)
-        except :
-            return False
+        return user_collection.users
     def get_user_by_id(self,user_id : str ):
-        for user in UsersCollection.users :
+        for user in user_collection.users :
             if user.id == user_id :
                 return user
         return None
     def add_user(self , user):
         try :
-            UsersCollection.users.append(user)
+            user_collection.users.append(user)
             return user
         except  :
             return False
