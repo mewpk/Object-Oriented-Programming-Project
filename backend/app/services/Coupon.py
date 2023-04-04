@@ -1,5 +1,11 @@
-from ..config.Coupon import CouponCollection
+from ..config.database import coupon_collection
 
 class CouponService():
-    def add_coupon(self, new_coupon):
-        CouponCollection.coupon.append(new_coupon)
+    def get_coupon():
+        return coupon_collection.coupon
+    def add_coupon(self, coupon):
+        try :
+            coupon_collection.coupon.append(coupon)
+            return coupon
+        except :
+            return False

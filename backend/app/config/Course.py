@@ -3,5 +3,9 @@ class CourseCollection():
         self.__courses = []
 
     @property
-    def get_courses(self)->list:
+    def courses(self)->list:
+        return self.__courses
+    @courses.setter
+    def courses(self,courses):
+        self.__courses = courses
         return self.__courses

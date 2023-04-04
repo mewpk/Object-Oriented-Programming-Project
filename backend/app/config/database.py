@@ -1,12 +1,13 @@
 from .Users import UsersCollection
-# from .Categories import CategoriesCollection
-# from .Coupon import CouponsCollection
-# from .Course import CoursesCollection
+from .Categories import CatagoriesCollection
+from .Coupon import CouponCollection
+from .Course import CourseCollection
 # from .CourseViewChapter import CoursesViewChaptersCollection
 # from .Order import OrderCollection
 # from .Review import ReviewCollection
 # from .WishList import WishListCollection
 
 user_collection = UsersCollection()
-# categories_collection = CategoriesCollection()
-# copons_collection = CouponsCollection()
+course_collection = CourseCollection()
+categories_collection = CatagoriesCollection()
+coupon_collection = CouponCollection()
