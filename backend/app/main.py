@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from app.routers import users, products, orders
+from .routers import  Users, Course , Coupon
 
 app = FastAPI()
 
-app.include_router(users.router)
-app.include_router(products.router)
-app.include_router(orders.router)
+app.include_router(Users.router)
+app.include_router(Course.router)
+app.include_router(Coupon.router)
 
 @app.get("/")
 async def read_root():
-    return {"message": "Hello World"}
+    return {"message": "Yo!!! it's PW right here!!!!"}

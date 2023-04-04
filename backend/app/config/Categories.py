@@ -1,7 +1,11 @@
 class CatagoriesCollection():
     def __init__(self) -> None:
-        self.__categories = []
-
+        self.__catagories = []
     @property
-    def get_catagories(self):
-        return self.__categories
+    def catagories(self):
+        return self.__catagories
+    @catagories.setter
+    def set_catagories(self, catagories):
+        self.__catagories = catagories
+        return self.__catagories
+       

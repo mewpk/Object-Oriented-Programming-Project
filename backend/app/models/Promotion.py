@@ -16,17 +16,3 @@ class Promotion():
     @property
     def net(self):
         return self.__net
-promotion1 = Promotion(
-    percent = '10',
-    start_date = '21/01/66',
-    end_date = '30/01/66',
-    net = ' '
-)
-
-promotion2 = Promotion(
-    percent = '20',
-    start_date = '02/02/66',
-    end_date = '30/02/66',
-    net = ' '
-)
-
