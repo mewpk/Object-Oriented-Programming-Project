@@ -1,5 +1,5 @@
 class Course():
-    def __init__(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories):
+    def __init__(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor):
         self._id = id
         self._name = name
         self._short_description = short_description
@@ -13,7 +13,8 @@ class Course():
         self._price = price
         self._promotion = promotion
         self._info = info
-        self._categories = categories
+        self._categories = []
+        self._instructor = instructor
     @property
     def id(self):
         return self._id
@@ -56,4 +57,7 @@ class Course():
     @property
     def categories(self):
         return self._categories
+    @property
+    def instructor(self):
+        return self._instructor
 

@@ -2,7 +2,7 @@
 from ..config.database import coupon_collection
 
 class CouponService():
-    def get_coupon():
+    def get_coupon(self):
         return coupon_collection.coupon
     def add_coupon(self, coupon):
         try :

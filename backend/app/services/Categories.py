@@ -1,7 +1,6 @@
-
 from ..config.database import categories_collection
 class CategoriesService():
-    def get_categories():
+    def get_categories(self):
         return categories_collection.catagories
     
     def add_categories(category):

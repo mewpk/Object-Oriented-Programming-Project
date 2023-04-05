@@ -3,7 +3,7 @@ from ..config.database import CourseCollection
 
 Course_Collection = CourseCollection()
 class CourseService():
-    def get_course():
+    def get_course(self):
         return Course_Collection.courses
     def add_course(self,course):
         try :
@@ -12,4 +12,6 @@ class CourseService():
             return course
         except  :
             return False
+   
+        
         
