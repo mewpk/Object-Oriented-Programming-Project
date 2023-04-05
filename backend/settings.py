@@ -16,6 +16,6 @@ config = {
     "api_key": "1234567890",
     "api_host" : "0.0.0.0",
     "api_port" : 8000
-}
+    }
 
 settings = Settings(config)
