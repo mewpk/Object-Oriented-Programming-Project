@@ -10,4 +10,4 @@ app.include_router(Categories.router)
 
 @app.get("/")
 async def read_root():
-    return {"message": "Yo!!! it's Pookkie right here!!!!"}
+    return {"message": "Yo!!! it's PookkiePraewa right here!!!!"}
