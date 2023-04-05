@@ -13,7 +13,7 @@ class Course():
         self._price = price
         self._promotion = promotion
         self._info = info
-        self._categories = []
+        self._categories = categories
         self._instructor = instructor
     @property
     def id(self):

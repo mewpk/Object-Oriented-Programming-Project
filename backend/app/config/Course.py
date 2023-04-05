@@ -11,6 +11,8 @@ class CourseCollection():
         self.__courses = courses
         return self.__courses  
     
+    def get_courses(self):
+        return self.__courses
     def add_course(self,course):
         try :
             self.__courses.append(course)
@@ -32,11 +34,11 @@ class CourseCollection():
                 result.append(course)
         return result
     
-    def search_by_category(self,search_category):
+    def search_by_category(self,category_name):
         result = []
         for course in self.__courses :
-            for category in course.category:
-                if category == search_category:
+            for category in course.categories:
+                if category == category_name:
                     result.append(course)
         return result
                 

@@ -19,3 +19,11 @@ async def create_student(user_data: dict = Body(...)):
         return {"message": "Student created successfully", "user": data}
     else:
         return {"message": "Failed to create Student"}
+    
+@router.post("/login/")
+async def login(user_data: dict = Body(...)):
+    user = user_collection.login(user_data["username"], user_data["password"])
+    if user:
+        return {"message": "Logged in successfully", "user": user}
+    else:
+        return {"message": "Failed to login"}
