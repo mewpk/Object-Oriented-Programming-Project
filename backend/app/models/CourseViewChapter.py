@@ -13,10 +13,3 @@ class CourseViewChapter():
     def course_id(self):
         return self.__course_id
     
-
-chp = CourseViewChapter (
-    progress = [100,50,0,0],
-    student_id = "1111",
-    course_id = "11111111",
-)
-
