@@ -13,12 +13,12 @@ import Review
 import StudentCourse
 import WishList
 print("-----------------------Program Starting-------------------")
-print("--------------------------------------------------------\n")
-print("Account : ",Account.student1)
-print("--------------------------------------------------------\n")
-print("Course : ",Course.course1)
-print("--------------------------------------------------------\n")
-print("Course Review : ",Course.course1.check_course_review())
+# print("--------------------------------------------------------\n")
+# print("Account : ",Account.student1)
+# print("--------------------------------------------------------\n")
+# print("Course : ",Course.course1)
+# print("--------------------------------------------------------\n")
+# print("Course Review : ",Course.course1.check_course_review())
 print("--------------------------------------------------------\n")
 print("Wishlist :" ,Account.student1.add_to_wishlist(id_course = '11111111'))
 print("--------------------------------------------------------\n")
