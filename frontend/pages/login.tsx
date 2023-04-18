@@ -2,12 +2,21 @@ import Head from "next/head";
 import { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: { preventDefault: () => void }): void => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    // code to handle login submission
+    const res = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+    let data = await res.json();
+    console.log(data);
   };
 
   return (
@@ -30,22 +39,22 @@ const Login = () => {
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
+             
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email address
+                  Username
                 </label>
                 <div className="mt-1">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
                     required
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
                   />
                 </div>
               </div>
