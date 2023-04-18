@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react";
 
-const register = (): JSX.Element => {
+const Register = (): JSX.Element => {
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -146,4 +146,4 @@ const register = (): JSX.Element => {
     );
 };
 
-export default register;
+export default Register;

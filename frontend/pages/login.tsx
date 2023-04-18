@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const login = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) : void => {
+  const handleSubmit = (event: { preventDefault: () => void; }) : void => {
     event.preventDefault();
     // code to handle login submission
   };
@@ -91,4 +91,4 @@ const login = () => {
 );
 };
 
-export default login;
+export default Login;
