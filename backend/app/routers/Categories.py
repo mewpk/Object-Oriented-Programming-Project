@@ -11,7 +11,7 @@ async def get_categories():
 
 @router.post("/category/")
 async def create_categories(category_data: dict = Body(...)):
-    new_category = CategoriesService().add_categories(category_data)
+    new_category = CategoriesService.add_categories(category_data)
     if new_category:
         return {"message": "Category created successfully", "category": new_category}
     else:
