@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-import styles from "@/styles/Home.module.css"
-import Image from "next/image"
-import Link from "next/link"
-import Head from "next/head"
-export default function Home(){
-  return(
-    <>
-    <Head>
-      <title>Udemy</title>
-    </Head>
-    <div className={styles.main}>
-
-      <h1 className={styles.title}>Udemy</h1>
-      <Image src="/shopping.svg" width={500} height={500} alt="shopping" />
-      <p className={styles.title}>welcome to Udemy</p>
-      <Link href="/products" className={styles.btn}>view all course</Link>
-    </div>
- 
-=======
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
@@ -39,7 +19,6 @@ export default function Home() {
       Hello world!
     </h1>
       </main>
->>>>>>> 30d30cdf4521aeb929ce72b5c9c9ccc04acf5056
     </>
   )
 }
