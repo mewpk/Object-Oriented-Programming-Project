@@ -1,6 +1,7 @@
 import weakref
 # import class 
-import Review  
+import Review 
+import Categories 
 class Course():
     instances = []
     def __init__(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories):
@@ -61,18 +62,26 @@ class Course():
     @property
     def categories(self):
         return self._categories
-    
-    
+    # @name.setter
+    # def set_name(self,name):
+    #     self._name = name
+    #     print(self._name)
+    #     return self._name
+
 
     def all_instances(self):
         self.__class__.instances.append(weakref.proxy(self))
     def check_course_review(self):
         return [ str(instance) for instance in Review.Review.instances if instance.get_course_id() == self._id]
-
-
+    def check_categories(self):
+        return list(map(str,self.categories))
+    def add_categories(self,category) :
+        for instance in Categories.Categories.instances :
+            if instance == category :
+                self.categories.append(category)
+                return list(map(str,self.categories))
+                
     def calculate_promotion():
-        pass
-    def check_categories(course_id):
         pass
     def check_student_course(student_id,course_id):
         pass
@@ -99,7 +108,7 @@ course1 = Course(
     price = 599,
     promotion = 0,
     info = "3 hours on-demand video , Access on mobile and TV , Certificate of completion",
-    categories = ["Development","Web Development","JavaScript"]
+    categories = [Categories.programming_language, Categories.development]
 )
 
 course2 = Course(
@@ -116,5 +125,5 @@ course2 = Course(
     price = 599,
     promotion = 0,
     info = "10.5 hours on-demand video,Certificate of completion",
-    categories = ["Development","Web Development","Bootstrap"]
+    categories = [Categories.development]
 )
