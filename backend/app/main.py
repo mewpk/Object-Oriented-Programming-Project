@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from .routers import  Users, Course , Coupon,Categories,Order
+from .routers import  users, Course , Coupon,Categories,Order
 
 app = FastAPI()
 
-app.include_router(Users.router)
+app.include_router(users.router)
 app.include_router(Course.router)
 app.include_router(Coupon.router)
 app.include_router(Categories.router)
