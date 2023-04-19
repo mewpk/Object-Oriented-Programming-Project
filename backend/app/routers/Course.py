@@ -61,7 +61,7 @@ async def create_course(course_data: dict = Body(...)):
     
 @router.get("/course/search_bytructor/{instructor_name}")
 async def search_by_instructor(instructor_name):
-    return course_collection.search_by_instructor(instructor_name)
+    return  course_collection.search_by_instructor(instructor_name)
 
 @router.get("/course/search_by_course/{course_name}")
 async def search_by_course(course_name):    

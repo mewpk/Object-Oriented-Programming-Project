@@ -33,6 +33,6 @@ async def create_users(user_data: dict = Body(...)):
 async def login(user_data: dict = Body(...)):
     user = user_collection.verify_login(user_data)
     if user != False:
-        return {"message": "Logged in successfully", "user": user}
+        return {"message": "Logged in successfully", "user": user , "status" : True}
     else:
-        return {"message": "Failed to login"}
+        return {"message": "Failed to login" , "status" : False}
