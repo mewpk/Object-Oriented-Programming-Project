@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Body
 
+from ..models.Cart import Cart
+
 # from ..services.services import users_service
 from ..config.database import user_collection
 from ..models.Users import Student,Instructor,Admin
@@ -15,7 +17,8 @@ async def get_users():
 async def create_users(user_data: dict = Body(...)):
     if user_collection.verify_username(user_data["username"]) == True:
         if user_data["role"] == "Student":
-            new_user = Student(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"],"", "")
+            new_cart = Cart()
+            new_user = Student(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"],"",new_cart, "")
         elif user_data["role"] == "Instructor":
             new_user = Instructor(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"],"", "")
         elif user_data["role"] == "Admin":
