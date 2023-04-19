@@ -36,3 +36,7 @@ class UsersCollection :
                 if user.password == hash(user_data["password"]):
                     return user
         return False
+    
+    def add_to_wishlist(self,student_id,course):
+        self.wishlist.append(course)
+        return "success"

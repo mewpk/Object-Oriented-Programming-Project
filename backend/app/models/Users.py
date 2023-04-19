@@ -1,3 +1,5 @@
+from .WishList import Wishlist
+
 class Account():
     def __init__(self,name,username,password,language ,email,role,about,active = True):
         self._name = name
@@ -23,16 +25,20 @@ class Account():
         self._password = password
         return self._password
 class Student(Account):
-    def __init__(self,name,username,password,language,email,role,about,active= True ):
+    def __init__(self,name,username,password,language,email,role,about,wishlist,active= True):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__review = []
         self.__orders  = []
+        self.__wishlist = wishlist
     @property
     def review(self):
         return self.__review
     @property
     def orders(self) :
         return self.__orders
+    @property
+    def wishlist(self) :
+        return self.__wishlist
     @review.setter
     def review(self,review):
         self.__review = review
@@ -60,6 +66,9 @@ class Student(Account):
             if order.status == "refunded" :
                 list_refunds.append(order)
         return list_refunds
+    
+    def add_to_wishlist(self,course_id):
+        self.wishlist.add_to_wishlist(course_id)
 
    
 class Instructor(Account):
