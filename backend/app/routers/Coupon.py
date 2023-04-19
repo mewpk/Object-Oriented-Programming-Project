@@ -3,6 +3,8 @@ from fastapi import APIRouter, Body
 from ..config.database import coupon_collection
 from ..models.Coupon import Coupon
 
+from datetime import datetime
+
 router = APIRouter()
 
 @router.get("/coupon")
@@ -17,3 +19,7 @@ async def create_coupon(coupon: dict = Body(...)):
         return {"message": "Coupon created successfully", "coupon": new_coupon}
     else:
         return {"message": "Failed to create coupon"}
+    
+@router.get("/update_coupon")
+async def update_coup():
+    return str(coupon_collection.expire_coupon(datetime.now()))

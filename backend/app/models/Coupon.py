@@ -1,9 +1,11 @@
+from datetime import datetime
+
 class Coupon():
     def __init__(self, id, passcode, start_date, end_date, type,condition):
         self._id = id
         self._passcode = passcode
-        self._start_date = start_date
-        self._end_date = end_date
+        self._start_date = datetime.strptime(start_date, '%d/%m/%Y')
+        self._end_date = datetime.strptime(end_date, '%d/%m/%Y')
         self._type = type
         self._condition = condition
     @property
