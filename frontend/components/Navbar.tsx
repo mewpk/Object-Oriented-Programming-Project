@@ -74,7 +74,7 @@ const Navbar = () => {
                         <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">Log in</a>
                     </Link>
                     <Link legacyBehavior href="/register">
-                        <a className="bg-yellow-600 hover:bg-yellow-500 text-white hover:font-bold text-sm block py-2 px-4 rounded">
+                        <a className="bg-yellow-600 hover:bg-yellow-500 text-white hover:text-gray-300 hover:font-bold text-sm block py-2 px-4 rounded">
                             Sign up
                         </a>
                     </Link>

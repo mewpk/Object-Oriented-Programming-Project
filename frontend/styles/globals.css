@@ -1,47 +1,4 @@
-body{
-  /* background: pink; */
-  color: black;
-  margin: 0px;
 
-}
-nav{
-  margin: 0;
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-  background: grey;
-}
-nav a{
-  color: white;
-  text-decoration: none;
-  margin-right: 0;
-  font-size: 18px;
-  padding: 10px;
-}
-nav a:hover{
-  color:violet;
-}
-nav .logo{
-  margin-left: 0;
-  margin-right: auto;
-  padding-left: 10px;
-}
-/* nav .search{
-  border-radius: 10;
-} */
-
-
-footer{
-  display: block;
-  text-align: center;
-  padding: 10px 0;
-  margin-top: 10px;
-  color: #777;
-  border-top: 1px solid white;
-}
-.a{
-  text-decoration: none;
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
