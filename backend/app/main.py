@@ -1,6 +1,7 @@
 from fastapi import FastAPI
+from .routers import  users, Course , Coupon,Categories,Order,StudentCourse,Review
+
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import  users, Course , Coupon,Categories,Order
 
 app = FastAPI()
 origins = [
@@ -22,6 +23,8 @@ app.include_router(Course.router)
 app.include_router(Coupon.router)
 app.include_router(Categories.router)
 app.include_router(Order.router)
+app.include_router(StudentCourse.router)
+app.include_router(Review.router)
 
 @app.get("/")
 async def read_root():
