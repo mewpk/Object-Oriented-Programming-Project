@@ -63,16 +63,25 @@ class Student(Account):
 
    
 class Instructor(Account):
-    def __init__(self,name,username,password,language,email,role,about,description,active= True ):
+    def __init__(self,name,username,password,language,email,role,about,description,active= True,verify=False ):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__description = description
+        self.__verify = verify
     @property
     def description(self):
         return self.__description
+    @property
+    def verify(self):
+        return self.__verify
+    
     @description.setter
     def description(self,description):
         self.__description = description
         return self.__description
+    @verify.setter
+    def verify(self,verify):
+        self.__verify = verify
+        return self.__verify
   
 class Admin(Account):
     def __init__(self,name,username,password,language,email,role,about,active= True ):

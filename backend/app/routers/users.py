@@ -11,6 +11,11 @@ router = APIRouter()
 async def get_users():
     return  user_collection.get_users()
 
+@router.get("/unverifiedinst/")
+async def get_unverified_instructors():
+    return user_collection.get_unverified_instructors()
+
+
 @router.post("/register/")
 async def create_users(user_data: dict = Body(...)):
     if user_collection.verify_username(user_data["username"]) == True:
@@ -36,3 +41,11 @@ async def login(user_data: dict = Body(...)):
         return {"message": "Logged in successfully", "user": user}
     else:
         return {"message": "Failed to login"}
+
+@router.post("/verifyinstructors/")
+async def verify_instructors(user_data: dict = Body(...)):
+    user = user_collection.verify_instructors(user_data["username"])
+    if user != False:
+        return {"message": "Verified successfully","name" : user_data["username"] ,"verify": user}
+    else:
+        return {"message": "Failed to verify"}
