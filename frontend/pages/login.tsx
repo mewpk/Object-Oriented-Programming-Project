@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState , useEffect } from "react";
   import { Transition } from "@headlessui/react";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ const Login = () => {
   const [showCooldownNotification, setShowCooldownNotification] = useState(false);
   const [remainingAttempts, setRemainingAttempts] = useState(3);
   const [cooldownTimer, setCooldownTimer] = useState(0);
-
+  const router = useRouter()
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -32,6 +33,7 @@ const Login = () => {
       setShowSuccessNotification(true);
       setShowErrorNotification(false);
       setRemainingAttempts(3);
+      // router.push('/')
     } else {
       setRemainingAttempts((prevAttempts) => prevAttempts - 1);
       if (remainingAttempts <= 1) {

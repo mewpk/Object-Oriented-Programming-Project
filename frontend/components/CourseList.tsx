@@ -8,7 +8,7 @@ function CourseCard({ course, onCardClick } : any) {
       <div>
         <button
           className="w-full h-48 focus:outline-none"
-          onClick={() => onCardClick(course)}
+          // onClick={() => onCardClick(course)}
         >
           <Image
             className="h-full w-full object-cover"

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/router";
 
 const Register = (): JSX.Element => {
   const [name, setName] = useState("");
@@ -8,6 +9,7 @@ const Register = (): JSX.Element => {
   const [language, setLanguage] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
+  const router = useRouter();
 
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -26,6 +28,7 @@ const Register = (): JSX.Element => {
     })
     let data = await res.json();
     console.log(data);
+    router.push("/")
   };
 
   return (
