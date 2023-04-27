@@ -1,5 +1,9 @@
+from .Cart import Cart
+from ..config.database import user_collection
+
+
 class Account():
-    def __init__(self,name,username,password,language ,email,role,about,active = True):
+    def __init__(self,name,username,password,language ,email,role,about = "",active = True):
         self._name = name
         self._username = username
         self._password = password
@@ -53,16 +57,26 @@ class Account():
         return self._about
     
 class Student(Account):
-    def __init__(self,name,username,password,language,email,role,about,active= True ):
+
+    def __init__(self,name,username,password,language,email,role,about = "",active= True ):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__review = []
         self.__orders  = []
+        self.__cart = Cart()
+        self.__wishlist = []
     @property
     def review(self):
         return self.__review
     @property
     def orders(self) :
         return self.__orders
+    @property
+    def cart(self):
+        return self.__cart
+    @property
+    def wishlist(self) :
+        return self.__wishlist
+
     @review.setter
     def review(self,review):
         self.__review = review
@@ -73,14 +87,14 @@ class Student(Account):
         return self.__orders
     
     def add_order(self,username, order):
-        user = self.get_user(username)
+        user = user_collection.get_user(username)
         if user :
             user.orders.append(order)
             return order
         return False
     
     def view_orders(self , username) :
-        user  = self.get_user(username)
+        user  = user_collection.get_user(username)
         return user.orders
 
     def view_refunds(self,username) :
@@ -90,6 +104,16 @@ class Student(Account):
             if order.status == "refunded" :
                 list_refunds.append(order)
         return list_refunds
+
+    def add_to_cart(self,course_id):
+        self.cart.add_to_cart(course_id)
+
+    def get_wishlist(self):
+        return self.wishlist
+    
+    def add_to_wishlist(self,course_id):
+        self.wishlist.append(course_id)
+        return "success"
 
    
 class Instructor(Account):
@@ -114,5 +138,5 @@ class Instructor(Account):
         return self.__verify
   
 class Admin(Account):
-    def __init__(self,name,username,password,language,email,role,about,active= True ):
+    def __init__(self,name,username,password,language,email,role,about = "",active= True ):
         super().__init__(name,username,password,language,email,role,about,active)

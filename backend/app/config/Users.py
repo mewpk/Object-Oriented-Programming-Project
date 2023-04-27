@@ -9,9 +9,7 @@ class UsersCollection :
     def set_users(self, users):
         self.__users = users
         return self.__users
-    
-    def get_users(self):
-        return self.__users
+
     def get_user(self,username):
         for user in self.__users :
             if user.username == username :
@@ -37,7 +35,7 @@ class UsersCollection :
                 if user.password == hash(user_data["password"]):
                     return user
         return False
-    
+
 
     def get_unverified_instructors(self):
         unverified_instructors = []
@@ -65,6 +63,4 @@ class UsersCollection :
         return True
                 
 
-        
    
-    
