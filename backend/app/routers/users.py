@@ -11,7 +11,8 @@ router = APIRouter()
 
 @router.get("/users")
 async def get_users():
-    return  user_collection.get_users()
+    return  user_collection.users
+    
 
 @router.post("/register/")
 async def create_users(user_data: dict = Body(...)):
