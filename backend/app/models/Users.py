@@ -1,5 +1,3 @@
-from .WishList import Wishlist
-
 class Account():
     def __init__(self,name,username,password,language ,email,role,about,active = True):
         self._name = name
@@ -25,11 +23,11 @@ class Account():
         self._password = password
         return self._password
 class Student(Account):
-    def __init__(self,name,username,password,language,email,role,about,wishlist,active= True):
+    def __init__(self,name,username,password,language,email,role,about,active= True):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__review = []
         self.__orders  = []
-        self.__wishlist = wishlist
+        self.__wishlist = []
     @property
     def review(self):
         return self.__review

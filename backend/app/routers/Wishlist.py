@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body
 
 from ..config.database import wishlist_collection,course_collection
-from ..models.Categories import Categories
+from ..models.WishList import Wishlist
 
 router = APIRouter()
 

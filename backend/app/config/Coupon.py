@@ -22,4 +22,4 @@ class CouponCollection():
         for coupon in self.coupon:
             if coupon.end_date < time:
                 self.coupon.remove(coupon)
-        return self.coupon
+        return "success"
