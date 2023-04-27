@@ -21,8 +21,7 @@ class Cart():
     @property
     def course(self):
         return self.__course
-    
-    
+       
     @price.setter
     def price(self,price):
         self.__price = price

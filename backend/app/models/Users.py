@@ -1,6 +1,6 @@
 from .Cart import Cart
 class Account():
-    def __init__(self,name,username,password,language ,email,role,about,active = True):
+    def __init__(self,name,username,password,language ,email,role,about = "",active = True):
         self._name = name
         self._username = username
         self._password = password
@@ -24,11 +24,11 @@ class Account():
         self._password = password
         return self._password
 class Student(Account):
-    def __init__(self,name,username,password,language,email,role,about,cart,active= True ):
+    def __init__(self,name,username,password,language,email,role,about = "",active= True ):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__review = []
         self.__orders  = []
-        self.__cart = cart
+        self.__cart = Cart()
     @property
     def review(self):
         return self.__review
@@ -75,7 +75,7 @@ class Student(Account):
 
    
 class Instructor(Account):
-    def __init__(self,name,username,password,language,email,role,about,description,active= True ):
+    def __init__(self,name,username,password,language,email,role,about = "",description = "",active= True ):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__description = description
     @property
@@ -87,5 +87,5 @@ class Instructor(Account):
         return self.__description
   
 class Admin(Account):
-    def __init__(self,name,username,password,language,email,role,about,active= True ):
+    def __init__(self,name,username,password,language,email,role,about = "",active= True ):
         super().__init__(name,username,password,language,email,role,about,active)

@@ -17,12 +17,11 @@ async def get_users():
 async def create_users(user_data: dict = Body(...)):
     if user_collection.verify_username(user_data["username"]) == True:
         if user_data["role"] == "Student":
-            new_cart = Cart()
-            new_user = Student(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"],"",new_cart, "")
+            new_user = Student(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"])
         elif user_data["role"] == "Instructor":
-            new_user = Instructor(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"],"", "")
+            new_user = Instructor(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"])
         elif user_data["role"] == "Admin":
-            new_user = Admin(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"],"", "")
+            new_user = Admin(user_data["name"], user_data["username"], user_data["password"], user_data["language"],user_data["email"], user_data["role"])
         user_hash_password =user_collection.hash_password(new_user)
         data = user_collection.add_user(user_hash_password)
         if new_user and data:

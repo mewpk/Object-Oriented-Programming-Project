@@ -18,12 +18,9 @@ async def get_cart(username : str):
 async def add_cart(course_id: int,username:str):
     for user in user_collection.users:
         if user.username == username:
-            student = user
-            for courses in course_collection.courses:
-                if courses.id == course_id:
-                    student.add_to_cart(course_id)
-                    return "success"
-        else: return "Failed to add"
+            user.add_to_cart(course_id)
+            return "success"
+    return "Failed to add"
             
 
     

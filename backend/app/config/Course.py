@@ -13,15 +13,13 @@ class CourseCollection():
     
     def get_courses(self):
         return self.__courses
-    
     def add_course(self,course):
-        for product in self.__courses:
-            if product.id == course.id:
-                return False
-            else:
-                self.__courses.append(course)
-        return course
-            
+        try :
+            self.__courses.append(course)
+            return course
+        except  :
+            return False
+
     def search_by_course(self,course_name):
         result = []
         for course in self.__courses:
