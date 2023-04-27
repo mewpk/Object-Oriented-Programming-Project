@@ -11,7 +11,7 @@ router = APIRouter()
 async def get_users():
     return  user_collection.get_users()
 
-@router.get("/unverifiedinst/")
+@router.get("/unverified_instructors/")
 async def get_unverified_instructors():
     return user_collection.get_unverified_instructors()
 
@@ -42,10 +42,19 @@ async def login(user_data: dict = Body(...)):
     else:
         return {"message": "Failed to login"}
 
-@router.post("/verifyinstructors/")
+@router.post("/verify_instructors/")
 async def verify_instructors(user_data: dict = Body(...)):
     user = user_collection.verify_instructors(user_data["username"])
     if user != False:
-        return {"message": "Verified successfully","name" : user_data["username"] ,"verify": user}
+        return {"message": "Verified successfully","username" : user_data["username"] ,"verify": user}
     else:
         return {"message": "Failed to verify"}
+    
+@router.put("/edit_profile/")
+async def edit_profile(user_data: dict = Body(...)):
+    user = user_collection.edit_profile(user_data["username"],user_data["name"],user_data["language"] , user_data["email"],user_data["about"])
+    profile = user_collection.get_user(user_data["username"])
+    if user != False:
+        return {"message": "Edit profile successfully","profile" : profile}
+    else:
+        return {"message": "Failed to Edit profile"}

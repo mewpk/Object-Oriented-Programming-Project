@@ -55,6 +55,14 @@ class UsersCollection :
                     user.verify = True
                     return True
                 return False
+            
+    def edit_profile(self,username,name,language,email,about):
+        user = self.get_user(username)
+        user.name = name
+        user.language = language
+        user.email = email
+        user.about = about
+        return True
                 
 
         
