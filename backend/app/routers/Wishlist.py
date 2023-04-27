@@ -6,7 +6,7 @@ from ..models.WishList import Wishlist
 router = APIRouter()
 
 @router.get("/wishlist")
-async def get_category():
+async def get_wishlist():
     return  wishlist_collection.get_wishlist()
 
 @router.post("/add_to_wishlist/")
