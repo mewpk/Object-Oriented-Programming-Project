@@ -43,5 +43,6 @@ class Cart():
     def add_to_cart(self,course_id):
         for course in course_collection.courses:
             if course.id == course_id:
-                self.course.append(course)
+                courses = course
+                self.course.append(courses)
                 return "success"

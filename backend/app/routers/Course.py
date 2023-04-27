@@ -54,7 +54,7 @@ async def create_course(course_data: dict = Body(...)):
                          ,course_data["purpose"],course_data["chapter"],course_data["requirement"],course_data["description"],course_data["target"]
                          ,course_data["price"],course_data["promotion"],course_data["info"],course_data["categories"],course_data["instructor"])
     data = course_collection.add_course(new_course)
-    if new_course and data:
+    if new_course and data != False:
         return {"message": "Course created successfully", "course": data}
     else:
         return {"message": "Failed to create course"}
