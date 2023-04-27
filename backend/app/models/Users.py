@@ -1,3 +1,5 @@
+from ..config.database import user_collection
+
 class Account():
     def __init__(self,name,username,password,language ,email,role,about,active = True):
         self._name = name
@@ -47,14 +49,14 @@ class Student(Account):
         return self.__orders
     
     def add_order(self,username, order):
-        user = self.get_user(username)
+        user = user_collection.get_user(username)
         if user :
             user.orders.append(order)
             return order
         return False
     
     def view_orders(self , username) :
-        user  = self.get_user(username)
+        user  = user_collection.get_user(username)
         return user.orders
 
     def view_refunds(self,username) :
@@ -65,8 +67,13 @@ class Student(Account):
                 list_refunds.append(order)
         return list_refunds
     
+    def get_wishlist(self):
+        return self.wishlist
+    
     def add_to_wishlist(self,course_id):
-        self.wishlist.add_to_wishlist(course_id)
+        self.wishlist.append(course_id)
+        return "success"
+        
 
    
 class Instructor(Account):

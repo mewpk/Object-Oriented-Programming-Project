@@ -9,5 +9,5 @@ class WishListCollection():
         return self.__wishlist
     
     def add_to_wishlist(self,course):
-        self.__wishlist.append(course)
+        self.wishlist.append(course)
         return "success"

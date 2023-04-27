@@ -9,9 +9,9 @@ class UsersCollection :
         self.__users = users
         return self.__users
     
-    def get_user(self,student_id):
+    def get_user(self,username):
         for user in self.__users :
-            if user.id == int(student_id) :
+            if user.username == username :
                 return user
     def add_user(self,new_user):
         self.users.append(new_user)
@@ -35,6 +35,3 @@ class UsersCollection :
                     return user
         return False
     
-    def add_to_wishlist(self,student_id,course):
-        self.wishlist.append(course)
-        return "success"
