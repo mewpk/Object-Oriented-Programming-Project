@@ -86,34 +86,50 @@ class Student(Account):
         self.__orders = orders
         return self.__orders
     
-    def add_order(self,username, order):
-        user = user_collection.get_user(username)
-        if user :
-            user.orders.append(order)
-            return order
-        return False
-    
-    def view_orders(self , username) :
-        user  = user_collection.get_user(username)
-        return user.orders
+    def add_order(self, order):
+        self.orders.append(order)
+        return True
 
-    def view_refunds(self,username) :
-        orders = self.view_orders(username)
+    def view_refunds(self) :
+        # orders = self.view_orders(username)
         list_refunds = []
-        for order in orders :
+        for order in self.orders :
             if order.status == "refunded" :
                 list_refunds.append(order)
         return list_refunds
 
-    def add_to_cart(self,course_id):
-        self.cart.add_to_cart(course_id)
+    def add_to_cart(self,course):
+        self.cart.add_to_cart(course)
+    
+    def remove_from_cart(self,course):
+        self.cart.remove_from_cart(course)
 
+    def check_course_in_cart(self,course):
+        if course not in self.cart.course:
+            return True
+        else: return False
+        
     def get_wishlist(self):
         return self.wishlist
     
     def add_to_wishlist(self,course_id):
         self.wishlist.append(course_id)
         return "success"
+    
+    def check_course_in_wishlist(self,course_id):
+        for course in self.wishlist:
+            if course.id == course_id:
+                print(course.id)
+                return True
+        print(course_id)
+        return False
+    
+    def remove_from_wishlist(self,course_id):
+        self.wishlist.remove(course_id)
+        return "success"
+    
+    def view_total_price(self):
+        return self.cart.total_price()
 
    
 class Instructor(Account):

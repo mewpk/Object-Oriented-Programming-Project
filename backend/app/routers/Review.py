@@ -12,11 +12,14 @@ async def get_review():
 
 @router.post("/review/")
 async def create_review(review_data: dict = Body(...)):
-    new_review = Review(review_data["username"],review_data["rating"],review_data["course_id"],review_data["description"])
-    data = review_collection.add_review(new_review)
-    if data:
-        return {"message": "review successfully", "review": data}
-    else:
-        return {"message": "Failed to review"}
+    try:
+        new_review = Review(review_data.get("username"),review_data.get("rating"),review_data.get("course_id"),review_data.get("description"))
+        data = review_collection.add_review(new_review)
+        if data:
+            return {"message": "review successfully", "review": data}
+        else:
+            return {"message": "Failed to review"}
+    except:
+        return "please try again"
 
 

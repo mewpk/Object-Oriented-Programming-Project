@@ -18,6 +18,11 @@ class CouponCollection():
     def get_coupon(self):
         return self.coupon
     
+    def get_coupon_by_passcode(self,passcode):
+        for coupon in self.coupon:
+            if coupon.passcode == passcode:
+                return coupon
+    
     def expire_coupon(self,time):
         for coupon in self.coupon:
             if coupon.end_date < time:

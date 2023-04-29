@@ -1,4 +1,5 @@
-from ..config.database import cart_collection,course_collection
+from ..config.database import cart_collection,course_collection,coupon_collection
+# from .Coupon import Coupon
 class Cart():
     def __init__(self):
         self.__price = 0
@@ -39,9 +40,34 @@ class Cart():
         self.__net_price = net_price
         return self.__net_price
     
-    def add_to_cart(self,course_id):
-        for course in course_collection.courses:
-            if course.id == course_id:
-                courses = course
-                self.course.append(courses)
-                return "success"
+    def add_to_cart(self,course):
+        self.course.append(course)
+        return "success"
+            
+    def remove_from_cart(self,course):
+        self.course.remove(course)
+        return "success"
+    
+    def total_price(self):
+        total = 0
+        for course in self.course:
+            total += course.price 
+        return total
+    
+    def total_promotion(self):
+        total = 0
+        for course in self.course:
+            total += course.promotion
+        return total
+    
+    def total_coupon(self,passcode):
+        coupon = coupon_collection.get_coupon_by_passcode(passcode)
+        
+    def check_coupon(self,coupon):
+        pass
+
+    
+    # def total_net_price(self):
+    #     total = 0
+    #     for course in self.course:
+    #         total += 
