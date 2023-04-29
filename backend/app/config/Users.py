@@ -4,16 +4,15 @@ class UsersCollection :
     @property
     def users(self):
         return self.__users
+    
     @users.setter
     def set_users(self, users):
         self.__users = users
         return self.__users
-    
-    def get_users(self):
-        return self.__users
-    def get_user(self,student_id):
+
+    def get_user(self,username):
         for user in self.__users :
-            if user.id == int(student_id) :
+            if user.username == username :
                 return user
     def add_user(self,new_user):
         self.users.append(new_user)
@@ -36,3 +35,32 @@ class UsersCollection :
                 if user.password == hash(user_data["password"]):
                     return user
         return False
+
+
+    def get_unverified_instructors(self):
+        unverified_instructors = []
+        for user in self.users:
+            if user.role == "Instructor":
+                if user.verify == False:
+                    unverified_instructors.append(user)
+                    return unverified_instructors
+            
+    def verify_instructors(self,username):
+            user =  self.get_user(username)
+            print(str(user))
+            if user.role == "Instructor":
+                if user.verify == False:
+                    user.verify = True
+                    return True
+                return False
+            
+    def edit_profile(self,username,name,language,email,about):
+        user = self.get_user(username)
+        user.name = name
+        user.language = language
+        user.email = email
+        user.about = about
+        return True
+                
+
+   

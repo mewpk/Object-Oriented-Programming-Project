@@ -8,3 +8,23 @@ class CouponCollection():
     def set_coupon(self, coupon):
         self.__coupon = coupon
         return self.__coupon
+    def add_coupon(self,coupon):
+        try :
+            self.coupon.append(coupon)
+            return coupon
+        except  :
+            return False
+    
+    def get_coupon(self):
+        return self.coupon
+    
+    def get_coupon_by_passcode(self,passcode):
+        for coupon in self.coupon:
+            if coupon.passcode == passcode:
+                return coupon
+    
+    def expire_coupon(self,time):
+        for coupon in self.coupon:
+            if coupon.end_date < time:
+                self.coupon.remove(coupon)
+        return "success"
