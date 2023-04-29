@@ -36,7 +36,6 @@ class UsersCollection :
                     return user
         return False
 
-
     def get_unverified_instructors(self):
         unverified_instructors = []
         for user in self.users:
@@ -47,7 +46,6 @@ class UsersCollection :
             
     def verify_instructors(self,username):
             user =  self.get_user(username)
-            print(str(user))
             if user.role == "Instructor":
                 if user.verify == False:
                     user.verify = True
@@ -60,7 +58,7 @@ class UsersCollection :
         user.language = language
         user.email = email
         user.about = about
-        return True
+        return user
                 
 
    

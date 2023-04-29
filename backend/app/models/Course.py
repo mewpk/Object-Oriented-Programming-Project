@@ -6,7 +6,7 @@ class Course():
         self._date = date
         self._language = language
         self._purpose = purpose
-        self._chapter = chapter
+        self._chapter = []
         self._requirement = requirement
         self._description = description
         self._target = target
@@ -61,3 +61,9 @@ class Course():
     def instructor(self):
         return self._instructor
 
+class StudentCourse(Course):
+    def __init__(self):
+        self.__all_progress = []
+    @property
+    def all_progress(self):
+        return self.__all_progress

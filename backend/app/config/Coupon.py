@@ -1,30 +1,29 @@
 class CouponCollection():
     def __init__(self) -> None:
-        self.__coupon = []
+        self.__coupons = []
     @property
-    def coupon(self):
-        return self.__coupon
-    @coupon.setter
-    def set_coupon(self, coupon):
-        self.__coupon = coupon
-        return self.__coupon
+    def coupons(self):
+        return self.__coupons
+    @coupons.setter
+    def set_coupons(self, coupons):
+        self.__coupons = coupons
+        return self.__coupons
+    
     def add_coupon(self,coupon):
         try :
-            self.coupon.append(coupon)
+            self.coupons.append(coupon)
             return coupon
         except  :
             return False
-    
-    def get_coupon(self):
-        return self.coupon
+
     
     def get_coupon_by_passcode(self,passcode):
-        for coupon in self.coupon:
+        for coupon in self.coupons:
             if coupon.passcode == passcode:
                 return coupon
     
     def expire_coupon(self,time):
-        for coupon in self.coupon:
+        for coupon in self.coupons:
             if coupon.end_date < time:
-                self.coupon.remove(coupon)
-        return "success"
+                self.coupons.remove(coupon)
+        return "Success"

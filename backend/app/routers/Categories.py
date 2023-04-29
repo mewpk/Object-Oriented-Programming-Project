@@ -6,12 +6,12 @@ from ..models.Categories import Categories
 
 router = APIRouter()
 
-@router.get("/category")
+@router.get("/category/")
 async def get_category():
-    return  categories_collection.get_categories()
+    return  categories_collection.categories
 
 @router.post("/category/")
-async def create_categories(category: dict = Body(...)):
+async def create_category(category: dict = Body(...)):
     try:
         new_category = Categories(category.get("id"),category.get("name"))
         data = categories_collection.add_categories(new_category)

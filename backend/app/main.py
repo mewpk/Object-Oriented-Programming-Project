@@ -30,5 +30,4 @@ app.include_router(Wishlist.router)
 
 @app.get("/")
 async def read_root():
-    
     return {"message": "Yo!!! it's PookkiePraewa right here!!!!"}

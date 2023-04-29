@@ -44,9 +44,11 @@ async def mock_course():
         )
         course_collection.add_course(new_course)
     return course_collection
+
+
 @router.get("/course")
 async def get_course():
-    return  course_collection.get_courses()
+    return  course_collection.courses
 
 @router.post("/course/")
 async def create_course(course_data: dict = Body(...)):

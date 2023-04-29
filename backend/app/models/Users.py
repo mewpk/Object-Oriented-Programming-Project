@@ -91,7 +91,6 @@ class Student(Account):
         return True
 
     def view_refunds(self) :
-        # orders = self.view_orders(username)
         list_refunds = []
         for order in self.orders :
             if order.status == "refunded" :

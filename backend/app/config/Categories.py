@@ -15,6 +15,3 @@ class CategoriesCollection():
             return categories
         except  :
             return False
-    
-    def get_categories(self):
-        return self.__categories
