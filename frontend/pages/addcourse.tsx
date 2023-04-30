@@ -16,9 +16,33 @@ export default function AddCoursePage() {
   const [info, setInfo] = useState("");
   const [categories, setCategories] = useState([]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // TODO: add code to handle form submission
+    const res = await fetch("http://localhost:8000/course", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id : 1,
+        name: name,
+        shortDescription: shortDescription,
+        date : date,
+        language : language,
+        purpose : purpose,
+        chapters : chapters,
+        requirement : requirement,
+        description : description,
+        target : target,
+        price : price,
+        promotion : promotion,
+        info : info,
+        categories : categories,
+        instructor : ""
+
+      }),
+    })
+    let data = await res.json();
+    console.log(data);  
+
   };
 
   const handleChapterChange = (index, value) => {

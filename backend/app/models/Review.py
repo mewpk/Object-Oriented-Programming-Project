@@ -1,16 +1,13 @@
 class Review():
-    def __init__(self,by,rating,course_id,description,id):
-        self.__id = id
-        self.__by = by
+    def __init__(self,username,rating,course_id,description):
+        self.__username = username
         self.__rating = rating
         self.__course_id = course_id
         self.__description = description
+
     @property
-    def id(self):
-        return self.__id
-    @property
-    def by(self):
-        return self.__by
+    def username(self):
+        return self.__username
     @property
     def rating(self):
         return self.__rating

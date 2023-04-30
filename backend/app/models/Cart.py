@@ -1,9 +1,12 @@
+from ..config.database import cart_collection,course_collection,coupon_collection
+# from .Coupon import Coupon
 class Cart():
-    def __init__(self,price,net_promotion,net_coupon,net_price):
-        self.__price = price
-        self.__net_promotion = net_promotion
-        self.__net_coupon = net_coupon
-        self.__net_price = net_price
+    def __init__(self):
+        self.__price = 0
+        self.__net_promotion = 0
+        self.__net_coupon = 0
+        self.__net_price = 0
+        self.__course = []
     @property
     def price(self):
         return self.__price
@@ -16,8 +19,10 @@ class Cart():
     @property
     def net_price(self) :
         return self.__net_price
-    
-    
+    @property
+    def course(self):
+        return self.__course
+       
     @price.setter
     def price(self,price):
         self.__price = price
@@ -34,3 +39,34 @@ class Cart():
     def net_price(self,net_price):
         self.__net_price = net_price
         return self.__net_price
+    
+    def add_to_cart(self,course):
+        self.course.append(course)
+        return "success"
+            
+    def remove_from_cart(self,course):
+        self.course.remove(course)
+        return "success"
+    
+    def total_price(self):
+        total = 0
+        for course in self.course:
+            total += course.price 
+        return total
+    
+    def total_promotion(self):
+        total = 0
+        for course in self.course:
+            total += course.promotion
+        return total
+    
+    def total_coupon(self,passcode):
+        coupon = coupon_collection.get_coupon_by_passcode(passcode)
+        
+
+
+    
+    # def total_net_price(self):
+    #     total = 0
+    #     for course in self.course:
+    #         total += 

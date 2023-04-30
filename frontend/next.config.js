@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['fireship.io'],
+    domains: ['fireship.io','img.freepik.com'],
 },
 }
 

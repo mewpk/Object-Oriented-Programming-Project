@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^1.0.6",
     "button": "^1.1.1",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-cookie": "^4.1.1",
+    "react-dom": "18.2.0",
+    "react-modal": "^3.16.1"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
