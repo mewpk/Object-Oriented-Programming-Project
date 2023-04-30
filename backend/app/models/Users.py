@@ -1,5 +1,9 @@
 from .Cart import Cart
+from .Order import Order
 from ..config.database import user_collection
+from .Course import StudentCourse
+from .Payment import Payment
+from datetime import datetime
 
 
 class Account():
@@ -64,6 +68,8 @@ class Student(Account):
         self.__orders  = []
         self.__cart = Cart()
         self.__wishlist = []
+        self.__student_course = StudentCourse()
+        self.__payment = Payment()
     @property
     def review(self):
         return self.__review
@@ -76,6 +82,9 @@ class Student(Account):
     @property
     def wishlist(self) :
         return self.__wishlist
+    @property
+    def student_course(self):
+        return self.__student_course
 
     @review.setter
     def review(self,review):
@@ -86,6 +95,14 @@ class Student(Account):
         self.__orders = orders
         return self.__orders
     
+    def make_payment(self):
+        new_order = Order("Pending")
+        self.add_order(new_order)
+        return True
+    
+    def finish_payment(self,):
+        pass
+
     def add_order(self, order):
         self.orders.append(order)
         return True
@@ -107,9 +124,7 @@ class Student(Account):
         if course not in self.cart.course:
             return True
         else: return False
-        
-    def get_wishlist(self):
-        return self.wishlist
+
     
     def add_to_wishlist(self,course_id):
         self.wishlist.append(course_id)

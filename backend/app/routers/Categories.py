@@ -14,7 +14,7 @@ async def get_category():
 async def create_category(category: dict = Body(...)):
     try:
         new_category = Categories(category.get("id"),category.get("name"))
-        data = categories_collection.add_categories(new_category)
+        data = categories_collection.add_category(new_category)
         if new_category and data:
             return {"message": "Category created successfully", "category": new_category}
         else:

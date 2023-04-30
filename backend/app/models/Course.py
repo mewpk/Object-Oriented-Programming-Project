@@ -1,6 +1,7 @@
 class Course():
-    def __init__(self,id,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor):
-        self._id = id
+    id_counter = 1
+    def __init__(self,name,short_description,date,language,purpose,requirement,description,target,price,promotion,info,categories,instructor):
+        self._id = Course.id_counter
         self._name = name
         self._short_description = short_description
         self._date = date
@@ -15,6 +16,7 @@ class Course():
         self._info = info
         self._categories = categories
         self._instructor = instructor
+        Course.id_counter += 1
     @property
     def id(self):
         return self._id
@@ -60,6 +62,10 @@ class Course():
     @property
     def instructor(self):
         return self._instructor
+    @id.setter
+    def id(self,id):
+        self._id = id
+        return self._id
 
 class StudentCourse(Course):
     def __init__(self):

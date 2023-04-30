@@ -1,8 +1,7 @@
 from datetime import datetime
 
 class Coupon():
-    def __init__(self, id, passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent):
-        self._id = id
+    def __init__(self,passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent):
         self._passcode = passcode
         self._start_date = datetime.strptime(start_date, '%d/%m/%Y')
         self._end_date = datetime.strptime(end_date, '%d/%m/%Y')
@@ -41,8 +40,8 @@ class Coupon():
         return self._discounted_percent
         
 class CouponCourse(Coupon):
-    def __init__(self, id, passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent,course_id):
-        super().__init__(id, passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent)
+    def __init__(self, passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent,course_id):
+        super().__init__(passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent)
         self.__course_id = course_id
     @property
     def course_id(self):
@@ -50,8 +49,8 @@ class CouponCourse(Coupon):
     
 
 class CouponInstructor(Coupon):
-    def __init__(self, id, passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent,instructor_name):
-        super().__init__(id, passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent)
+    def __init__(self, passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent,instructor_name):
+        super().__init__(passcode, start_date, end_date, type,condition,at_least,discounted_price,discounted_percent)
         self.__instructor_name = instructor_name
     @property
     def instructor_name(self):

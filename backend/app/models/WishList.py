@@ -3,5 +3,5 @@ class Wishlist:
         self.__list_wishlist = []
     @property
     def list_wishlist(self):
-        return self.list_wishlist
+        return self.__list_wishlist
     

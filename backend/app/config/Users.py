@@ -18,6 +18,9 @@ class UsersCollection :
         self.users.append(new_user)
         return new_user
 
+    # def hash_password(self,password):
+    #     return str(hash((password)))
+
     def hash_password(self,new_user):
         hash_result = hash(new_user.password)
         new_user.password = hash_result
@@ -36,13 +39,19 @@ class UsersCollection :
                     return user
         return False
 
-    def get_unverified_instructors(self):
-        unverified_instructors = []
+    def get_instructors(self):
+        instructor = []
         for user in self.users:
             if user.role == "Instructor":
-                if user.verify == False:
-                    unverified_instructors.append(user)
-                    return unverified_instructors
+                instructor.append(user)
+                return instructor
+            
+    def get_unverified_instructors(self):
+        unverified_instructors = []
+        for user in self.get_instructors():
+            if user.verify == False:
+                unverified_instructors.append(user)
+                return unverified_instructors
             
     def verify_instructors(self,username):
             user =  self.get_user(username)

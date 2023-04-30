@@ -9,7 +9,6 @@ router = APIRouter()
 async def mock_course():
     for i in range(50):
         course_data = {
-            "id": f"course_{i}",
             "name": f"Course {i}",
             "short_description": f"This is a short description for Course {i}.",
             "date": "2023-04-19",
@@ -26,7 +25,6 @@ async def mock_course():
             "instructor": "John Doe"
         }
         new_course = Course(
-            course_data["id"],
             course_data["name"],
             course_data["short_description"],
             course_data["date"],
@@ -53,8 +51,8 @@ async def get_course():
 @router.post("/course/")
 async def create_course(course_data: dict = Body(...)):
     try:
-        new_course = Course(course_data.get("id"),course_data.get("name"),course_data.get("short_description"),course_data.get("date"),course_data.get("language")
-                            ,course_data.get("purpose"),course_data.get("chapter"),course_data.get("requirement"),course_data.get("description"),course_data.get("target")
+        new_course = Course(course_data.get("name"),course_data.get("short_description"),course_data.get("date"),course_data.get("language")
+                            ,course_data.get("purpose"),course_data.get("requirement"),course_data.get("description"),course_data.get("target")
                         ,course_data.get("price"),course_data.get("promotion"),course_data.get("info"),course_data.get("categories"),course_data.get("instructor"))
         data = course_collection.add_course(new_course)
         if new_course and data:

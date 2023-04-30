@@ -9,9 +9,18 @@ class CategoriesCollection():
         self.__categories = categories
         return self.__categories
     
-    def add_categories(self,categories):
-        try :
-            self.__categories.append(categories)
-            return categories
-        except  :
-            return False
+    def verify_category(self,name):
+        for category in self.__categories:
+            if category.name == name:
+                return False
+        return True
+    
+    def add_category(self,category):
+        if self.verify_category(category) == True:
+            try :
+                self.__categories.append(category)
+                return category
+            except  :
+                return False
+        else:
+            return False        

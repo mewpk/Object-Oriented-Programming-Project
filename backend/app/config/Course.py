@@ -39,4 +39,5 @@ class CourseCollection():
                 if category == category_name:
                     result.append(course)
         return result
+
                 

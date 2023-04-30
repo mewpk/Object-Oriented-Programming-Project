@@ -7,7 +7,7 @@ router = APIRouter()
 @router.get("/wishlist")
 async def get_wishlist(username : str):
     student = user_collection.get_user(username)
-    return  student.get_wishlist()
+    return  student.wishlist
 
 @router.post("/add_to_wishlist/")
 async def add_to_wishlist(data: dict = Body(...)):

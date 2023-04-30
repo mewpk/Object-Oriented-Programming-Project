@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Body
 
-from ..config.database import cart_collection,course_collection,user_collection
+from ..config.database import cart_collection,course_collection,user_collection,coupon_collection
 from ..models.Course import Course
 from ..models.Users import Student
 
@@ -37,6 +37,16 @@ async def get_total_price(username : str):
         return student.view_total_price()
     except:
         return "please try again"
+    
+@router.post("/cart/apply_coupon")
+async def apply_coupon(data: dict=Body(...)):
+    try:
+        student = user_collection.get_user(data.get("username"))
+        coupon = coupon_collection.get_coupon_by_passcode(data.get("passcode"))
+        return coupon_collection.use_coupon(coupon,student.cart,student.view_total_price)
+    except:
+        return "invalid coupon / does not meet the conditions of coupon"
+
             
 
     
