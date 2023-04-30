@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useCookies } from "react-cookie";
 import Router from "next/router";
-export default function profile() {
+export default function Profile() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [username, setUsername] = useState(null);
 

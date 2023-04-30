@@ -8,6 +8,11 @@ export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [username, setUsername] = useState(null);
+  useEffect(()=>{
+    if (!cookies.user){
+      Router.push("/")
+    }
+  })
   const handleApplyCoupon = () => {
     // Call an API or do something else to check if the coupon is valid
     // and calculate the discount if it is
@@ -28,8 +33,13 @@ export default function Cart() {
       }),
     });
     let dataRes = await res.json();
-    setData(dataRes._Cart__course);
-    console.log(dataRes);
+    try {
+      setData(dataRes._Cart__course);
+      console.log(dataRes);
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
   useEffect(() => {
     getData();
@@ -43,11 +53,7 @@ export default function Cart() {
   }, [cookies]);
 
 
-  useEffect(()=>{
-    if (!cookies.user){
-      Router.push("/")
-    }
-  })
+
 
   const handleRemoveCourse = (id) => {
     setData((prevData) => prevData.filter((course) => course.id !== id));
