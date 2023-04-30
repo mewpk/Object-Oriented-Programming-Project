@@ -1,8 +1,36 @@
 import Head from "next/head";
+import Router from "next/router";
+import { useEffect, useState } from "react";
+import { useCookies } from 'react-cookie';
+
+import SlideImage from "../components/SlideImage";
+
+const images = [
+  {
+    src: "https://fireship.io/courses/react-next-firebase/img/featured.png",
+    alt: "Slide 1",
+  },
+  {
+    src: "https://fireship.io/courses/js/img/featured.webp",
+    alt: "Slide 2",
+  },
+  {
+    src: "https://fireship.io/courses/react-next-firebase/img/featured.png",
+    alt: "Slide 3",
+  },
+];
 
 
 export default function Home() {
-
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [username , setUsername] = useState("")
+  const handleLogout = () => {
+    removeCookie('user');
+    Router.push('/login');
+  };
+  useEffect(()=>{
+   setUsername(cookies.user) 
+  })
 
   return (
     <>
@@ -13,7 +41,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container mx-auto p-10">
-        
+        <h1>Welcome, {username}!</h1>
+        <SlideImage images={images} />
+      <button onClick={handleLogout}>Log out</button>
       </main>
     </>
   );

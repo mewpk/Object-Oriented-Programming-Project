@@ -52,7 +52,7 @@ async def get_course():
 async def create_course(course_data: dict = Body(...)):
     try:
         new_course = Course(course_data.get("name"),course_data.get("short_description"),course_data.get("date"),course_data.get("language")
-                            ,course_data.get("purpose"),course_data.get("requirement"),course_data.get("description"),course_data.get("target")
+                            ,course_data.get("purpose"),course_data.get("chapter"),course_data.get("requirement"),course_data.get("description"),course_data.get("target")
                         ,course_data.get("price"),course_data.get("promotion"),course_data.get("info"),course_data.get("categories"),course_data.get("instructor"))
         data = course_collection.add_course(new_course)
         if new_course and data:

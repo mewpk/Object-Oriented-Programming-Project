@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { useState , useEffect } from "react";
-  import { Transition } from "@headlessui/react";
-import { useRouter } from "next/router";
+import { Transition } from "@headlessui/react";
+import { useCookies } from 'react-cookie';
+import Router from 'next/router';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,7 +12,12 @@ const Login = () => {
   const [showCooldownNotification, setShowCooldownNotification] = useState(false);
   const [remainingAttempts, setRemainingAttempts] = useState(3);
   const [cooldownTimer, setCooldownTimer] = useState(0);
-  const router = useRouter()
+  const [cookies, setCookie] = useCookies(['user','remember']);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setRememberMe(event.target.checked);
+  };
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -23,9 +29,15 @@ const Login = () => {
         password: password,
       }),
     })
-    let data = await res.json();
+    const data = await res.json();
     console.log(data);  
-
+    if (rememberMe){
+      setCookie('remember', username, {
+        path: '/',
+        maxAge: 3600, // 1 hour
+        sameSite: true,
+      });
+    }
     // Login logic here
     const loginSuccessful = data.status; // replace with actual login logic
 
@@ -33,7 +45,13 @@ const Login = () => {
       setShowSuccessNotification(true);
       setShowErrorNotification(false);
       setRemainingAttempts(3);
-      // router.push('/')
+      setCookie('user', username, {
+        path: '/',
+        maxAge: 3600, // 1 hour
+        sameSite: true,
+      });
+
+      Router.push('/');
     } else {
       setRemainingAttempts((prevAttempts) => prevAttempts - 1);
       if (remainingAttempts <= 1) {
@@ -76,6 +94,15 @@ const Login = () => {
       setRemainingAttempts(3);
     }
   }, [cooldownTimer]);
+
+  useEffect(()=>{
+    if (cookies.remember) {
+      setUsername(cookies.remember)
+    }
+    if (cookies.user) {
+      Router.push('/');
+    }
+  })
   return (
     <>
       <Head>
@@ -232,6 +259,7 @@ const Login = () => {
                     name="remember-me"
                     type="checkbox"
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked={rememberMe} onChange={handleCheckboxChange}
                   />
                   <label
                     htmlFor="remember-me"

@@ -21,10 +21,8 @@ class UsersCollection :
     # def hash_password(self,password):
     #     return str(hash((password)))
 
-    def hash_password(self,new_user):
-        hash_result = hash(new_user.password)
-        new_user.password = hash_result
-        return new_user
+    def hash_password(self,password):
+        return hash(password)
     
     def verify_username(self,username):
         for user in self.users:
@@ -35,7 +33,7 @@ class UsersCollection :
     def verify_login(self,user_data):
         for user in self.users:
             if user.username == user_data["username"]: 
-                if user.password == hash(user_data["password"]):
+                if user.password == self.hash_password(user_data.get("password")) :
                     return user
         return False
 

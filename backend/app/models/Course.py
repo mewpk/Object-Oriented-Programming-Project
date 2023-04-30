@@ -1,6 +1,6 @@
 class Course():
     id_counter = 1
-    def __init__(self,name,short_description,date,language,purpose,requirement,description,target,price,promotion,info,categories,instructor):
+    def __init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor):
         self._id = Course.id_counter
         self._name = name
         self._short_description = short_description

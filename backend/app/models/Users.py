@@ -69,7 +69,7 @@ class Student(Account):
         self.__cart = Cart()
         self.__wishlist = []
         self.__student_course = StudentCourse()
-        self.__payment = Payment()
+        # self.__payment = Payment()
     @property
     def review(self):
         return self.__review
