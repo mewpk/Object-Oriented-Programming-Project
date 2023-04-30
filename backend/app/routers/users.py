@@ -9,10 +9,62 @@ from ..models.Users import Student,Instructor,Admin
 
 router = APIRouter()
 
+@router.get("/mockuser/student")
+async def mockuser_student():
+    for i in range(50):
+        user_data1 ={
+            "name" : f"name {i}",
+            "username" : f"username{i}",
+            "password" : f"password {i}",
+            "language": "English",
+            "email" : "123@email.com",
+            "role" : "Student"
+        }
+        new_student= Student(
+            user_data1.get("name"),
+            user_data1.get("username"),
+            user_collection.hash_password(user_data1.get("password")),
+            # user_data1.get("password"),
+            user_data1.get("language"),
+            user_data1.get("email"),
+            user_data1.get("role")        
+        )
+        user_collection.add_user(new_student)
+    return user_collection
+
+@router.get("/mockuser/instructor")
+async def mockuser_instructor():
+    for i in range(10):
+        user_data1 ={
+            "name" : f"name {i}",
+            "username" : f"username{i+100}",
+            "password" : f"password {i}",
+            "language": "English",
+            "email" : "123@email.com",
+            "role" : "Instructor"
+        }
+        new_instructor = Instructor(
+            user_data1.get("name"),
+            user_data1.get("username"),
+            user_collection.hash_password(user_data1.get("password")),
+            # user_data1.get("password"),
+            user_data1.get("language"),
+            user_data1.get("email"),
+            user_data1.get("role")        
+        )
+        user_collection.add_user(new_instructor)
+    return user_collection
+
+
+
 @router.get("/users")
 async def get_users():
     return  user_collection.users
     
+@router.post("/user")
+async def get_user(user_data: dict = Body(...)):
+    return user_collection.get_user(user_data.get("username"))
+
 
 @router.get("/unverified_instructors/")
 async def get_unverified_instructors():

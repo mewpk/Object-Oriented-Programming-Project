@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Body
-
 from ..config.database import course_collection
 from ..models.Course import Course
 
@@ -7,6 +6,7 @@ from ..models.Course import Course
 router = APIRouter()
 @router.get("/mockcourse")
 async def mock_course():
+
     for i in range(50):
         course_data = {
             "name": f"Course {i}",

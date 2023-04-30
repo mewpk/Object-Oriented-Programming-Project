@@ -7,9 +7,9 @@ from ..models.Users import Student
 router = APIRouter()
 
 @router.post("/cart/")
-async def get_cart(username : str):
+async def get_cart(data : dict = Body(...)):
     for user in user_collection.users:
-        if user.username == username:
+        if user.username == data.get("username"):
             student = user
             return student.cart
     

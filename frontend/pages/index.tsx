@@ -15,19 +15,21 @@ const images = [
     alt: "Slide 2",
   },
   {
-    src: "https://fireship.io/courses/react-next-firebase/img/featured.png",
+    src: "https://fireship.io/courses/supabase/img/featured.webp",
     alt: "Slide 3",
   },
+  {
+    src: "https://fireship.io/courses/flutter-firebase/img/featured.webp",
+    alt: "Slide 4",
+  },
+  
 ];
 
 
 export default function Home() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [username , setUsername] = useState("")
-  const handleLogout = () => {
-    removeCookie('user');
-    Router.push('/login');
-  };
+  
   useEffect(()=>{
    setUsername(cookies.user) 
   })
@@ -43,7 +45,6 @@ export default function Home() {
       <main className="container mx-auto p-10">
         <h1>Welcome, {username}!</h1>
         <SlideImage images={images} />
-      <button onClick={handleLogout}>Log out</button>
       </main>
     </>
   );

@@ -3,6 +3,25 @@ import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
 
 function CourseCard({ course, onCardClick } : any) {
+  const images = [
+    {
+      src: "https://fireship.io/courses/react-next-firebase/img/featured.png",
+      alt: "Slide 1",
+    },
+    {
+      src: "https://fireship.io/courses/js/img/featured.webp",
+      alt: "Slide 2",
+    },
+    {
+      src: "https://fireship.io/courses/supabase/img/featured.webp",
+      alt: "Slide 3",
+    },
+    {
+      src: "https://fireship.io/courses/flutter-firebase/img/featured.webp",
+      alt: "Slide 4",
+    },
+    
+  ];
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       <div>
@@ -12,7 +31,7 @@ function CourseCard({ course, onCardClick } : any) {
         >
           <Image
             className="h-full w-full object-cover"
-            src="https://fireship.io/courses/react-next-firebase/img/featured.png"
+            src={course._image}
             alt={course._name}
             width={1000}
             height={1000}

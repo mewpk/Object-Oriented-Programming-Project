@@ -96,13 +96,28 @@ class Student(Account):
         return self.__orders
     
     def make_payment(self):
-        new_order = Order("Pending")
+        new_order = Order("Pending",self.cart.course,self.cart.net_price)
         self.add_order(new_order)
         return True
     
-    def finish_payment(self,):
+    def finish_payment(self,id):
+        order = self.get_order_by_id(id)
+        order.status = "Success"
+        return True
+    
+    def refund_order(self,id):
+        order = self.get_order_by_id(id)
+        order.status = "refunded"
+        return True
+    
+    def cancel_order(self,id):
         pass
-
+    
+    def get_order_by_id(self,id):
+        for order in self.__orders:
+            if order.id == id:
+                return order
+            
     def add_order(self, order):
         self.orders.append(order)
         return True

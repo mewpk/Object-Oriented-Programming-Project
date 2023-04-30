@@ -1,3 +1,18 @@
+import random
+image = [
+  {
+    "src": "https://fireship.io/courses/react-next-firebase/img/featured.png"
+  },
+  {
+    "src": "https://fireship.io/courses/js/img/featured.webp"
+  },
+  {
+    "src": "https://fireship.io/courses/supabase/img/featured.webp"
+  },
+  {
+    "src": "https://fireship.io/courses/flutter-firebase/img/featured.webp"
+  } 
+]
 class Course():
     id_counter = 1
     def __init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor):
@@ -17,6 +32,7 @@ class Course():
         self._categories = categories
         self._instructor = instructor
         Course.id_counter += 1
+        self._image = image[random.randint(0,3)].get("src")
     @property
     def id(self):
         return self._id
@@ -62,6 +78,9 @@ class Course():
     @property
     def instructor(self):
         return self._instructor
+    @property
+    def image(self):
+        return self._image
     @id.setter
     def id(self,id):
         self._id = id

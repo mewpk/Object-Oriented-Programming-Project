@@ -1,40 +1,57 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
+import Link from "next/link";
+import Router from "next/router";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  const [username , setUsername] = useState("")
-  
-  useEffect(()=>{
-    setUsername(cookies.user)
-  })
-    return (
-        <nav className="bg-gray-900 shadow">
-            <div className="container mx-auto px-6 py-4">
-                <div className="flex items-center justify-between">
-                    <div className="hidden md:flex ">
-                        <Link legacyBehavior href="/">
-                            <a className="text-gray-200 text-sm hover:font-bold hover:text-yellow-200  py-2 px-4 mr-4">Udemy</a>
-                        </Link>
-                        <Link legacyBehavior href="/courses">
-                            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">Courses</a>
-                        </Link>
-                        <Link legacyBehavior href="/categories">
-                            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">Categories</a>
-                        </Link>
-                        <Link legacyBehavior href="/cart">
-                            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">Cart</a>
-                        </Link>
-                        <Link legacyBehavior href="/mycourse">
-                            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">My Courses</a>
-                        </Link>
-                        <Link legacyBehavior href="/addcourse">
-                            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">Add Courses</a>
-                        </Link>
-                    </div>
-                    <div className="md:hidden">
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    setUsername(cookies.user);
+  });
+  const handleLogout = () => {
+    removeCookie("user");
+    Router.push("/");
+  };
+  return (
+    <nav className="bg-gray-900 shadow">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="hidden md:flex ">
+            <Link legacyBehavior href="/">
+              <a className="text-gray-200 text-sm hover:font-bold hover:text-yellow-200  py-2 px-4 mr-4">
+                Udemy
+              </a>
+            </Link>
+            <Link legacyBehavior href="/courses">
+              <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">
+                Courses
+              </a>
+            </Link>
+            <Link legacyBehavior href="/categories">
+              <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">
+                Categories
+              </a>
+            </Link>
+            <Link legacyBehavior href="/cart">
+              <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">
+                Cart
+              </a>
+            </Link>
+            <Link legacyBehavior href="/mycourse">
+              <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">
+                My Courses
+              </a>
+            </Link>
+            <Link legacyBehavior href="/addcourse">
+              <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4">
+                Add Courses
+              </a>
+            </Link>
+          </div>
+          <div className="md:hidden">
             <button
               type="button"
               className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none"
@@ -50,48 +67,121 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-                    <div className="hidden md:flex">
-                        <Link legacyBehavior href="/login">
-                            <a className={`text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4 ${!username ? 'block' : 'hidden'}`}>Log in</a>
-                        </Link>
-                        <Link legacyBehavior href="/register">
-                            <a className={`bg-yellow-400 hover:bg-yellow-500 text-gray-200 hover:font-bold text-sm py-2 px-4 rounded ml-4 ${!username ? 'block' : 'hidden'}`}>
-                                Sign up
-                            </a>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-            <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <Link legacyBehavior href="/">
-                        <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">Home</a>
-                    </Link>
-                    <Link legacyBehavior href="/courses">
-                        <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">Courses</a>
-                    </Link>
-                    <Link legacyBehavior href="/categories">
-                        <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">Categories</a>
-                    </Link>
-                    <Link legacyBehavior href="/cart">
-                        <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">Cart</a>
-                    </Link>
-                    <Link legacyBehavior href="/mycourse">
-                        <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">My Courses</a>
-                    </Link>
-                    <hr className="border-t border-gray-200 my-3" />
-                    <Link legacyBehavior href="/login">
-                        <a className={`text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4 ${!username ? 'block' : 'hidden'}`}>Log in</a>
-                    </Link>
-                    <Link legacyBehavior href="/register">
-                        <a className={`bg-yellow-600 hover:bg-yellow-500 text-white hover:text-gray-300 hover:font-bold text-sm block py-2 px-4 rounded ${!username ? 'block' : 'hidden'}`}>
-                            Sign up
-                        </a>
-                    </Link>
-                </div>
-            </div>
-        </nav>
-    );
+          <div className="hidden md:flex">
+            <Link legacyBehavior href="/login">
+              <a
+                className={`text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4 ${
+                  !username ? "block" : "hidden"
+                }`}
+              >
+                Log in
+              </a>
+            </Link>
+            <Link legacyBehavior href="/register">
+              <a
+                className={`bg-yellow-400 hover:bg-yellow-500 text-gray-200 hover:font-bold text-sm py-2 px-4 rounded ml-4 ${
+                  !username ? "block" : "hidden"
+                }`}
+              >
+                Sign up
+              </a>
+            </Link>
+            <Link legacyBehavior href="/profile" >
+            
+            <img
+              src="https://img.freepik.com/free-icon/user_318-159711.jpg"
+              alt="User avatar"
+              className={`h-8 w-8 rounded-full ml-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ${
+                username ? "block" : "hidden"
+              }`}
+            />
+            </Link>
+
+            <Link legacyBehavior href="/">
+              <a
+                onClick={handleLogout}
+                className={`bg-red-400 hover:bg-red-500 text-gray-200 hover:font-bold text-sm py-2 px-4 rounded ml-4 ${
+                  username ? "block" : "hidden"
+                }`}
+              >
+                Log out
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <Link legacyBehavior href="/">
+            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">
+              Home
+            </a>
+          </Link>
+          <Link legacyBehavior href="/courses">
+            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">
+              Courses
+            </a>
+          </Link>
+          <Link legacyBehavior href="/categories">
+            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">
+              Categories
+            </a>
+          </Link>
+          <Link legacyBehavior href="/cart">
+            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">
+              Cart
+            </a>
+          </Link>
+          <Link legacyBehavior href="/mycourse">
+            <a className="text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4">
+              My Courses
+            </a>
+          </Link>
+          <hr className="border-t border-gray-200 my-3" />
+          <Link legacyBehavior href="/login">
+            <a
+              className={`text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4 ${
+                !username ? "block" : "hidden"
+              }`}
+            >
+              Log in
+            </a>
+          </Link>
+          <Link legacyBehavior href="/register">
+            <a
+              className={`bg-yellow-600 hover:bg-yellow-500 text-white hover:text-gray-300 hover:font-bold text-sm block py-2 px-4 rounded ${
+                !username ? "block" : "hidden"
+              }`}
+            >
+              Sign up
+            </a>
+          </Link>
+          <Link legacyBehavior href="/profile" >
+            
+            <img
+              src="https://img.freepik.com/free-icon/user_318-159711.jpg"
+              alt="User avatar"
+              className={`h-8 w-8 rounded-full ml-4 mt-5 ${
+                username ? "block" : "hidden"
+              }`}
+            />
+            </Link>
+          <Link legacyBehavior href="/">
+            <a
+              onClick={handleLogout}
+              className={`bg-red-600 hover:bg-red-500 text-white hover:text-gray-300 hover:font-bold text-sm block py-2 px-4 rounded ${
+                username ? "block" : "hidden"
+              }`}
+            >
+              Log out
+            </a>
+          </Link>
+       
+
+        </div>
+      </div>
+    </nav>
+  );
 };
 
-export default Navbar;  
+export default Navbar;
