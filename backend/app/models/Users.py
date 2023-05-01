@@ -98,21 +98,38 @@ class Student(Account):
     def make_payment(self):
         new_order = Order("Pending",self.cart.course,self.cart.net_price)
         self.add_order(new_order)
+        self.clear_cart()
         return True
     
+    def clear_cart(self):
+        self.cart.course = []
+
     def finish_payment(self,id):
         order = self.get_order_by_id(id)
-        order.status = "Success"
+        order.status = "success"
+        self.add_to_student_course(order)
         return True
     
     def refund_order(self,id):
         order = self.get_order_by_id(id)
         order.status = "refunded"
+        self.return_course_to_cart(id)
         return True
     
     def cancel_order(self,id):
-        pass
+        order = self.get_order_by_id(id)
+        order.status = "cancelled"
+        self.return_course_to_cart(id)
+        return True
     
+    def add_to_student_course(self,order):
+        return self.student_course.add_course_to_StudentCourse(order.course)
+    
+    def return_course_to_cart(self,id):
+        order = self.get_order_by_id(id)
+        for course in order.course:
+            self.cart.course.append(course)
+        
     def get_order_by_id(self,id):
         for order in self.__orders:
             if order.id == id:
@@ -162,7 +179,7 @@ class Student(Account):
 
    
 class Instructor(Account):
-    def __init__(self,name,username,password,language,email,role,about,description,active= True,verify=False ):
+    def __init__(self,name,username,password,language,email,role,about=" ",description=" ",active= True,verify=False ):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__description = description
         self.__verify = verify

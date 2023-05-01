@@ -10,7 +10,7 @@ from ..models.Users import Student,Instructor,Admin
 router = APIRouter()
 
 @router.get("/mockuser/student")
-async def mockuser_student():
+async def mockuser():
     for i in range(50):
         user_data1 ={
             "name" : f"name {i}",
@@ -24,18 +24,14 @@ async def mockuser_student():
             user_data1.get("name"),
             user_data1.get("username"),
             user_collection.hash_password(user_data1.get("password")),
-            # user_data1.get("password"),
             user_data1.get("language"),
             user_data1.get("email"),
             user_data1.get("role")        
         )
         user_collection.add_user(new_student)
-    return user_collection
-
-@router.get("/mockuser/instructor")
-async def mockuser_instructor():
+   
     for i in range(10):
-        user_data1 ={
+        user_data2 ={
             "name" : f"name {i}",
             "username" : f"username{i+100}",
             "password" : f"password {i}",
@@ -44,17 +40,33 @@ async def mockuser_instructor():
             "role" : "Instructor"
         }
         new_instructor = Instructor(
-            user_data1.get("name"),
-            user_data1.get("username"),
-            user_collection.hash_password(user_data1.get("password")),
-            # user_data1.get("password"),
-            user_data1.get("language"),
-            user_data1.get("email"),
-            user_data1.get("role")        
+            user_data2.get("name"),
+            user_data2.get("username"),
+            user_collection.hash_password(user_data2.get("password")),
+            user_data2.get("language"),
+            user_data2.get("email"),
+            user_data2.get("role")        
         )
         user_collection.add_user(new_instructor)
-    return user_collection
-
+    for i in range(3):
+        user_data3 ={
+            "name" : f"name {i}",
+            "username" : f"username{i+100}",
+            "password" : f"password {i}",
+            "language": "English",
+            "email" : "123@email.com",
+            "role" : "Admin"
+        }
+        new_admin = Admin(
+            user_data3.get("name"),
+            user_data3.get("username"),
+            user_collection.hash_password(user_data3.get("password")),
+            user_data3.get("language"),
+            user_data3.get("email"),
+            user_data3.get("role")        
+        )
+        user_collection.add_user(new_admin)
+        return user_collection
 
 
 @router.get("/users")

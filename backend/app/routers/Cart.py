@@ -37,7 +37,7 @@ async def get_total_price(username : str):
         return student.view_total_price()
     except:
         return "please try again"
-    
+
 @router.post("/cart/apply_coupon")
 async def apply_coupon(data: dict=Body(...)):
     try:

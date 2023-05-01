@@ -13,7 +13,7 @@ async def mock_categories():
             "name": f"Category {i}",
         }
         new_category = Categories(
-            category_data["name"]
+            category_data.get("name")
         )
         categories_collection.add_category(new_category)
     return categories_collection
