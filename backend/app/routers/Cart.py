@@ -28,7 +28,8 @@ async def add_cart(data: dict = Body(...)):
                     return "success to remove"
         return "Failed to add"
     except:
-        return "please try again"
+        return "please try again"   
+
 
 @router.post("/cart/total_price/")
 async def get_total_price(username : str):
@@ -43,7 +44,9 @@ async def apply_coupon(data: dict=Body(...)):
     try:
         student = user_collection.get_user(data.get("username"))
         coupon = coupon_collection.get_coupon_by_passcode(data.get("passcode"))
-        return coupon_collection.use_coupon(coupon,student.cart,student.view_total_price)
+        cart = student.cart
+        total_price = student.view_total_price()
+        return coupon_collection.use_coupon(coupon,cart,total_price)
     except:
         return "invalid coupon / does not meet the conditions of coupon"
 

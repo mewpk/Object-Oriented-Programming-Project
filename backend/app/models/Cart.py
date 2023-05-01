@@ -60,8 +60,8 @@ class Cart():
             total += course.promotion
         return total
     
-    def total_coupon(self,passcode):
-        coupon = coupon_collection.get_coupon_by_passcode(passcode)
+    # def total_coupon(self,passcode):
+    #     coupon = coupon_collection.get_coupon_by_passcode(passcode)
         
 
 

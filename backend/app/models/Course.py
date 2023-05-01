@@ -1,4 +1,5 @@
 import random
+from .CourseChapter import CourseChapter
 image = [
   {
     "src": "https://fireship.io/courses/react-next-firebase/img/featured.png"
@@ -85,10 +86,21 @@ class Course():
     def id(self,id):
         self._id = id
         return self._id
+    
+    def add_chapter(self,chapter):
+        self.chapter.append(chapter)
 
 class StudentCourse(Course):
-    def __init__(self):
+    def __init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor,all_progress):
+        super().__init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor)
         self.__all_progress = []
     @property
     def all_progress(self):
         return self.__all_progress
+    @all_progress.setter
+    def all_progress(self,all_progress):
+        self.__all_progress = all_progress
+        return self.__all_progress
+    
+    def add_course_to_StudentCourse(self,course):
+        self.courses.append(course)

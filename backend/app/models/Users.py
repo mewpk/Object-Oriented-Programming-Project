@@ -1,7 +1,6 @@
 from .Cart import Cart
 from .Order import Order
-from ..config.database import user_collection
-from .Course import StudentCourse
+from ..config.database import user_collection,studentcourse_collection
 from .Payment import Payment
 from datetime import datetime
 
@@ -68,7 +67,8 @@ class Student(Account):
         self.__orders  = []
         self.__cart = Cart()
         self.__wishlist = []
-        self.__student_course = StudentCourse()
+        self.__student_course = studentcourse_collection
+        self.__wallet = 0
         # self.__payment = Payment()
     @property
     def review(self):
@@ -85,6 +85,9 @@ class Student(Account):
     @property
     def student_course(self):
         return self.__student_course
+    @property
+    def wallet(self):
+        return self.__wallet
 
     @review.setter
     def review(self,review):
@@ -94,6 +97,10 @@ class Student(Account):
     def orders(self,orders):
         self.__orders = orders
         return self.__orders
+    @wallet.setter
+    def wallet(self,wallet):
+        self.__wallet = wallet
+        return self.__wallet
     
     def make_payment(self):
         new_order = Order("Pending",self.cart.course,self.cart.net_price)
@@ -122,9 +129,12 @@ class Student(Account):
         self.return_course_to_cart(id)
         return True
     
-    def add_to_student_course(self,order):
-        return self.student_course.add_course_to_StudentCourse(order.course)
-    
+    # def add_to_student_course(self,order):
+    #     for course in order.course:
+    #         studentcourse = StudentCourse(course)
+    #         self.student_course.add_course_to_StudentCourse(course)
+    #     return True
+
     def return_course_to_cart(self,id):
         order = self.get_order_by_id(id)
         for course in order.course:

@@ -1,27 +1,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
+import { useCookies } from "react-cookie";
 
-function CourseCard({ course, onCardClick } : any) {
-  const images = [
-    {
-      src: "https://fireship.io/courses/react-next-firebase/img/featured.png",
-      alt: "Slide 1",
-    },
-    {
-      src: "https://fireship.io/courses/js/img/featured.webp",
-      alt: "Slide 2",
-    },
-    {
-      src: "https://fireship.io/courses/supabase/img/featured.webp",
-      alt: "Slide 3",
-    },
-    {
-      src: "https://fireship.io/courses/flutter-firebase/img/featured.webp",
-      alt: "Slide 4",
-    },
-    
-  ];
+function CourseCard({ course, onCardClick }: any) {
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       <div>
@@ -41,7 +23,10 @@ function CourseCard({ course, onCardClick } : any) {
           <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
             {course._categories[0]}
           </div>
-          <a href="#" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+          <a
+            href="#"
+            className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+          >
             {course._name}
           </a>
           <div className="mt-2 flex items-center text-sm text-gray-500">
@@ -50,11 +35,15 @@ function CourseCard({ course, onCardClick } : any) {
             <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
             <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
             <StarIcon className="h-5 w-5 text-gray-400" />
-            <span className="ml-2">{Math.floor(Math.random() * 100)} reviews</span>
+            <span className="ml-2">
+              {Math.floor(Math.random() * 100)} reviews
+            </span>
           </div>
           <p className="mt-2 text-gray-500">{course._short_description}</p>
           <div className="mt-3 flex items-center">
-            <span className="text-gray-500 text-sm font-medium">${course._price.toFixed(2)}</span>
+            <span className="text-gray-500 text-sm font-medium">
+              ${course._price.toFixed(2)}
+            </span>
             {course._promotion && (
               <span className="ml-2 bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
                 On Sale
@@ -67,7 +56,8 @@ function CourseCard({ course, onCardClick } : any) {
   );
 }
 
-function CourseModal({ course, onClose }) {
+function CourseModal({ course, onClose , AddToCart }) {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -102,7 +92,7 @@ function CourseModal({ course, onClose }) {
                     <StarIcon className="h-5 w-5 text-gray-400" />
                     <span className="ml-2">
                       {Math.floor(Math.random() * 100)} reviews
-  </span>
+                    </span>
                   </div>
                   <p className="mt-3 text-base text-gray-500">
                     {course._description}
@@ -118,7 +108,18 @@ function CourseModal({ course, onClose }) {
               className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
             >
               Close
-  </button>
+            </button>
+          
+            <button
+              onClick={()=>{
+                onClose()
+                AddToCart(course._id);
+              }}
+              type="button"
+              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${ cookies.user ? "block" : "hidden"}`}
+            >
+              Add To Cart
+            </button>
           </div>
         </div>
       </div>
@@ -127,6 +128,7 @@ function CourseModal({ course, onClose }) {
 }
 export default function CourseList({ courses }) {
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const handleCardClick = (course) => {
     setSelectedCourse(course);
@@ -135,16 +137,39 @@ export default function CourseList({ courses }) {
   const handleCloseModal = () => {
     setSelectedCourse(null);
   };
+  
+  const addToCart = (course_id)=>{
+    fetchData(course_id)
+  }
+
+  const fetchData = async (course_id) => {
+    const res = await fetch("http://localhost:8000/add_cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id : course_id
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  }
 
   return (
     <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {courses &&
         courses.map((course) => (
-          <div key={course._id} onClick={() => handleCardClick(course)} className="cursor-pointer">
+          <div
+            key={course._id}
+            onClick={() => handleCardClick(course)}
+            className="cursor-pointer"
+          >
             <CourseCard course={course} />
           </div>
         ))}
-      {selectedCourse && <CourseModal course={selectedCourse} onClose={handleCloseModal} />}
+      {selectedCourse && (
+        <CourseModal course={selectedCourse} onClose={handleCloseModal} AddToCart={addToCart} />
+      )}
     </div>
   );
 }

@@ -18,6 +18,16 @@ class CourseCollection():
         except  :
             return False
 
+    def add_chapter(self,chapter):
+        # self.courses.chapter
+        pass
+
+    def get_course(self,course_id):
+        for course in self.courses:
+            if course.id == course_id:
+                return course
+        
+
     def search_by_course(self,course_name):
         result = []
         for course in self.courses:

@@ -9,7 +9,7 @@ from ..models.Users import Student,Instructor,Admin
 
 router = APIRouter()
 
-@router.get("/mockuser/student")
+@router.get("/mockuser/")
 async def mockuser():
     for i in range(50):
         user_data1 ={
@@ -51,7 +51,7 @@ async def mockuser():
     for i in range(3):
         user_data3 ={
             "name" : f"name {i}",
-            "username" : f"username{i+100}",
+            "username" : f"username{i+1000}",
             "password" : f"password {i}",
             "language": "English",
             "email" : "123@email.com",
@@ -85,7 +85,7 @@ async def get_unverified_instructors():
 
 @router.post("/register/")
 async def create_user(user_data: dict = Body(...)):
-    # try :
+    try :
         if user_collection.verify_username(user_data.get("username")) == True:
             if user_data.get("role") == "Student":
                 new_user = Student(user_data.get("name"), user_data.get("username"), user_collection.hash_password(user_data.get("password")), user_data.get("language"),user_data.get("email"), user_data.get("role"))
@@ -101,10 +101,10 @@ async def create_user(user_data: dict = Body(...)):
             else:
                 return {"message": "Failed to create user"}
         else: return {"message": "Failed to create user"}
-    # except :
-    #     return "please try again"
+    except :
+        return "please try again"
         
-    # ขยันน
+
 @router.post("/login/")
 async def login(user_data: dict = Body(...)):
     try:
