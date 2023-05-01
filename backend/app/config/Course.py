@@ -33,6 +33,7 @@ class CourseCollection():
         for course in self.courses:
             if course_name == course.name:
                 result.append(course)
+        result.sort(key=lambda c: c.average_rating)
         return result
         
     def search_by_instructor(self,instructor_name):
@@ -40,6 +41,7 @@ class CourseCollection():
         for course in self.courses :
             if course.instructor == instructor_name:
                 result.append(course)
+        result.sort(key=lambda c: c.average_rating)
         return result
     
     def search_by_category(self,category_name):
@@ -48,6 +50,11 @@ class CourseCollection():
             for category in course.categories:
                 if category == category_name:
                     result.append(course)
+        result.sort(key=lambda c: c.average_rating)
+        return result
+    
+    def sort_by_rating(self):
+        result = sorted(self.courses, key=lambda k: k.average_rating , reverse=True)
         return result
 
                 

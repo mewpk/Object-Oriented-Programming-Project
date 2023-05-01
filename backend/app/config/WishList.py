@@ -1,8 +1,8 @@
 class WishListCollection():
-    def __init__(self) -> None:
+    def __init__(self):
         self.__wishlist = []
     @property
-    def wishlist(self) -> list:
+    def wishlist(self):
         return self.__wishlist
     
     def get_wishlist(self):

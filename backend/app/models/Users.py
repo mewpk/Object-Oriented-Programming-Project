@@ -1,6 +1,7 @@
 from .Cart import Cart
 from .Order import Order
-from ..config.database import user_collection,studentcourse_collection
+# from .WishList import Wishlist
+from ..config.database import studentcourse_collection
 from .Payment import Payment
 from datetime import datetime
 
@@ -103,7 +104,7 @@ class Student(Account):
         return self.__wallet
     
     def make_payment(self):
-        new_order = Order("Pending",self.cart.course,self.cart.net_price)
+        new_order = Order("Pending",self.cart.course,self.cart.total_price)
         self.add_order(new_order)
         self.clear_cart()
         return True
@@ -129,11 +130,10 @@ class Student(Account):
         self.return_course_to_cart(id)
         return True
     
-    # def add_to_student_course(self,order):
-    #     for course in order.course:
-    #         studentcourse = StudentCourse(course)
-    #         self.student_course.add_course_to_StudentCourse(course)
-    #     return True
+    def add_to_student_course(self,order):
+        for course in order.course:
+            self.student_course.add_course_to_StudentCourse(course)
+        return True
 
     def return_course_to_cart(self,id):
         order = self.get_order_by_id(id)
@@ -147,7 +147,7 @@ class Student(Account):
             
     def add_order(self, order):
         self.orders.append(order)
-        return True
+        return self.orders
 
     def view_refunds(self) :
         list_refunds = []
@@ -165,7 +165,8 @@ class Student(Account):
     def check_course_in_cart(self,course):
         if course not in self.cart.course:
             return True
-        else: return False
+        else: 
+            return False
 
     
     def add_to_wishlist(self,course_id):
@@ -187,6 +188,9 @@ class Student(Account):
     def view_total_price(self):
         return self.cart.total_price()
 
+    def add_review(self,review):
+        self.review.append(review)
+        return True
    
 class Instructor(Account):
     def __init__(self,name,username,password,language,email,role,about=" ",description=" ",active= True,verify=False ):

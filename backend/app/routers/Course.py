@@ -52,7 +52,6 @@ async def get_course():
     return  course_collection.courses
 
 
-
 @router.post("/course/")
 async def create_course(course_data: dict = Body(...)):
     try:
@@ -89,4 +88,7 @@ async def search_by_course(course_name):
 async def search_by_category(category_name):    
     return course_collection.search_by_category(category_name)
 
+@router.get("/home")
+async def home():
+    return course_collection.sort_by_rating()
 

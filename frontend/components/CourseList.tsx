@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
 import { useCookies } from "react-cookie";
@@ -30,14 +30,62 @@ function CourseCard({ course, onCardClick }: any) {
             {course._name}
           </a>
           <div className="mt-2 flex items-center text-sm text-gray-500">
-            <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-            <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-            <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-            <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-            <StarIcon className="h-5 w-5 text-gray-400" />
-            <span className="ml-2">
-              {Math.floor(Math.random() * 100)} reviews
-            </span>
+            {course._average_rating == 0 && (
+              <>
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 0 && course._average_rating <= 1 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 1 && course._average_rating <= 2 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 2 && course._average_rating <= 3 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 3 && course._average_rating <= 4 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 4 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500" />
+              </>
+            )}
+
+            <span className="ml-2">{course._review.length} reviews</span>
           </div>
           <p className="mt-2 text-gray-500">{course._short_description}</p>
           <div className="mt-3 flex items-center">
@@ -56,8 +104,46 @@ function CourseCard({ course, onCardClick }: any) {
   );
 }
 
-function CourseModal({ course, onClose , AddToCart }) {
+function CourseModal({ course, onClose, AddToCart }) {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [checkCourse, setCheckCourse] = useState(null);
+  const getData = async (course_id) => {
+    const res = await fetch("http://localhost:8000/check_course_in_cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course_id,
+      }),
+    });
+    let dataRes = await res.json();
+    setCheckCourse(dataRes.status);
+    console.log(dataRes);
+  };
+  const sendData = async (course_id) => {
+    const res = await fetch("http://localhost:8000/remove_course_from_cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course_id,
+      }),
+    });
+    let dataRes = await res.json();
+    setCheckCourse(dataRes);
+    console.log(dataRes);
+  };
+
+  useEffect(() => {
+    getData(course._id);
+  }, []);
+
+  const removeCorseInCart = () => {
+    if (!checkCourse) {
+      sendData(course._id);
+    }
+  };
+
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -85,13 +171,62 @@ function CourseModal({ course, onClose , AddToCart }) {
                     {course._categories[0]}
                   </p>
                   <div className="mt-2 flex items-center text-sm text-gray-500">
-                    <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                    <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                    <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                    <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                    <StarIcon className="h-5 w-5 text-gray-400" />
+                  {course._average_rating == 0 && (
+              <>
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 0 && course._average_rating <= 1 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 1 && course._average_rating <= 2 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 2 && course._average_rating <= 3 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 3 && course._average_rating <= 4 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-gray-400" />
+              </>
+            )}
+            {course._average_rating > 4 && (
+              <>
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                <StarIcon className="h-5 w-5 text-yellow-500" />
+              </>
+            )}
                     <span className="ml-2">
-                      {Math.floor(Math.random() * 100)} reviews
+                      {course._review.length} reviews
                     </span>
                   </div>
                   <p className="mt-3 text-base text-gray-500">
@@ -109,16 +244,30 @@ function CourseModal({ course, onClose , AddToCart }) {
             >
               Close
             </button>
-          
+
             <button
-              onClick={()=>{
-                onClose()
+              onClick={() => {
+                onClose();
                 AddToCart(course._id);
               }}
               type="button"
-              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${ cookies.user ? "block" : "hidden"}`}
+              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
+                cookies.user && checkCourse ? "block" : "hidden"
+              }`}
             >
               Add To Cart
+            </button>
+            <button
+              onClick={() => {
+                onClose();
+                removeCorseInCart();
+              }}
+              type="button"
+              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
+                cookies.user && !checkCourse ? "block" : "hidden"
+              }`}
+            >
+              Remove From Cart
             </button>
           </div>
         </div>
@@ -137,10 +286,10 @@ export default function CourseList({ courses }) {
   const handleCloseModal = () => {
     setSelectedCourse(null);
   };
-  
-  const addToCart = (course_id)=>{
-    fetchData(course_id)
-  }
+
+  const addToCart = (course_id) => {
+    fetchData(course_id);
+  };
 
   const fetchData = async (course_id) => {
     const res = await fetch("http://localhost:8000/add_cart", {
@@ -148,12 +297,12 @@ export default function CourseList({ courses }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: cookies.user,
-        course_id : course_id
+        course_id: course_id,
       }),
     });
     const data = await res.json();
     console.log(data);
-  }
+  };
 
   return (
     <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -168,7 +317,11 @@ export default function CourseList({ courses }) {
           </div>
         ))}
       {selectedCourse && (
-        <CourseModal course={selectedCourse} onClose={handleCloseModal} AddToCart={addToCart} />
+        <CourseModal
+          course={selectedCourse}
+          onClose={handleCloseModal}
+          AddToCart={addToCart}
+        />
       )}
     </div>
   );

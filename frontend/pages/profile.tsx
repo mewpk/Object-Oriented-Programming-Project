@@ -79,7 +79,7 @@ export default function Profile() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden  pt-10 hover:shadow-xl">
+      <div className="max-w-sm w-2/4  mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-10  pt-10 hover:shadow-xl">
         <div className="relative h-40 w-full">
           <div className="avatar ">
             <Image

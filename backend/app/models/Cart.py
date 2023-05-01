@@ -62,10 +62,7 @@ class Cart():
     
     # def total_coupon(self,passcode):
     #     coupon = coupon_collection.get_coupon_by_passcode(passcode)
-        
-
-
-    
+           
     # def total_net_price(self):
     #     total = 0
     #     for course in self.course:

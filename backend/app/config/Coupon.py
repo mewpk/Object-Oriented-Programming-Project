@@ -34,9 +34,7 @@ class CouponCollection():
                 total = self.use_coupon_instructor(coupon,cart)
             elif coupon.type == "Course":
                 total = self.use_coupon_course(coupon,cart)
-            print(coupon.discounted_percent)
             discount = (total*coupon.discounted_percent)/100 + coupon.discounted_price     
-            print(discount)
             return discount
 
     def use_coupon_course(self,coupon,cart):
@@ -49,6 +47,5 @@ class CouponCollection():
         for course in cart.course:
             if course.instructor == coupon.instructor_name:
                 total += course.price
-                print(total)
         if total != 0 :
             return total

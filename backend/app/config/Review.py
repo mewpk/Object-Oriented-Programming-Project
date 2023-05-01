@@ -12,3 +12,10 @@ class ReviewCollection() :
     def add_review(self,review):
         self.review.append(review)
         return "success"
+    
+    def check_review_by_username(self,username,course_id):
+        for review in self.review:
+            if review.username == username:
+                if review.course_id == course_id:
+                    return False
+        return True
