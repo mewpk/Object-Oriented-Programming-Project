@@ -1,13 +1,21 @@
 import Router  from "next/router";
+import { json } from "node:stream/consumers";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 export default function Cart() {
   const [couponCode, setCouponCode] = useState("");
-  const [data, setData] = useState([]);
+  const [cartCourse, setCartCourse] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [username, setUsername] = useState(null);
+  const [data , setData ] = useState({
+    _Cart__course : [],
+    _Cart__net_price : 0,
+    _Cart__net_coupon : 0,
+    _Cart__net_promotion : 0,
+    _Cart__price : 0
+  });
   useEffect(()=>{
     if (!cookies.user){
       Router.push("/")
@@ -30,11 +38,13 @@ export default function Cart() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: cookies.user,
+        
       }),
     });
     let dataRes = await res.json();
     try {
-      setData(dataRes._Cart__course);
+      setCartCourse(dataRes._Cart__course);
+      setData(dataRes)
       console.log(dataRes);
     } catch (error) {
       console.log(error)
@@ -44,7 +54,7 @@ export default function Cart() {
   useEffect(() => {
     getData();
     setTotalPrice(() => {
-      return data.reduce((acc, course) => acc + course._price,0);
+      return data._Cart__net_price
     })
   }, []);
 
@@ -56,9 +66,9 @@ export default function Cart() {
 
 
   const handleRemoveCourse = (id) => {
-    setData((prevData) => prevData.filter((course) => course.id !== id));
+    setCartCourse((prevData) => prevData.filter((course) => course.id !== id));
     setTotalPrice((prevTotalPrice) => {
-      const courseToRemove = data.find((course) => course.id === id);
+      const courseToRemove = cartCourse.find((course) => course.id === id);
       return prevTotalPrice - courseToRemove._price;
     });
   };
@@ -81,7 +91,7 @@ export default function Cart() {
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Duration
+                Description
               </th>
               <th
                 scope="col"
@@ -105,29 +115,29 @@ export default function Cart() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {data.map((course) => (
-              <tr key={course.id}>
+            {cartCourse.map((course) => (
+              <tr key={course._id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0 h-10 w-10">
+                    <div className="flex-shrink-0 h-20 w-20">
                       <img
-                        className="h-10 w-10 rounded-full object-cover"
-                        src={course.image}
-                        alt={course.title}
+                        className="h-20 w-20 rounded-full object-cover"
+                        src={course._image}
+                        alt={course._title}
                       />
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900">
-                        {course.title}
+                        {course._title}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{course.duration}</div>
+                  <div className="text-sm text-gray-900">{course._description}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">{course.instructor}</div>
+              <div className="text-sm text-gray-900">{course._instructor}</div>
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-right">
               <div className="text-sm text-gray-900">${course._price}</div>

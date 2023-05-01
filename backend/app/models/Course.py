@@ -1,4 +1,5 @@
 import random
+from .CourseChapter import CourseChapter
 image = [
   {
     "src": "https://fireship.io/courses/react-next-firebase/img/featured.png"
@@ -23,6 +24,8 @@ class Course():
         self._language = language
         self._purpose = purpose
         self._chapter = []
+        self._review = []
+        self._average_rating = 0
         self._requirement = requirement
         self._description = description
         self._target = target
@@ -55,6 +58,9 @@ class Course():
     def chapter(self):
         return self._chapter
     @property
+    def review(self):
+        return self._review
+    @property
     def requirement(self):
         return self._requirement
     @property
@@ -81,14 +87,43 @@ class Course():
     @property
     def image(self):
         return self._image
+    @property
+    def average_rating(self):
+        return self._average_rating
     @id.setter
     def id(self,id):
         self._id = id
         return self._id
+    @average_rating.setter
+    def average_rating(self,average_rating):
+        self._average_rating = average_rating
+        return self._average_rating
+    
+    def add_chapter(self,chapter):
+        self.chapter.append(chapter)
+
+    def add_review(self,review):
+        self.review.append(review)
+        self.get_average_rating()
+        
+    def get_average_rating(self):
+        total = 0
+        for review in self.review:
+            total += review.rating
+        self.average_rating = total/len(self.review)
+
 
 class StudentCourse(Course):
-    def __init__(self):
+    def __init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor,all_progress):
+        super().__init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor)
         self.__all_progress = []
     @property
     def all_progress(self):
         return self.__all_progress
+    @all_progress.setter
+    def all_progress(self,all_progress):
+        self.__all_progress = all_progress
+        return self.__all_progress
+    
+    def add_course_to_StudentCourse(self,course):
+        self.courses.append(course)

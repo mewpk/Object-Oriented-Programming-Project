@@ -9,8 +9,8 @@ from ..models.Users import Student,Instructor,Admin
 
 router = APIRouter()
 
-@router.get("/mockuser/student")
-async def mockuser_student():
+@router.get("/mockuser/")
+async def mockuser():
     for i in range(50):
         user_data1 ={
             "name" : f"name {i}",
@@ -24,18 +24,14 @@ async def mockuser_student():
             user_data1.get("name"),
             user_data1.get("username"),
             user_collection.hash_password(user_data1.get("password")),
-            # user_data1.get("password"),
             user_data1.get("language"),
             user_data1.get("email"),
             user_data1.get("role")        
         )
         user_collection.add_user(new_student)
-    return user_collection
-
-@router.get("/mockuser/instructor")
-async def mockuser_instructor():
+   
     for i in range(10):
-        user_data1 ={
+        user_data2 ={
             "name" : f"name {i}",
             "username" : f"username{i+100}",
             "password" : f"password {i}",
@@ -44,17 +40,33 @@ async def mockuser_instructor():
             "role" : "Instructor"
         }
         new_instructor = Instructor(
-            user_data1.get("name"),
-            user_data1.get("username"),
-            user_collection.hash_password(user_data1.get("password")),
-            # user_data1.get("password"),
-            user_data1.get("language"),
-            user_data1.get("email"),
-            user_data1.get("role")        
+            user_data2.get("name"),
+            user_data2.get("username"),
+            user_collection.hash_password(user_data2.get("password")),
+            user_data2.get("language"),
+            user_data2.get("email"),
+            user_data2.get("role")        
         )
         user_collection.add_user(new_instructor)
-    return user_collection
-
+    for i in range(3):
+        user_data3 ={
+            "name" : f"name {i}",
+            "username" : f"username{i+1000}",
+            "password" : f"password {i}",
+            "language": "English",
+            "email" : "123@email.com",
+            "role" : "Admin"
+        }
+        new_admin = Admin(
+            user_data3.get("name"),
+            user_data3.get("username"),
+            user_collection.hash_password(user_data3.get("password")),
+            user_data3.get("language"),
+            user_data3.get("email"),
+            user_data3.get("role")        
+        )
+        user_collection.add_user(new_admin)
+        return user_collection
 
 
 @router.get("/users")
@@ -73,7 +85,7 @@ async def get_unverified_instructors():
 
 @router.post("/register/")
 async def create_user(user_data: dict = Body(...)):
-    # try :
+    try :
         if user_collection.verify_username(user_data.get("username")) == True:
             if user_data.get("role") == "Student":
                 new_user = Student(user_data.get("name"), user_data.get("username"), user_collection.hash_password(user_data.get("password")), user_data.get("language"),user_data.get("email"), user_data.get("role"))
@@ -89,10 +101,10 @@ async def create_user(user_data: dict = Body(...)):
             else:
                 return {"message": "Failed to create user"}
         else: return {"message": "Failed to create user"}
-    # except :
-    #     return "please try again"
+    except :
+        return "please try again"
         
-    # ขยันน
+
 @router.post("/login/")
 async def login(user_data: dict = Body(...)):
     try:

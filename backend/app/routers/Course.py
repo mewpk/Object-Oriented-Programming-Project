@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Body
 from ..config.database import course_collection
-from ..models.Course import Course
+from ..models.Course import Course 
+from ..models.CourseChapter import CourseChapter
+
 
 
 router = APIRouter()
@@ -14,16 +16,17 @@ async def mock_course():
             "date": "2023-04-19",
             "language": "English",
             "purpose": f"The purpose of Course {i} is to teach students about...",
-            "chapter": f"Chapter {i}",
+            "chapter": [],
             "requirement": f"Requirement {i}",
             "description": f"This is the full description for Course {i}.",
             "target": f"The target audience for Course {i} is...",
-            "price": 19.99,
+            "price": 250,
             "promotion": False,
             "info": f"Info {i}",
             "categories": ["Category 1", "Category 2"],
             "instructor": "John Doe"
         }
+    
         new_course = Course(
             course_data["name"],
             course_data["short_description"],
@@ -48,6 +51,7 @@ async def mock_course():
 async def get_course():
     return  course_collection.courses
 
+
 @router.post("/course/")
 async def create_course(course_data: dict = Body(...)):
     try:
@@ -59,6 +63,16 @@ async def create_course(course_data: dict = Body(...)):
             return {"message": "Course created successfully", "course": data}
         else:
             return {"message": "Failed to create course"}
+    except:
+        return "please try again"
+    
+@router.post("/course/add_chapter")
+async def create_chapter(data: dict = Body(...)):
+    try:
+        course = course_collection.get_course(data.get("course_id"))
+        new_chapter = CourseChapter(0,data.get("name"),data.get("video"))
+        course.add_chapter(new_chapter)
+        return "added chapter successfully"
     except:
         return "please try again"
     
@@ -74,4 +88,7 @@ async def search_by_course(course_name):
 async def search_by_category(category_name):    
     return course_collection.search_by_category(category_name)
 
+@router.get("/home")
+async def home():
+    return course_collection.sort_by_rating()
 

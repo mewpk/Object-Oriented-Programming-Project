@@ -5,8 +5,8 @@ from .Course import CourseCollection
 from .StudentCourse import StudentCourseCollection
 # from .CourseViewChapter import CoursesViewChaptersCollection
 from .Review import ReviewCollection
-from .WishList import WishListCollection
 from .Cart import CartCollection
+# from .Wishlist import WishListCollection
 
 
 user_collection = UsersCollection()
@@ -16,5 +16,6 @@ coupon_collection = CouponCollection()
 studentcourse_collection = StudentCourseCollection()
 review_collection = ReviewCollection()
 cart_collection = CartCollection()
-wishlist_collection = WishListCollection()
+# wishlist_collection = WishListCollection()
+
 
