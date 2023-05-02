@@ -149,6 +149,7 @@ class Student(Account):
     #         self.cart.course.append(course)
 
     def add_payment_method(self,payment):
+        print("to payment")
         self.payment_method.append(payment)
         
         

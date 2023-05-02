@@ -61,7 +61,7 @@ class Cart():
         total = 0
         for course in self.course:
             total += course.promotion.net
-            print(course.price,course.promotion.percent)
+            print(course.promotion.net)
             print("total :",total)
         print("total after loop :",total)
         self.net_price = total

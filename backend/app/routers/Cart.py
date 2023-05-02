@@ -67,7 +67,7 @@ async def remove_cart(data: dict = Body(...)):
 async def get_total_price(username : str):
     try:
         student = user_collection.get_user(username)
-        return student.view_total_price()
+        return student.cart.total_price()
     except:
         return "please try again"
     

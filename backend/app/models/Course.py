@@ -51,7 +51,7 @@ class Course():
         self._description = description
         self._target = target
         self._price = price
-        self._promotion = Promotion(0,'1/1/2022','1/1/2022',0)
+        self._promotion = Promotion(0,'1/1/2022','1/1/2022',price)
         self._info = info
         self._categories = categories
         self._instructor = instructor
@@ -128,7 +128,6 @@ class Course():
         self.promotion.percent = promotion.percent
         self.promotion.start_date = promotion.start_date
         self.promotion.end_date = promotion.end_date
-        self.promotion.net_price = self.price
         
     def add_review(self,review):
         self.review.append(review)
