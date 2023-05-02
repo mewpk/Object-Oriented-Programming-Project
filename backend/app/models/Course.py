@@ -19,14 +19,14 @@ image = [
 class Course():
     stamp_time = datetime.now()
     id_counter = 1
-    def __init__(self,name,short_description,language,purpose,chapter,requirement,description,target,price,info,categories,instructor):
+    def __init__(self,name,short_description,language,purpose,chapters,requirement,description,target,price,info,categories,instructor):
         self._id = Course.id_counter
         self._name = name
         self._short_description = short_description
         self._date = Course.stamp_time.strftime("%d/%m/%Y")
         self._language = language
         self._purpose = purpose
-        self._chapter = chapter
+        self._chapters = chapters
         self._review = []
         self._average_rating = 0
         self._requirement = requirement
@@ -58,8 +58,8 @@ class Course():
     def purpose(self):
         return self._purpose
     @property
-    def chapter(self):
-        return self._chapter
+    def chapters(self):
+        return self._chapters
     @property
     def review(self):
         return self._review
@@ -104,7 +104,7 @@ class Course():
     
     
     def add_chapter(self,chapter):
-        self.chapter.append(chapter)
+        self.chapters.append(chapter)
 
     def add_promotion(self,promotion):
         self.promotion.percent = promotion.percent
@@ -124,10 +124,10 @@ class Course():
 
 class StudentCourse(Course):
     id_counter = 1
-    def __init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor,all_progress):
+    def __init__(self,name,short_description,date,language,purpose,chapters,requirement,description,target,price,promotion,info,categories,instructor,all_progress=0):
         self.__id = StudentCourse.id_counter
-        super().__init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor)
-        self.__all_progress = []
+        super().__init__(self,name,short_description,date,language,purpose,chapters,requirement,description,target,price,promotion,info,categories,instructor)
+        self.__all_progress = all_progress
         StudentCourse.id_couter+=1
     @property
     def all_progress(self):
@@ -142,3 +142,10 @@ class StudentCourse(Course):
     
     def add_course_to_StudentCourse(self,course):
         self.courses.append(course)
+
+    def calculate_progress(self):
+        self.all_progress = 0
+        for progress in self.chapters:
+            self.all_progress += progress
+        self.all_progress /= len(self.chapters)
+        return 

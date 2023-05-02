@@ -1,8 +1,14 @@
 class CourseChapter():
+    id_chapter = 1
     def __init__(self,progress , name , video):
+        self.__id = CourseChapter.id_chapter
         self.__progress = progress
         self.__name  = name
         self.__video = video
+        CourseChapter.id_chapter +=1
+    @property
+    def id(self):
+        return self.__id
     @property
     def progress(self):
         return self.__progress

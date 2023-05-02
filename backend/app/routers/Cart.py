@@ -46,7 +46,7 @@ async def add_cart(data: dict = Body(...)):
     except:
         return "please try again"  
 
-@router.post("/remove_course_from_cart/")
+@router.delete("/remove_course_from_cart/")
 async def remove_cart(data: dict = Body(...)):
     try:
         student = user_collection.get_user(data.get("username"))

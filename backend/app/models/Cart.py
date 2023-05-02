@@ -58,8 +58,8 @@ class Cart():
         print("to total promotion")
         total = 0
         for course in self.__course:
-            total += (course.price*(100-course.promotion))/100
-            print(course.price,course.promotion)
+            total += (course.price*(100-course.promotion.percent))/100
+            print(course.price,course.promotion.percent)
             print("total :",total)
         print("total after loop :",total)
         return total

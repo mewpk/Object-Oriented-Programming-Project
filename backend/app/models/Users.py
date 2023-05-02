@@ -89,6 +89,9 @@ class Student(Account):
     @property
     def wallet(self):
         return self.__wallet
+    @property
+    def payment(self):
+        return self.__payment
 
     @review.setter
     def review(self,review):

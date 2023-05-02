@@ -167,7 +167,7 @@ function CourseModal({ course, onClose, AddToCart }) {
 
   const sendDataCart = async () => {
     const res = await fetch("http://localhost:8000/remove_course_from_cart", {
-      method: "POST",
+      method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: cookies.user,

@@ -74,7 +74,7 @@ const AdminVerifyInstructor = () => {
         {instructors &&
           instructors.map((instructor) => {
             return (
-              <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl hover:shadow-xl  hover:scale-105 duration-500 p-10 mb-10">
+              <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl hover:shadow-xl  hover:scale-105 duration-500 p-10 mb-10" key={instructor._username}>
                 <h2 className="text-lg font-semibold mb-2">
                   {instructor._name}
                 </h2>
