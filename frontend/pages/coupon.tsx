@@ -3,7 +3,7 @@ import CouponCard from "../components/CouponCard";
 
 
 
-export default function coupon() {
+export default function Coupon() {
     const [data, setData] = useState([]);
     const getData = async () => {
       const res = await fetch("http://localhost:8000/coupon", {

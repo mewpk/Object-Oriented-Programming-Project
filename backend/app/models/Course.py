@@ -128,6 +128,7 @@ class Course():
         self.promotion.percent = promotion.percent
         self.promotion.start_date = promotion.start_date
         self.promotion.end_date = promotion.end_date
+        self.promotion.net_price = self.price
         
     def add_review(self,review):
         self.review.append(review)
