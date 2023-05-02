@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Router from "next/router";
 import { useEffect, useState } from "react";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 import SlideImage from "../components/SlideImage";
 
@@ -12,6 +12,7 @@ const images = [
   },
   {
     src: "https://fireship.io/courses/js/img/featured.webp",
+
     alt: "Slide 2",
   },
   {
@@ -22,17 +23,39 @@ const images = [
     src: "https://fireship.io/courses/flutter-firebase/img/featured.webp",
     alt: "Slide 4",
   },
-  
+  {
+    src: "https://fireship.io/courses/nextjs/img/featured.webp",
+    alt: "Slide 5",
+  },
+  {
+    src: "https://fireship.io/courses/dart/img/featured.webp",
+    alt: "Slide 6",
+  },
+  {
+    src: "https://fireship.io/courses/git/img/featured.webp",
+    alt: "Slide 7",
+  },
+  {
+    src: "https://fireship.io/courses/firebase-security/img/featured.webp",
+    alt: "Slide 8",
+  },
+  {
+    src: "https://fireship.io/courses/angular/img/featured.webp",
+    alt: "Slide 9",
+  },
+  {
+    src: "https://fireship.io/courses/firestore-data-modeling/img/featured.webp",
+    alt: "Slide 10",
+  },
 ];
 
-
 export default function Home() {
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  const [username , setUsername] = useState("")
-  
-  useEffect(()=>{
-   setUsername(cookies.user) 
-  })
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    setUsername(cookies.user);
+  });
 
   return (
     <>
@@ -42,7 +65,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container mx-auto p-10">
+      <main className="container mx-auto p-10 ">
         <h1>Welcome, {username}!</h1>
         <SlideImage images={images} />
       </main>

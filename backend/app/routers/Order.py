@@ -7,7 +7,7 @@ from ..models.Order import Order
 
 router = APIRouter()
 
-@router.get("/order/")
+@router.post("/order/")
 async def get_order(data : dict = Body(...)):
     user = user_collection.get_user(data.get("username"))
     return user.orders
@@ -20,11 +20,14 @@ async def get_order_view_refund(data : dict = Body(...)):
 @router.post("/add_order/")
 async def add_order(data : dict = Body(...)):
     try:
-        user = user_collection.get_user(data.get("username"))
+        student = user_collection.get_user(data.get("username"))
         print("to order")
-        new_order = Order("Paiding",user.cart.course,user.cart.price,user.cart.net_price)
+        total_price = student.cart.total_price()
+        print("pp")
+        new_order = Order("Pending",student.cart.course,total_price,student.cart.net_price)
         print(new_order)
-        user.add_order(new_order)
+        student.add_order(new_order)
         return "success to add"
     except:
         return "try again"
+    

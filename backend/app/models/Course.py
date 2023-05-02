@@ -14,7 +14,25 @@ image = [
   },
   {
     "src": "https://fireship.io/courses/flutter-firebase/img/featured.webp"
-  } 
+  } ,
+  {
+      "src" : "https://fireship.io/courses/nextjs/img/featured.webp"
+  },
+  {
+      "src" :"https://fireship.io/courses/dart/img/featured.webp"
+  },
+  {
+      "src" : "https://fireship.io/courses/git/img/featured.webp"
+  },
+  {
+      "src" : "https://fireship.io/courses/firebase-security/img/featured.webp"
+  },
+  {
+      "src" : "https://fireship.io/courses/angular/img/featured.webp"
+  },    
+  {
+      "src" : "https://fireship.io/courses/firestore-data-modeling/img/featured.webp"
+  },
 ]
 class Course():
     stamp_time = datetime.now()
@@ -38,7 +56,7 @@ class Course():
         self._categories = categories
         self._instructor = instructor
         Course.id_counter += 1
-        self._image = image[random.randint(0,3)].get("src")
+        self._image = image[random.randint(0,len(image)-1)].get("src")
     @property
     def id(self):
         return self._id

@@ -21,7 +21,7 @@ async def create_coupon(coupon: dict = Body(...)):
             new_coupon = CouponCourse(coupon.get("passcode"),coupon.get("start_date"),coupon.get("end_date"),coupon.get("type"),coupon.get("condition"),
                         coupon.get("at_least"),coupon.get("discounted_price"),coupon.get("discounted_percent"),coupon.get("course_id"))
         elif coupon.get("type") == "All":
-            new_coupon = Coupon(coupon.get("passcode"),coupon.get("start_date"),coupon.get("end_date"),coupon.get("type"),coupon.get("condition"),
+            new_coupon = Coupon(coupon.get("passcode"),coupon.get("start_date"),coupon.get("end_date"),coupon.get("type"    ),coupon.get("condition"),
                         coupon.get("at_least"),coupon.get("discounted_price"),coupon.get("discounted_percent"))
         else : 
             return {"message" : "invailed Coupon Type !"}
@@ -34,7 +34,7 @@ async def create_coupon(coupon: dict = Body(...)):
     except: 
         return "please try again"
     
-@router.get("/update_coupon")
+@router.put("/update_coupon")
 async def update_coup():
     return str(coupon_collection.expire_coupon(datetime.now()))
 
@@ -43,7 +43,7 @@ async def mock_couponsAll():
     for i in range(1,6):
         data = {
         "passcode" : f"311{i}",
-        "start_date" : "14/09/2022",
+        "start_date" : "14/09/2022",    
         "end_date" : "13/09/2023",
         "type" : "All",
         "condition" : f"buy at least {i}00 baht",

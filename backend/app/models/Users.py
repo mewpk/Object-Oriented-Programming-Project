@@ -70,7 +70,7 @@ class Student(Account):
         self.__favorite = Favorite()
         self.__student_course = studentcourse_collection
         self.__wallet = 0
-        self.__payment = []
+        self.__payment_method = []
     @property
     def review(self):
         return self.__review
@@ -90,8 +90,8 @@ class Student(Account):
     def wallet(self):
         return self.__wallet
     @property
-    def payment(self):
-        return self.__payment
+    def payment_method(self):
+        return self.__payment_method
 
     @review.setter
     def review(self,review):
@@ -147,6 +147,10 @@ class Student(Account):
     #     order = self.get_order_by_id(id)
     #     for course in order.course:
     #         self.cart.course.append(course)
+
+    def add_payment_method(self,payment):
+        self.payment_method.append(payment)
+        
         
     def get_order_by_id(self,id):
         for order in self.__orders:

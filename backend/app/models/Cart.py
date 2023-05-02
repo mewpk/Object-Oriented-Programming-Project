@@ -49,21 +49,25 @@ class Cart():
         return "success"
     
     def total_price(self):
+        print("to total price")
         total = 0
         for course in self.course:
             total += course.price 
+        self.net_price = total
         return total
     
     def total_promotion(self):
         print("to total promotion")
         total = 0
-        for course in self.__course:
-            total += (course.price*(100-course.promotion.percent))/100
+        for course in self.course:
+            total += course.promotion.net
             print(course.price,course.promotion.percent)
             print("total :",total)
         print("total after loop :",total)
+        self.net_price = total
         return total
            
     def total_net_price(self,coupon):
-        total_price = self.total_promotion() - coupon
-        return total_price
+        print("to net price")
+        self.net_price = self.total_promotion() - coupon
+        return self.net_price

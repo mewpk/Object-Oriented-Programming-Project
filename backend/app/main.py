@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import  users, Course , Coupon,Categories,Order,StudentCourse,Review,Favorite,Cart
+from .routers import  users, Course , Coupon,Categories,Order,StudentCourse,Review,Favorite,Cart,Payment
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -26,6 +26,7 @@ app.include_router(StudentCourse.router)
 app.include_router(Review.router)
 app.include_router(Cart.router)
 app.include_router(Favorite.router)
+app.include_router(Payment.router)
 
 
 @app.get("/")

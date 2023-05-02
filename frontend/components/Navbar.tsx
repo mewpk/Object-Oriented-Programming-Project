@@ -38,13 +38,18 @@ const Navbar = () => {
               </a>
             </Link>
             <Link legacyBehavior href="/cart">
-              <a className={`${cookies.role === "Instructor" && username ?  "block" : "hidden"} text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4`}>
+              <a className={`${cookies.role === "Student" && username ?  "block" : "hidden"} text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4`}>
                 Cart
               </a>
             </Link>
             <Link legacyBehavior href="/mycourse">
-              <a className={`${cookies.role === "Instructor" && username ?   "block" : "hidden" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4`}>
+              <a className={`${cookies.role === "Student" && username ?   "block" : "hidden" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4`}>
                 My Courses
+              </a>
+            </Link>
+            <Link legacyBehavior href="/coupon">
+              <a className={`${cookies.role === "Student" && username ?   "block" : "hidden" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4`}>
+                Coupon
               </a>
             </Link>
             <Link legacyBehavior href="/addcourse">
@@ -118,7 +123,7 @@ const Navbar = () => {
             <Link legacyBehavior href="/">
               <a
                 onClick={handleLogout}
-                className={`bg-red-400 hover:bg-red-500 text-gray-200 hover:font-bold text-sm py-2 px-4 rounded ml-4 ${
+                className={`  bg-red-400 hover:bg-red-500 text-gray-200 hover:font-bold text-sm py-2 px-4 rounded ml-4 ${
                   username ? "block" : "hidden"
                 }`}
               >
@@ -146,15 +151,16 @@ const Navbar = () => {
             </a>
           </Link>
           <Link legacyBehavior href="/cart">
-            <a className={`${cookies.role === "Instructor" || username ?  "hidden" : "block" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4`}>
+            <a className={`${cookies.role === "Student" && username ?  "hidden" : "block" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4`}>
               Cart
             </a>
           </Link>
           <Link legacyBehavior href="/mycourse">
-            <a className={` ${cookies.role === "Instructor" || username ?  "hidden" : "block" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4`}>
+            <a className={` ${cookies.role === "Student" && username ?  "hidden" : "block" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm block py-2 px-4`}>
               My Courses
             </a>
           </Link>
+
           <hr className="border-t border-gray-200 my-3" />
           <Link legacyBehavior href="/login">
             <a

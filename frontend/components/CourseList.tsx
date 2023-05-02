@@ -230,7 +230,7 @@ function CourseModal({ course, onClose, AddToCart }) {
                   id="modal-headline"
                 >
                   {course._name}
-                  <HeartIcon onClick={sendDataWishList} className={`duration-500 hover:-translate-y-1 hover:scale-110 ${ cookies.role === "Student" && cookies.user && checkWishList ?  "h-8 w-8 text-red-400 ml-auto " : `h-8 w-8 text-gray-400 ml-auto`} ${cookies.role === "Student" && cookies.user ? "block" : "hidden"}`} />
+                  <HeartIcon onClick={sendDataWishList} className={`hover:animate-pulse duration-500 hover:-translate-y-1 hover:scale-110 ${ cookies.role === "Student" && cookies.user && checkWishList ?  "h-8 w-8 text-red-400 ml-auto " : `h-8 w-8 text-gray-400 ml-auto`} ${cookies.role === "Student" && cookies.user ? "block" : "hidden"}`} />
                   
                 </h3>
                 <div className="mt-2">
@@ -309,7 +309,7 @@ function CourseModal({ course, onClose, AddToCart }) {
             <button
               onClick={onClose}
               type="button"
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+              className="hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
             >
               Close
             </button>
@@ -320,7 +320,7 @@ function CourseModal({ course, onClose, AddToCart }) {
                 AddToCart(course._id);
               }}
               type="button"
-              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
+              className={`hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm ${
                 cookies.role === "Student" && cookies.user && checkCourse ? "block" : "hidden"
               }`}
             >
@@ -332,7 +332,7 @@ function CourseModal({ course, onClose, AddToCart }) {
                 removeCorseInCart();
               }}
               type="button"
-              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
+              className={`hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm ${
                 cookies.role === "Student" && cookies.user && !checkCourse ? "block" : "hidden"
               }`}
             >

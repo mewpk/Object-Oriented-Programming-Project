@@ -70,6 +70,15 @@ async def get_total_price(username : str):
         return student.view_total_price()
     except:
         return "please try again"
+    
+@router.post("/cart/total_promotion")
+async def get_total_promotion(data: dict=Body(...)):
+    try:
+        student = user_collection.get_user(data.get("username"))
+        total_promotion = student.cart.total_promotion()
+        return total_promotion
+    except:
+        return "please try again"
 
 @router.post("/cart/apply_coupon")
 async def apply_coupon(data: dict=Body(...)):
@@ -78,7 +87,9 @@ async def apply_coupon(data: dict=Body(...)):
         coupon = coupon_collection.get_coupon_by_passcode(data.get("passcode"))
         cart = student.cart
         promotion = student.cart.total_promotion()
+        print("total promotion :",promotion)
         total_coupon = coupon_collection.use_coupon(coupon,cart,promotion)
+        print("total coupon :", total_coupon)
         total_net_price = student.cart.total_net_price(total_coupon)
         return int(total_net_price)
     except:
