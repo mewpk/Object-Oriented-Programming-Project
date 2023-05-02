@@ -28,7 +28,6 @@ class CouponCollection():
         return "Coupon updated successfully"
     
     def use_coupon(self,coupon,cart,total): 
-        print(coupon.at_least,total) 
         if total >= coupon.at_least:
             if coupon.type == "Instructor":
                 total = self.use_coupon_instructor(coupon,cart)
@@ -49,3 +48,10 @@ class CouponCollection():
                 total += course.price
         if total != 0 :
             return total
+        
+    def show_coupon_type(self,type):
+        result = []
+        for coupon in self.coupons:
+            if coupon.type == type:
+                result.append(coupon)
+        return result

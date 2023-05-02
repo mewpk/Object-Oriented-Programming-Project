@@ -55,15 +55,15 @@ class Cart():
         return total
     
     def total_promotion(self):
+        print("to total promotion")
         total = 0
-        for course in self.course:
-            total += course.promotion
+        for course in self.__course:
+            total += (course.price*(100-course.promotion))/100
+            print(course.price,course.promotion)
+            print("total :",total)
+        print("total after loop :",total)
         return total
-    
-    # def total_coupon(self,passcode):
-    #     coupon = coupon_collection.get_coupon_by_passcode(passcode)
            
-    # def total_net_price(self):
-    #     total = 0
-    #     for course in self.course:
-    #         total += 
+    def total_net_price(self,coupon):
+        total_price = self.total_promotion() - coupon
+        return total_price

@@ -42,20 +42,28 @@ class UsersCollection :
         for user in self.users:
             if user.role == "Instructor":
                 instructor.append(user)
-                return instructor
+        return instructor
             
     def get_unverified_instructors(self):
         unverified_instructors = []
         for user in self.get_instructors():
             if user.verify == False:
                 unverified_instructors.append(user)
-                return unverified_instructors
+        return unverified_instructors
             
-    def verify_instructors(self,username):
+    def verify_instructor(self,username):
             user =  self.get_user(username)
             if user.role == "Instructor":
                 if user.verify == False:
                     user.verify = True
+                    return True
+                return False
+    
+    def unverify_instructor(self,username):
+            user =  self.get_user(username)
+            if user.role == "Instructor":
+                if user.verify == True:
+                    user.verify = False
                     return True
                 return False
             

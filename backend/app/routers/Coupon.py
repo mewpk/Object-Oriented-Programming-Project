@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.get("/coupon")
 async def get_coupon():
-    return  coupon_collection.coupon
+    return  coupon_collection.coupons
 
 @router.post("/coupon/")
 async def create_coupon(coupon: dict = Body(...)):
@@ -37,3 +37,160 @@ async def create_coupon(coupon: dict = Body(...)):
 @router.get("/update_coupon")
 async def update_coup():
     return str(coupon_collection.expire_coupon(datetime.now()))
+
+@router.get("/mock_couponAll")
+async def mock_couponsAll():
+    for i in range(1,6):
+        data = {
+        "passcode" : f"311{i}",
+        "start_date" : "14/09/2022",
+        "end_date" : "13/09/2023",
+        "type" : "All",
+        "condition" : f"buy at least {i}00 baht",
+        "at_least" : i*100,
+        "discounted_price" : 0,
+        "discounted_percent" : i*5,
+        }
+        new_coupon = Coupon(
+            data["passcode"],
+            data["start_date"],
+            data["end_date"],
+            data["type"],
+            data["condition"],
+            data["at_least"],
+            data["discounted_price"],
+            data["discounted_percent"],
+        )
+        coupon_collection.add_coupon(new_coupon)
+    
+    for i in range(6,10):
+        data = {
+        "passcode" : f"311{i}",
+        "start_date" : "14/09/2022",
+        "end_date" : "13/09/2023",
+        "type" : "All",
+        "condition" : f"buy at least {i}00 baht",
+        "at_least" : i*100,
+        "discounted_price" : 100+i*10,
+        "discounted_percent" : 0
+        }
+        new_coupon = Coupon(
+            data["passcode"],
+            data["start_date"],
+            data["end_date"],
+            data["type"],
+            data["condition"],
+            data["at_least"],
+            data["discounted_price"],
+            data["discounted_percent"],
+        )
+        coupon_collection.add_coupon(new_coupon)
+    return coupon_collection.show_coupon_type("All")
+
+@router.get("/mock_couponInstructor")
+async def mock_couponsInstructor():
+    coupon_instructor1 = CouponInstructor(
+        passcode = "2222",
+        start_date = "14/09/2022",
+        end_date = "13/09/2023",
+        type = "Instructor",
+        condition = "buy at least 300 baht",
+        at_least = 300,
+        discounted_price = 0,
+        discounted_percent = 20,
+        instructor_name = "Pookkie Eiei")
+    coupon_collection.add_coupon(coupon_instructor1)
+
+    coupon_instructor2 = CouponInstructor(
+        passcode = "2223",
+        start_date = "01/01/2022",
+        end_date = "08/06/2023",
+        type = "Instructor",
+        condition = "buy at least 100 baht",
+        at_least = 100,
+        discounted_price = 50,
+        discounted_percent = 0,
+        instructor_name = "Nong Preawa")
+    coupon_collection.add_coupon(coupon_instructor2)
+
+    coupon_instructor3 = CouponInstructor(
+        passcode = "2224",
+        start_date = "14/09/2022",
+        end_date = "13/09/2023",
+        type = "Instructor",
+        condition = "buy at least 100 baht",
+        at_least = 200,
+        discounted_price = 0,
+        discounted_percent = 20,
+        instructor_name = "lnw Pat")
+    coupon_collection.add_coupon(coupon_instructor3)
+
+    coupon_instructor4 = CouponInstructor(
+        passcode = "2225",
+        start_date = "30/04/2023",
+        end_date = "30/05/2023",
+        type = "Instructor",
+        condition = "buy at least 500 baht",
+        at_least = 500,
+        discounted_price = 0,
+        discounted_percent = 40,
+        instructor_name = "Mew kuki")
+    coupon_collection.add_coupon(coupon_instructor4)
+    return coupon_collection.show_coupon_type("Instructor")
+
+
+
+
+@router.get("/mock_couponCourse")
+async def mock_couponsCourse():
+    for i in range(6):
+        data = {
+        "passcode" : f"111{i}",
+        "start_date" : "14/09/2022",
+        "end_date" : "13/09/2023",
+        "type" : "Course",
+        "condition" : "buy at least 200 baht",
+        "at_least" : 200,
+        "discounted_price" : 0,
+        "discounted_percent" : 10,
+        "course_id" : i
+        }
+        new_coupon = CouponCourse(
+            data["passcode"],
+            data["start_date"],
+            data["end_date"],
+            data["type"],
+            data["condition"],
+            data["at_least"],
+            data["discounted_price"],
+            data["discounted_percent"],
+            data["course_id"]
+        )
+        coupon_collection.add_coupon(new_coupon)
+        
+    for i in range(6,10):
+        data = {
+        "passcode" : f"111{i}",
+        "start_date" : "14/09/2022",
+        "end_date" : "13/09/2023",
+        "type" : "Course",
+        "condition" : "buy at least 200 baht",
+        "at_least" : 200,
+        "discounted_price" : 50,
+        "discounted_percent" : 0,
+        "course_id" : i
+        }
+        new_coupon = CouponCourse(
+            data["passcode"],
+            data["start_date"],
+            data["end_date"],
+            data["type"],
+            data["condition"],
+            data["at_least"],
+            data["discounted_price"],
+            data["discounted_percent"],
+            data["course_id"]
+        )
+        coupon_collection.add_coupon(new_coupon)
+
+    return coupon_collection.show_coupon_type("Course")

@@ -1,6 +1,6 @@
 from .Cart import Cart
 from .Order import Order
-# from .WishList import Wishlist
+from .Favorite import Favorite
 from ..config.database import studentcourse_collection
 from .Payment import Payment
 from datetime import datetime
@@ -67,10 +67,10 @@ class Student(Account):
         self.__review = []
         self.__orders  = []
         self.__cart = Cart()
-        self.__wishlist = []
+        self.__favorite = Favorite()
         self.__student_course = studentcourse_collection
         self.__wallet = 0
-        # self.__payment = Payment()
+        self.__payment = []
     @property
     def review(self):
         return self.__review
@@ -81,8 +81,8 @@ class Student(Account):
     def cart(self):
         return self.__cart
     @property
-    def wishlist(self) :
-        return self.__wishlist
+    def favorite(self) :
+        return self.__favorite
     @property
     def student_course(self):
         return self.__student_course
@@ -103,42 +103,47 @@ class Student(Account):
         self.__wallet = wallet
         return self.__wallet
     
-    def make_payment(self):
-        new_order = Order("Pending",self.cart.course,self.cart.total_price)
-        self.add_order(new_order)
-        self.clear_cart()
-        return True
+    #make payment
+        
+    # def make_payment(self,country,method):
+    #     self.payment = Payment(country,method,"Pending")
     
-    def clear_cart(self):
-        self.cart.course = []
+    # def create_order(self):
+    #     new_order = Order("pending",self.cart.course,self.cart.total_net_price,new_payment)
+    #     self.add_order(new_order)
+    #     self.clear_cart()
+    #     return True
+    
+    # def clear_cart(self):
+    #     self.cart.course = []
 
-    def finish_payment(self,id):
-        order = self.get_order_by_id(id)
-        order.status = "success"
-        self.add_to_student_course(order)
-        return True
+    # def finish_payment(self,id):
+    #     order = self.get_order_by_id(id)
+    #     order.status = "success"
+    #     self.add_to_student_course(order)
+    #     return True
     
-    def refund_order(self,id):
-        order = self.get_order_by_id(id)
-        order.status = "refunded"
-        self.return_course_to_cart(id)
-        return True
+    # def refund_order(self,id):
+    #     order = self.get_order_by_id(id)
+    #     order.status = "refunded"
+    #     self.return_course_to_cart(id)
+    #     return True
     
-    def cancel_order(self,id):
-        order = self.get_order_by_id(id)
-        order.status = "cancelled"
-        self.return_course_to_cart(id)
-        return True
+    # def cancel_order(self,id):
+    #     order = self.get_order_by_id(id)
+    #     order.status = "cancelled"
+    #     self.return_course_to_cart(id)
+    #     return True
     
-    def add_to_student_course(self,order):
-        for course in order.course:
-            self.student_course.add_course_to_StudentCourse(course)
-        return True
+    # def add_to_student_course(self,order):
+    #     for course in order.course:
+    #         self.student_course.add_course_to_StudentCourse(course)
+    #     return True
 
-    def return_course_to_cart(self,id):
-        order = self.get_order_by_id(id)
-        for course in order.course:
-            self.cart.course.append(course)
+    # def return_course_to_cart(self,id):
+    #     order = self.get_order_by_id(id)
+    #     for course in order.course:
+    #         self.cart.course.append(course)
         
     def get_order_by_id(self,id):
         for order in self.__orders:
@@ -167,26 +172,6 @@ class Student(Account):
             return True
         else: 
             return False
-
-    
-    def add_to_wishlist(self,course_id):
-        self.wishlist.append(course_id)
-        return "success"
-    
-    def check_course_in_wishlist(self,course_id):
-        for course in self.wishlist:
-            if course.id == course_id:
-                print(course.id)
-                return True
-        print(course_id)
-        return False
-    
-    def remove_from_wishlist(self,course_id):
-        self.wishlist.remove(course_id)
-        return "success"
-    
-    def view_total_price(self):
-        return self.cart.total_price()
 
     def add_review(self,review):
         self.review.append(review)

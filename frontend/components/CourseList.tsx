@@ -1,11 +1,37 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { StarIcon } from "@heroicons/react/solid";
+import { StarIcon ,HeartIcon } from "@heroicons/react/solid";
 import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
 function CourseCard({ course, onCardClick }: any) {
+  const [cookies, setCookie, removeCookie] = useCookies(["user","role"]);
+  const [checkWishList, setCheckWishList] = useState(false);
+  const getData = async () => {
+    const res = await fetch("http://localhost:8000/check_course_in_favorite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course._id,
+      }),
+    });
+    let dataRes = await res.json();
+    if(cookies.user){
+      setCheckWishList(dataRes.status);
+    }
+    
+    console.log(dataRes);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+
+  
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl hover:shadow-xl  hover:scale-105 duration-500">
       <div>
         <button
           className="w-full h-48 focus:outline-none"
@@ -97,6 +123,7 @@ function CourseCard({ course, onCardClick }: any) {
                 On Sale
               </span>
             )}
+           <HeartIcon className={`${ cookies.role === "Student" && cookies.user && checkWishList ? "h-8 w-8 text-red-400 ml-auto" : `h-8 w-8 text-gray-400 ml-auto` }`} />
           </div>
         </div>
       </div>
@@ -105,28 +132,46 @@ function CourseCard({ course, onCardClick }: any) {
 }
 
 function CourseModal({ course, onClose, AddToCart }) {
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["user","role"]);
   const [checkCourse, setCheckCourse] = useState(null);
-  const getData = async (course_id) => {
+  const [checkWishList, setCheckWishList] = useState(null);
+  const router = useRouter();
+
+  const check_course_in_cart = async () => {
     const res = await fetch("http://localhost:8000/check_course_in_cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: cookies.user,
-        course_id: course_id,
+        course_id: course._id,
       }),
     });
     let dataRes = await res.json();
     setCheckCourse(dataRes.status);
     console.log(dataRes);
   };
-  const sendData = async (course_id) => {
+
+  const check_course_in_favorite = async () => {
+    const res = await fetch("http://localhost:8000/check_course_in_favorite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course._id,
+      }),
+    });
+    let dataRes = await res.json();
+    setCheckWishList(dataRes.status);
+    console.log(dataRes);
+  };
+
+  const sendDataCart = async () => {
     const res = await fetch("http://localhost:8000/remove_course_from_cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: cookies.user,
-        course_id: course_id,
+        course_id: course._id,
       }),
     });
     let dataRes = await res.json();
@@ -134,15 +179,35 @@ function CourseModal({ course, onClose, AddToCart }) {
     console.log(dataRes);
   };
 
-  useEffect(() => {
-    getData(course._id);
-  }, []);
+  const sendDataWishList = async () => {
+    const res = await fetch("http://localhost:8000/add_to_favorite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course._id,
+      }),
+    });
+    let dataRes = await res.json();
+    setCheckWishList(dataRes.status);
+    console.log(dataRes);
+    router.refresh();
+  };
+ 
 
   const removeCorseInCart = () => {
     if (!checkCourse) {
-      sendData(course._id);
+      sendDataCart();
     }
   };
+ 
+
+  useEffect(() => {
+    check_course_in_favorite();
+    check_course_in_cart();
+  }, []);
+
+
 
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
@@ -161,15 +226,19 @@ function CourseModal({ course, onClose, AddToCart }) {
             <div className="sm:flex sm:items-start">
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3
-                  className="text-lg leading-6 font-medium text-gray-900"
+                  className="text-lg leading-6 font-medium text-gray-900 flex"
                   id="modal-headline"
                 >
                   {course._name}
+                  <HeartIcon onClick={sendDataWishList} className={`duration-500 hover:-translate-y-1 hover:scale-110 ${ cookies.role === "Student" && cookies.user && checkWishList ?  "h-8 w-8 text-red-400 ml-auto " : `h-8 w-8 text-gray-400 ml-auto`} ${cookies.role === "Student" && cookies.user ? "block" : "hidden"}`} />
+                  
                 </h3>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 ">
                     {course._categories[0]}
+                   
                   </p>
+                  
                   <div className="mt-2 flex items-center text-sm text-gray-500">
                   {course._average_rating == 0 && (
               <>
@@ -252,7 +321,7 @@ function CourseModal({ course, onClose, AddToCart }) {
               }}
               type="button"
               className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
-                cookies.user && checkCourse ? "block" : "hidden"
+                cookies.role === "Student" && cookies.user && checkCourse ? "block" : "hidden"
               }`}
             >
               Add To Cart
@@ -264,7 +333,7 @@ function CourseModal({ course, onClose, AddToCart }) {
               }}
               type="button"
               className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
-                cookies.user && !checkCourse ? "block" : "hidden"
+                cookies.role === "Student" && cookies.user && !checkCourse ? "block" : "hidden"
               }`}
             >
               Remove From Cart
@@ -278,7 +347,7 @@ function CourseModal({ course, onClose, AddToCart }) {
 export default function CourseList({ courses }) {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-
+  
   const handleCardClick = (course) => {
     setSelectedCourse(course);
   };

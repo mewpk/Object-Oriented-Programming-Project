@@ -1,5 +1,4 @@
 import Router  from "next/router";
-import { json } from "node:stream/consumers";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
@@ -7,7 +6,7 @@ export default function Cart() {
   const [couponCode, setCouponCode] = useState("");
   const [cartCourse, setCartCourse] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["user" , "role"]);
   const [username, setUsername] = useState(null);
   const [data , setData ] = useState({
     _Cart__course : [],
@@ -17,7 +16,7 @@ export default function Cart() {
     _Cart__price : 0
   });
   useEffect(()=>{
-    if (!cookies.user){
+    if (!cookies.user || cookies.role !== "Student"){
       Router.push("/")
     }
   })

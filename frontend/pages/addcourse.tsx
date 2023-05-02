@@ -1,7 +1,11 @@
 import Head from "next/head";
-import { useState } from "react";
+import Router from "next/router";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 export default function AddCoursePage() {
+  const [cookies, setCookie, removeCookie] = useCookies(["user","role"]);
+
   const [name, setName] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [date, setDate] = useState("");
@@ -16,6 +20,12 @@ export default function AddCoursePage() {
   const [info, setInfo] = useState("");
   const [categories, setCategories] = useState([]);
 
+  useEffect(() => {
+    if (!cookies.user || cookies.role !== "Instructor") {
+      Router.push("/");
+    }
+  }, []);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const res = await fetch("http://localhost:8000/course", {
@@ -42,7 +52,6 @@ export default function AddCoursePage() {
     })
     let data = await res.json();
     console.log(data);  
-
   };
 
   const handleChapterChange = (index, value) => {

@@ -77,8 +77,10 @@ async def apply_coupon(data: dict=Body(...)):
         student = user_collection.get_user(data.get("username"))
         coupon = coupon_collection.get_coupon_by_passcode(data.get("passcode"))
         cart = student.cart
-        total_price = student.view_total_price()
-        return coupon_collection.use_coupon(coupon,cart,total_price)
+        promotion = student.cart.total_promotion()
+        total_coupon = coupon_collection.use_coupon(coupon,cart,promotion)
+        total_net_price = student.cart.total_net_price(total_coupon)
+        return int(total_net_price)
     except:
         return "invalid coupon / does not meet the conditions of coupon"
     

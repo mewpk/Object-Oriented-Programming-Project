@@ -12,13 +12,24 @@ const Login = () => {
   const [showCooldownNotification, setShowCooldownNotification] = useState(false);
   const [remainingAttempts, setRemainingAttempts] = useState(3);
   const [cooldownTimer, setCooldownTimer] = useState(0);
-  const [cookies, setCookie] = useCookies(['user','remember']);
+  const [cookies, setCookie] = useCookies(['user','remember',"role"]);
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleCheckboxChange = (event) => {
     setRememberMe(event.target.checked);
   };
 
+  const rotation  =async () => {
+    if(cookies.role === "Student"){
+      Router.push('/');
+    }
+    if(cookies.role === "Instructor"){
+      Router.push('/instructor');
+    }
+    if(cookies.role === "Admin"){
+      Router.push('/admin');
+    }
+  }
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     const res = await fetch("http://localhost:8000/login", {
@@ -38,6 +49,7 @@ const Login = () => {
         sameSite: true,
       });
     }
+    
     // Login logic here
     const loginSuccessful = data.status; // replace with actual login logic
 
@@ -50,9 +62,15 @@ const Login = () => {
         maxAge: 3600, // 1 hour
         sameSite: true,
       });
-
-      Router.push('/');
-    } else {
+      setCookie('role', data.user._role, {
+        path: '/',
+        maxAge: 3600, // 1 hour
+        sameSite: true,
+      });
+     
+      
+    } 
+    else {
       setRemainingAttempts((prevAttempts) => prevAttempts - 1);
       if (remainingAttempts <= 1) {
         setShowCooldownNotification(true);
@@ -63,6 +81,7 @@ const Login = () => {
         setShowSuccessNotification(false);
       }
     }
+
   };
   const handleCloseSuccessNotification = () => {
     setShowSuccessNotification(false);
@@ -99,9 +118,7 @@ const Login = () => {
     if (cookies.remember) {
       setUsername(cookies.remember)
     }
-    if (cookies.user) {
-      Router.push('/');
-    }
+    rotation()
   })
   return (
     <>

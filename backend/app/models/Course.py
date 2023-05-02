@@ -1,5 +1,7 @@
 import random
+from datetime import datetime, date
 from .CourseChapter import CourseChapter
+from .Promotion import Promotion
 image = [
   {
     "src": "https://fireship.io/courses/react-next-firebase/img/featured.png"
@@ -15,22 +17,23 @@ image = [
   } 
 ]
 class Course():
+    stamp_time = datetime.now()
     id_counter = 1
-    def __init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor):
+    def __init__(self,name,short_description,language,purpose,chapter,requirement,description,target,price,info,categories,instructor):
         self._id = Course.id_counter
         self._name = name
         self._short_description = short_description
-        self._date = date
+        self._date = Course.stamp_time.strftime("%d/%m/%Y")
         self._language = language
         self._purpose = purpose
-        self._chapter = []
+        self._chapter = chapter
         self._review = []
         self._average_rating = 0
         self._requirement = requirement
         self._description = description
         self._target = target
         self._price = price
-        self._promotion = promotion
+        self._promotion = Promotion(0,'1/1/2022','1/1/2022',0)
         self._info = info
         self._categories = categories
         self._instructor = instructor
@@ -99,9 +102,15 @@ class Course():
         self._average_rating = average_rating
         return self._average_rating
     
+    
     def add_chapter(self,chapter):
         self.chapter.append(chapter)
 
+    def add_promotion(self,promotion):
+        self.promotion.percent = promotion.percent
+        self.promotion.start_date = promotion.start_date
+        self.promotion.end_date = promotion.end_date
+        
     def add_review(self,review):
         self.review.append(review)
         self.get_average_rating()
@@ -114,12 +123,18 @@ class Course():
 
 
 class StudentCourse(Course):
+    id_counter = 1
     def __init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor,all_progress):
+        self.__id = StudentCourse.id_counter
         super().__init__(self,name,short_description,date,language,purpose,chapter,requirement,description,target,price,promotion,info,categories,instructor)
         self.__all_progress = []
+        StudentCourse.id_couter+=1
     @property
     def all_progress(self):
         return self.__all_progress
+    @property
+    def id(self):
+        return self.__id
     @all_progress.setter
     def all_progress(self,all_progress):
         self.__all_progress = all_progress
