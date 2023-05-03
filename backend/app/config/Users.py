@@ -18,9 +18,6 @@ class UsersCollection :
         self.users.append(new_user)
         return new_user
 
-    # def hash_password(self,password):
-    #     return str(hash((password)))
-
     def hash_password(self,password):
         return hash(password)
     

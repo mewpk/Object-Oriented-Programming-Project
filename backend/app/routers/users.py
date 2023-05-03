@@ -66,7 +66,7 @@ async def mockuser():
             user_data3.get("role")        
         )
         user_collection.add_user(new_admin)
-        return user_collection
+    return user_collection
 
 
 @router.get("/users")

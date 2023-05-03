@@ -160,10 +160,12 @@ class Student(Account):
     def close_order(self):
         print("close order student")
         for order in self.orders:
-            if order.status == "Pending":
+            if order.close_order():
                 self.student_course.add_course_to_StudentCourse(order.course)
-                order.status = "Success"
         return "success"
+    
+    def return_amount(self):
+        pass
         
     def get_order_by_id(self,id):
         for order in self.__orders:

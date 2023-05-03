@@ -142,12 +142,10 @@ class Course():
 
 
 class StudentCourse(Course):
-    id_counter = 1
-    def __init__(self,id,name,short_description,date,language,purpose,chapters,requirement,description,target,price,info,categories,instructor,all_progress=0):
-        self.__studentcourse_id = StudentCourse.id_counter
+    def __init__(self,studentcourse_id,id,name,short_description,date,language,purpose,chapters,requirement,description,target,price,info,categories,instructor,all_progress=0):
+        self.__studentcourse_id = studentcourse_id
         super().__init__(id,name,short_description,date,language,purpose,chapters,requirement,description,target,price,info,categories,instructor)
         self.__all_progress = all_progress
-        StudentCourse.id_counter+=1
     @property
     def all_progress(self):
         return self.__all_progress
@@ -163,11 +161,10 @@ class StudentCourse(Course):
         self.__studentcourse_id = studentcourse_id
         return self.__studentcourse_id
     
-
-
     def calculate_progress(self):
-        self.all_progress = 0
-        for progress in self.chapters:
-            self.all_progress += progress
-        self.all_progress /= len(self.chapters)
-        return 
+        all_progress = 0
+        for chapter in self.chapters:
+            all_progress += chapter.progress
+        self.all_progress = int(all_progress/len(self.chapters))
+        return self.all_progress
+

@@ -53,4 +53,14 @@ class CourseCollection():
         result = sorted(self.courses, key=lambda k: k.average_rating , reverse=True)
         return result
 
-                
+    # def edit_course(self,id,name,short_description,language,purpose,requirement,description,target,info):
+    #     course = self.get_course(id)
+    #     course.name = name
+    #     course.short_description = short_description
+    #     course.language = language
+    #     course.purpose = purpose
+    #     course.requirement = requirement
+    #     course.description = description
+    #     course.target = target
+    #     course.info = info
+    #     return course

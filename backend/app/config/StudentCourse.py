@@ -13,5 +13,6 @@ class StudentCourseCollection():
     
     def add_course_to_StudentCourse(self,courses):
         for course in courses:
-            student_course = StudentCourse(course.id,course.name,course.short_description,datetime.strptime(course.date, '%d/%m/%Y'),course.language,course.purpose,course.chapters,course.requirement,course.description,course.target,course.price,course.info,course.categories,course.instructor)
+            print(len(self.courses))
+            student_course = StudentCourse(len(self.courses)+1,course.id,course.name,course.short_description,datetime.strptime(course.date, '%d/%m/%Y'),course.language,course.purpose,course.chapters,course.requirement,course.description,course.target,course.price,course.info,course.categories,course.instructor)
             self.courses.append(student_course)

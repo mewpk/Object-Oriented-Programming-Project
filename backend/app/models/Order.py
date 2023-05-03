@@ -38,6 +38,11 @@ class Order():
         print("to close order")
         if self.status == "Pending":
             self.status = "Success"
+        return True
+
+    def refund_order(self):
+        if (datetime.now() - self.date).days() <= 7:
+            self.status = "Refuned"
 
  
 
