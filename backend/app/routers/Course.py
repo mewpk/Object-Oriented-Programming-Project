@@ -600,13 +600,14 @@ async def get_course():
 async def create_course(course_data: dict = Body(...)):
     try:
         all_chapters = []
-        for chapter in course_data.get("chapters"):
-            new_chapter = CourseChapter(len(all_chapters)+1,0,chapter.name,chapter.video)
+        for chapter in course_data.get("chapters"):      
+            new_chapter = CourseChapter(len(all_chapters)+1,0,chapter.get("name"),chapter.get("video"))
             all_chapters.append(new_chapter)
-
-        new_course = Course(len(course_collection.courses)+1,course_data.get("name"),course_data.get("short_description"),datetime.now,course_data.get("language")
+        stamp_date = datetime.now()
+        new_course = Course(len(course_collection.courses)+1,course_data.get("name"),course_data.get("short_description"),stamp_date,course_data.get("language")
                             ,course_data.get("purpose"),all_chapters,course_data.get("requirement"),course_data.get("description"),course_data.get("target")
-                        ,course_data.get("price"),course_data.get("promotion"),course_data.get("info"),course_data.get("categories"),course_data.get("instructor"))
+                            ,course_data.get("price"),course_data.get("info"),course_data.get("categories"),course_data.get("instructor"))
+        print("p")
         data = course_collection.add_course(new_course)
         if new_course and data:
             return {"message": "Course created successfully", "course": data}
@@ -615,14 +616,15 @@ async def create_course(course_data: dict = Body(...)):
     except:
         return "please try again"
     
-@router.post("/course/add_chapter")
-async def create_chapter(data: dict = Body(...)):
+@router.post("/course/edit_course")
+async def edit_course(data: dict = Body(...)):
     try:
         course = course_collection.get_course(data.get("course_id"))
-        new_chapter = CourseChapter(0,data.get("name"),data.get("video"))
-        course.add_chapter(new_chapter)
-        course.promotion.net_promotion_price(course.price)
-        return "added chapter successfully"
+        course_collection.edit_course(data.get("course_id"),data.get("name"),data.get("short_description"),data.get("language"),data.get("purpose"),data.get("requirement"),data.get("description"),data.get("target"),data.get("info"),data.get("categories"))
+        # new_chapter = CourseChapter(0,data.get("name"),data.get("video"))
+        # course.add_chapter(new_chapter)
+        # course.promotion.net_promotion_price(course.price)
+        return "edit successfully"
     except:
         return "please try again"
     

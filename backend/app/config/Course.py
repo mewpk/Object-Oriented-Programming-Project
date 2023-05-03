@@ -58,6 +58,7 @@ class CourseCollection():
         id = len(course.chapters)+1
         new_chapter = CourseChapter(id,0,name,video)
         course.chapters.append(new_chapter)
+
     def edit_course(self,id,name,short_description,language,purpose,requirement,description,target,info,categories):
         course = self.get_course(id)
         course.name = name
