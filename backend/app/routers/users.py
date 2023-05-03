@@ -9,19 +9,20 @@ from ..models.Users import Student,Instructor,Admin
 
 router = APIRouter()
 
-@router.get("/users")
-async def get_users():
-    return  user_collection.users
+# @router.get("/users")
+# async def get_users():
+#     return  user_collection.users
     
 
-@router.get("/unverified_instructors/")
-async def get_unverified_instructors():
-    return user_collection.get_unverified_instructors()
+# @router.get("/unverified_instructors/")
+# async def get_unverified_instructors():
+#     return user_collection.get_unverified_instructors()
 
 
 @router.post("/register/")
 async def create_users(user_data: dict = Body(...)):
-    try:
+        print(user_data)
+        # print(user_collection.verify_username(user_data["username"]))
         if user_collection.verify_username(user_data["username"]) == True:
             if user_data.get("role") == "Student":
                 new_user = Student(user_data.get("name"), user_data.get("username"), user_data.get("password"), user_data.get("language"),user_data.get("email"), user_data.get("role"))
@@ -36,40 +37,38 @@ async def create_users(user_data: dict = Body(...)):
             else:
                 return {"message": "Failed to create "+ new_user.role}
         else: return {"message": "Failed to create user"}
-    except:
-        return "please try again"
+    
         
     
-@router.post("/login/")
-async def login(user_data: dict = Body(...)):
-    try:
-        user = user_collection.verify_login(user_data)
-        if user != False:
-            return {"message": "Logged in successfully", "user": user}
-        else:
-            return {"message": "Failed to login"}
-    except:
-        return "please try again"
+# @router.post("/login/")
+# async def login(user_data: dict = Body(...)):
 
-@router.post("/verify_instructors/")
-async def verify_instructors(user_data: dict = Body(...)):
-    try:
-        user = user_collection.verify_instructors(user_data.get("username"))
-        if user != False:
-            return {"message": "Verified successfully","username" : user_data.get("username") ,"verify": user}
-        else:
-            return {"message": "Failed to verify"}
-    except:
-        return "please try again"
+#         user = user_collection.verify_login(user_data)
+#         if user != False:
+#             return {"message": "Logged in successfully", "user": user}
+#         else:
+#             return {"message": "Failed to login"}
+
+
+# @router.post("/verify_instructors/")
+# async def verify_instructors(user_data: dict = Body(...)):
+#     try:
+#         user = user_collection.verify_instructors(user_data.get("username"))
+#         if user != False:
+#             return {"message": "Verified successfully","username" : user_data.get("username") ,"verify": user}
+#         else:
+#             return {"message": "Failed to verify"}
+#     except:
+#         return "please try again"
     
-@router.put("/edit_profile/")
-async def edit_profile(user_data: dict = Body(...)):
-    try:
-        user = user_collection.edit_profile(user_data.get("username"),user_data.get("name"),user_data.get("language") , user_data.get("email"),user_data.get("about"))
-        profile = user_collection.get_user(user_data.get("username"))
-        if user != False:
-            return {"message": "Edit profile successfully","profile" : profile}
-        else:
-            return {"message": "Failed to Edit profile"}
-    except:
-        return "please try again"
+# @router.put("/edit_profile/")
+# async def edit_profile(user_data: dict = Body(...)):
+#     try:
+#         user = user_collection.edit_profile(user_data.get("username"),user_data.get("name"),user_data.get("language") , user_data.get("email"),user_data.get("about"))
+#         profile = user_collection.get_user(user_data.get("username"))
+#         if user != False:
+#             return {"message": "Edit profile successfully","profile" : profile}
+#         else:
+#             return {"message": "Failed to Edit profile"}
+#     except:
+#         return "please try again"
