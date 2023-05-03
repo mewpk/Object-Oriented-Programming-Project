@@ -14,5 +14,9 @@ class Payment():
     def type(self):
         return self.__type
     
+    @amount.setter
+    def amount(self,amount):
+        self.__amount = amount
+        return self.__amount
         
     

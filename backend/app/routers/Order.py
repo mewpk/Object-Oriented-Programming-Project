@@ -21,11 +21,12 @@ async def get_order_view_refund(data : dict = Body(...)):
 async def add_order(data : dict = Body(...)):
     try:
         student = user_collection.get_user(data.get("username"))
-        print("to order")
-        total_price = student.cart.total_price()
-        print("pp")
-        new_order = Order("Pending",student.cart.course,total_price,student.cart.net_price)
-        print(new_order)
+        # print("to order")
+        # total_price = student.cart.price
+        # net_price = student.cart.net_price
+        # print("pp")
+        # print(total_price,net_price)
+        new_order = Order("Pending",student.cart.course,student.cart.price,student.cart.net_price)      
         student.add_order(new_order)
         return "success to add"
     except:

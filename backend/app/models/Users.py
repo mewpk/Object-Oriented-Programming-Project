@@ -151,7 +151,19 @@ class Student(Account):
     def add_payment_method(self,payment):
         print("to payment")
         self.payment_method.append(payment)
-        
+
+    def get_payment_by_type(self,type):
+        for payment in  self.payment_method:
+            if payment.type == type:
+                return payment
+            
+    def close_order(self):
+        print("close order student")
+        for order in self.orders:
+            if order.status == "Pending":
+                self.student_course.add_course_to_StudentCourse(order.course)
+                order.status = "Success"
+        return "success"
         
     def get_order_by_id(self,id):
         for order in self.__orders:

@@ -16,6 +16,8 @@ class ReviewCollection() :
     def check_review_by_username(self,username,course_id):
         for review in self.review:
             if review.username == username:
+                print("check username")
                 if review.course_id == course_id:
+                    print("check id")
                     return False
         return True

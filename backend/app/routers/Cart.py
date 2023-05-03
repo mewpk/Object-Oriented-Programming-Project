@@ -76,7 +76,7 @@ async def get_total_promotion(data: dict=Body(...)):
     try:
         student = user_collection.get_user(data.get("username"))
         total_promotion = student.cart.total_promotion()
-        return total_promotion
+        return student.cart.net_promotion
     except:
         return "please try again"
 
@@ -87,11 +87,10 @@ async def apply_coupon(data: dict=Body(...)):
         coupon = coupon_collection.get_coupon_by_passcode(data.get("passcode"))
         cart = student.cart
         promotion = student.cart.total_promotion()
-        print("total promotion :",promotion)
-        total_coupon = coupon_collection.use_coupon(coupon,cart,promotion)
-        print("total coupon :", total_coupon)
-        total_net_price = student.cart.total_net_price(total_coupon)
-        return int(total_net_price)
+        coupon_collection.use_coupon(coupon,cart,promotion)
+        # price_after_coupon = student.cart.price_after_coupon(total_coupon)
+        print(student.cart.net_price)
+        return cart.net_coupon
     except:
         return "invalid coupon / does not meet the conditions of coupon"
     
