@@ -1,4 +1,5 @@
 from ..models.Course import Course
+from ..models.CourseChapter import CourseChapter
 class CourseCollection():
     def __init__(self) -> None:
         self.__courses = []
@@ -52,15 +53,20 @@ class CourseCollection():
     def sort_by_rating(self):
         result = sorted(self.courses, key=lambda k: k.average_rating , reverse=True)
         return result
-
-    # def edit_course(self,id,name,short_description,language,purpose,requirement,description,target,info):
-    #     course = self.get_course(id)
-    #     course.name = name
-    #     course.short_description = short_description
-    #     course.language = language
-    #     course.purpose = purpose
-    #     course.requirement = requirement
-    #     course.description = description
-    #     course.target = target
-    #     course.info = info
-    #     return course
+    def add_chapter(self,course_id,name,video):
+        course = self.get_course(course_id)
+        id = len(course.chapters)+1
+        new_chapter = CourseChapter(id,0,name,video)
+        course.chapters.append(new_chapter)
+    def edit_course(self,id,name,short_description,language,purpose,requirement,description,target,info,categories):
+        course = self.get_course(id)
+        course.name = name
+        course.short_description = short_description
+        course.language = language
+        course.purpose = purpose
+        course.requirement = requirement
+        course.description = description
+        course.target = target
+        course.info = info
+        course.categories = categories
+        return course

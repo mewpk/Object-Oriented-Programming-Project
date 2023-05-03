@@ -41,8 +41,9 @@ class Order():
         return True
 
     def refund_order(self):
-        if (datetime.now() - self.date).days() <= 7:
+        if (datetime.now() - self.date).days <= 7:
             self.status = "Refuned"
+        
 
  
 

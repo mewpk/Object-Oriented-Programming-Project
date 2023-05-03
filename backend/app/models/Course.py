@@ -122,8 +122,8 @@ class Course():
     # def run_id(self):
     #     if 
     
-    def add_chapter(self,chapter):
-        self.chapters.append(chapter)
+    # def add_chapter(self,chapter):
+    #     self.chapters.append(chapter)
 
     def add_promotion(self,promotion):
         self.promotion.percent = promotion.percent
