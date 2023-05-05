@@ -36,6 +36,11 @@ class Promotion():
         self.__net= net
         return self.__net
     
+    def add_promotion(self,promotion):
+        self.percent = promotion.percent
+        self.start_date = promotion.start_date
+        self.end_date = promotion.end_date
+    
     def net_promotion_price(self,price):
         if self.percent != 0:
             self.net = int((price*(100-self.percent))/100)+1

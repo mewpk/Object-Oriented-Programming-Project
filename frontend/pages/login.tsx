@@ -115,11 +115,14 @@ const Login = () => {
   }, [cooldownTimer]);
 
   useEffect(()=>{
+    
+    rotation()
+  })
+  useEffect(()=>{
     if (cookies.remember) {
       setUsername(cookies.remember)
     }
-    rotation()
-  })
+  },[])
   return (
     <>
       <Head>

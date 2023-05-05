@@ -1,5 +1,4 @@
 from .Cart import Cart
-from .Order import Order
 from .Favorite import Favorite
 from ..config.database import studentcourse_collection
 from .Payment import Payment
@@ -61,7 +60,6 @@ class Account():
         return self._about
     
 class Student(Account):
-
     def __init__(self,name,username,password,language,email,role,about = "",active= True ):
         super().__init__(name,username,password,language,email,role,about,active)
         self.__review = []
@@ -69,7 +67,6 @@ class Student(Account):
         self.__cart = Cart()
         self.__favorite = Favorite()
         self.__student_course = studentcourse_collection
-        self.__wallet = 0
         self.__payment_method = []
     @property
     def review(self):
@@ -87,9 +84,6 @@ class Student(Account):
     def student_course(self):
         return self.__student_course
     @property
-    def wallet(self):
-        return self.__wallet
-    @property
     def payment_method(self):
         return self.__payment_method
 
@@ -101,81 +95,47 @@ class Student(Account):
     def orders(self,orders):
         self.__orders = orders
         return self.__orders
-    @wallet.setter
-    def wallet(self,wallet):
-        self.__wallet = wallet
-        return self.__wallet
-    
-    #make payment
-        
-    # def make_payment(self,country,method):
-    #     self.payment = Payment(country,method,"Pending")
-    
-    # def create_order(self):
-    #     new_order = Order("pending",self.cart.course,self.cart.total_net_price,new_payment)
-    #     self.add_order(new_order)
-    #     self.clear_cart()
-    #     return True
-    
-    # def clear_cart(self):
-    #     self.cart.course = []
-
-    # def finish_payment(self,id):
-    #     order = self.get_order_by_id(id)
-    #     order.status = "success"
-    #     self.add_to_student_course(order)
-    #     return True
-    
-    # def refund_order(self,id):
-    #     order = self.get_order_by_id(id)
-    #     order.status = "refunded"
-    #     self.return_course_to_cart(id)
-    #     return True
-    
-    # def cancel_order(self,id):
-    #     order = self.get_order_by_id(id)
-    #     order.status = "cancelled"
-    #     self.return_course_to_cart(id)
-    #     return True
-    
-    # def add_to_student_course(self,order):
-    #     for course in order.course:
-    #         self.student_course.add_course_to_StudentCourse(course)
-    #     return True
-
-    # def return_course_to_cart(self,id):
-    #     order = self.get_order_by_id(id)
-    #     for course in order.course:
-    #         self.cart.course.append(course)
 
     def add_payment_method(self,payment):
-        print("to payment")
         self.payment_method.append(payment)
 
-    def get_payment_by_type(self,type):
+    def get_payment_method(self,type,name):
         for payment in  self.payment_method:
-            if payment.type == type:
+            if payment.type == type and payment.name == name:
                 return payment
-            
-    def close_order(self):
-        print("close order student")
-        for order in self.orders:
-            if order.close_order():
-                self.student_course.add_course_to_StudentCourse(order.course)
-        return "success"
     
     def return_amount(self):
         self.payment_method
         
     def get_order_by_id(self,id):
-        for order in self.__orders:
+        for order in self.orders:
             if order.id == id:
                 return order
-            
-    def add_order(self, order):
+    
+    def add_order(self,order):
         self.orders.append(order)
         return self.orders
-
+    
+    def close_order(self,payment):
+        for order in self.orders:
+            if order.status == "Pending":
+                order.status = "Purchased"
+                payment.amount -= order.net_price
+                self.student_course.add_course_to_student_course(order.course)
+                self.cart.clear_cart()
+        return "success"
+    
+    def refund_order(self,order_id,payment):     
+        for order in self.orders:
+            if order.id == order_id :
+                if (datetime.now() - order.date).days <= 7:   
+                    order.status = "Refuned"
+                    payment.amount += order.net_price
+                    for course in order.course:
+                        self.student_course.remove_course(course.id)
+                    return True
+        return False
+            
     def view_refunds(self) :
         list_refunds = []
         for order in self.orders :

@@ -14,9 +14,13 @@ class UsersCollection :
         for user in self.__users :
             if user.username == username :
                 return user
+            
     def add_user(self,new_user):
         self.users.append(new_user)
         return new_user
+    
+    def delete_user(self,user):
+        self.users.remove(user)
 
     def hash_password(self,password):
         return hash(password)
@@ -29,7 +33,7 @@ class UsersCollection :
     
     def verify_login(self,user_data):
         for user in self.users:
-            if user.username == user_data["username"]: 
+            if user.username == user_data.get("username"): 
                 if user.password == self.hash_password(user_data.get("password")) :
                     return user
         return False

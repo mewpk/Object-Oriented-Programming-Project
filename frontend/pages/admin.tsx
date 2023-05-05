@@ -76,7 +76,7 @@ const AdminVerifyInstructor = () => {
             return (
               <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl hover:shadow-xl  hover:scale-105 duration-500 p-10 mb-10" key={instructor._username}>
                 <h2 className="text-lg font-semibold mb-2">
-                  {instructor._name}
+                  {instructor._username}
                 </h2>
                 <p className="text-gray-600 mb-4">{instructor._email}</p>
                 {instructor._Instructor__verify ? (

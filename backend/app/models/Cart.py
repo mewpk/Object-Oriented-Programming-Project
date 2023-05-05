@@ -1,5 +1,3 @@
-from ..config.database import cart_collection,course_collection
-# from .Coupon import Coupon
 class Cart():
     def __init__(self):
         self.__price = 0

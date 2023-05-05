@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Body
 
-from ..config.database import cart_collection,course_collection,user_collection,coupon_collection
+from ..config.database import course_collection,user_collection,coupon_collection
 from ..models.Course import Course
 from ..models.Users import Student
 
@@ -14,19 +14,19 @@ async def get_cart(data : dict = Body(...)):
             return student.cart
 
 
-@router.post("/check_course_in_cart")
-async def check_course_in_cart(data: dict = Body(...)):
-    try:
-        student = user_collection.get_user(data.get("username"))
-        for course in course_collection.courses:
-            if course.id == data.get("course_id"):
-                if student.check_course_in_cart(course) == True:
-                    return { "status": True }
-                else: 
-                    return  { "status": False }
-        return "Failed to add"
-    except:
-        return "please try again"  
+# @router.post("/check_course_in_cart")
+# async def check_course_in_cart(data: dict = Body(...)):
+#     try:
+#         student = user_collection.get_user(data.get("username"))
+#         for course in course_collection.courses:
+#             if course.id == data.get("course_id"):
+#                 if student.check_course_in_cart(course) == True:
+#                     return { "status": True }
+#                 else: 
+#                     return  { "status": False }
+#         return "Failed to add"
+#     except:
+#         return "please try again"  
 
 
 
@@ -36,8 +36,10 @@ async def add_cart(data: dict = Body(...)):
         student = user_collection.get_user(data.get("username"))
         for course in course_collection.courses:
             if course.id == data.get("course_id"):
-                if student.check_course_in_cart(course) == True:
-                    student.add_to_cart(course)
+                if student.check_course_in_cart(course) == True :
+                    if student.student_course.check_course(course.id) == True :
+                        student.add_to_cart(course)
+                    else : return "you already have this course"
                     return "success to add"
                 else: 
                     # student.remove_from_cart(course)
@@ -61,8 +63,6 @@ async def remove_cart(data: dict = Body(...)):
     except:
         return "please try again"  
          
-
-
 @router.post("/cart/total_price/")
 async def get_total_price(username : str):
     try:
@@ -75,7 +75,7 @@ async def get_total_price(username : str):
 async def get_total_promotion(data: dict=Body(...)):
     try:
         student = user_collection.get_user(data.get("username"))
-        total_promotion = student.cart.total_promotion()
+        student.cart.total_promotion()
         return student.cart.net_promotion
     except:
         return "please try again"
@@ -86,7 +86,7 @@ async def apply_coupon(data: dict=Body(...)):
         student = user_collection.get_user(data.get("username"))
         coupon = coupon_collection.get_coupon_by_passcode(data.get("passcode"))
         cart = student.cart
-        promotion = student.cart.total_promotion()
+        promotion = student.cart.total_promotion()  
         coupon_collection.use_coupon(coupon,cart,promotion)
         # price_after_coupon = student.cart.price_after_coupon(total_coupon)
         print(student.cart.net_price)
@@ -94,13 +94,6 @@ async def apply_coupon(data: dict=Body(...)):
     except:
         return "invalid coupon / does not meet the conditions of coupon"
     
-@router.post("/cart/apply_coupon/make_payment")
-async def payment(payment_data: dict=Body(...)):
-    try:
-        user = user_collection.get_user(payment_data.get("username"))
-        user.make_payment()
-        return "payment successful" 
-    except :
-        return "try again"
+
 
     
