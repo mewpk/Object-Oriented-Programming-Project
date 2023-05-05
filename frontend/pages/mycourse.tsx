@@ -3,7 +3,7 @@ import CourseList from "../components/CourseList";
 import { useCookies } from "react-cookie";
 import  Router  from "next/router";
 
-export default function mycourse() {
+export default function Mycourse() {
   const [data, setData] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(["user" , "role"]);
   const getData = async () => {
