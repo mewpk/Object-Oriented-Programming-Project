@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 const PaymentPage = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
 
-  const [data, setData] = useState([{ _Order__course: [], _Order__id: 0 }]);
+  const [data, setData] = useState([{ _Order__course: [], _Order__id: 0 ,_Order__net_price : 0}]);
   const [paymentMethod, setPaymentMethod] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(["user", "role"]);
   const [name, setName] = useState("");
@@ -164,10 +164,12 @@ Router.push("/mycourse")
                             <td className="py-2 px-4">{order._name}</td>
                             <td className="py-2 px-4">${order._price}</td>
                           </tr>
+                          
                         ))}
                     </tbody>
                   </table>
                 </div>
+                <h2 className="text-lg mb-2 text-right">Total : {orders._Order__net_price}</h2>
                 <div className="mb-4">
                   <h2 className="text-lg font-bold mb-2">Payment Method</h2>
                   {paymentMethod && paymentMethod.length == 0 ? (
@@ -211,6 +213,7 @@ Router.push("/mycourse")
                             }
                             className="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             required
+                            defaultValue={"ATM"}
                           >
                             {listType &&
                               listType.map((type) => (
