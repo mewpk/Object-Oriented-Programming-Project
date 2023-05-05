@@ -27,20 +27,22 @@ class CouponCollection():
                 self.coupons.remove(coupon)
         return "Coupon updated successfully"
     
-    def use_coupon(self,coupon,cart,total): 
-        print(coupon.at_least,total) 
+    def use_coupon(self,coupon,cart,total):
+        cart.net_promotion = cart.total_promotion() 
         if total >= coupon.at_least:
             if coupon.type == "Instructor":
                 total = self.use_coupon_instructor(coupon,cart)
             elif coupon.type == "Course":
                 total = self.use_coupon_course(coupon,cart)
-            discount = (total*coupon.discounted_percent)/100 + coupon.discounted_price     
-            return discount
+            discount = int((total*coupon.discounted_percent)/100 + coupon.discounted_price)   
+            cart.net_coupon = cart.net_promotion - discount
+            # cart.net_price = cart.net_coupon  
+            return cart.net_coupon
 
     def use_coupon_course(self,coupon,cart):
         for course in cart.course:
             if course.id == coupon.course_id :
-                return course.price
+                return course.price 
 
     def use_coupon_instructor(self,coupon,cart):
         total = 0
@@ -49,3 +51,10 @@ class CouponCollection():
                 total += course.price
         if total != 0 :
             return total
+        
+    def show_coupon_type(self,type):
+        result = []
+        for coupon in self.coupons:
+            if coupon.type == type:
+                result.append(coupon)
+        return result

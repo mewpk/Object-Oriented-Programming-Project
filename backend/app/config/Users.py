@@ -14,12 +14,13 @@ class UsersCollection :
         for user in self.__users :
             if user.username == username :
                 return user
+            
     def add_user(self,new_user):
         self.users.append(new_user)
         return new_user
-
-    # def hash_password(self,password):
-    #     return str(hash((password)))
+    
+    def delete_user(self,user):
+        self.users.remove(user)
 
     def hash_password(self,password):
         return hash(password)
@@ -32,7 +33,7 @@ class UsersCollection :
     
     def verify_login(self,user_data):
         for user in self.users:
-            if user.username == user_data["username"]: 
+            if user.username == user_data.get("username"): 
                 if user.password == self.hash_password(user_data.get("password")) :
                     return user
         return False
@@ -42,20 +43,28 @@ class UsersCollection :
         for user in self.users:
             if user.role == "Instructor":
                 instructor.append(user)
-                return instructor
+        return instructor
             
     def get_unverified_instructors(self):
         unverified_instructors = []
         for user in self.get_instructors():
             if user.verify == False:
                 unverified_instructors.append(user)
-                return unverified_instructors
+        return unverified_instructors
             
-    def verify_instructors(self,username):
+    def verify_instructor(self,username):
             user =  self.get_user(username)
             if user.role == "Instructor":
                 if user.verify == False:
                     user.verify = True
+                    return True
+                return False
+    
+    def unverify_instructor(self,username):
+            user =  self.get_user(username)
+            if user.role == "Instructor":
+                if user.verify == True:
+                    user.verify = False
                     return True
                 return False
             

@@ -1,13 +1,12 @@
 from datetime import datetime
 class Order():
-    order_id = 1
-    def __init__ (self,status,course,price):
-        self.__id = Order.order_id
+    def __init__ (self,id,status,course,price,net_price):
+        self.__id = id
         self.__status = status
         self.__date = datetime.now() 
         self.__course = course
         self.__price = price
-        Order.order_id += 1
+        self.__net_price  = net_price
         
     @property
     def id(self):
@@ -24,10 +23,16 @@ class Order():
     @property
     def price(self):
         return self.__price
+    @property
+    def net_price(self):
+        return self.__net_price
+    
     @status.setter
     def status(self,status):
         self.__status = status
         return self.__status
+
+        
 
  
 

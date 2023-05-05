@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Body
-
 from ..config.database import categories_collection
 from ..models.Categories import Categories
 

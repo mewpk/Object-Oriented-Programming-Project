@@ -28,13 +28,13 @@ const SlideImage = ({ images, autoSlideDelay = 5000 }) => {
   };
 
   return (
-    <div className="relative w-full h-96">
+    <div className="relative w-full h-96  hover:shadow-xl   ">
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute top-0 left-0 h-full w-full  transition-opacity duration-500 bg-gray-900 ${
-            index === currentIndex ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute top-0 left-0 h-full w-full  transition-opacity duration-500 bg-gray-900 shadow rounded-xl  ${
+            index === currentIndex ? "opacity-100" : "opacity-0" 
+          } `}
         >
           <Image src={image.src} alt={image.alt} layout="fill" objectFit="contain" />
         </div>

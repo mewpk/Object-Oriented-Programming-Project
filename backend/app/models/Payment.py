@@ -1,10 +1,22 @@
 class Payment(): 
-    def __init__(self,country,method):
-        self.__country = country
-        self.__method = [method]
+    def __init__(self,name,amount,type):
+        self.__name = name
+        self.__amount = amount
+        self.__type = type
+
     @property
-    def country(self):
-        return self.__country
+    def name(self):
+        return self.__name
     @property
-    def method(self):
-        return self.__method
+    def amount(self):
+        return self.__amount
+    @property
+    def type(self):
+        return self.__type
+    
+    @amount.setter
+    def amount(self,amount):
+        self.__amount = amount
+        return self.__amount
+        
+    

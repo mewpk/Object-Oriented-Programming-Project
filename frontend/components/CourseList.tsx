@@ -1,11 +1,35 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { StarIcon } from "@heroicons/react/solid";
+import { StarIcon, HeartIcon } from "@heroicons/react/solid";
 import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
 function CourseCard({ course, onCardClick }: any) {
+  const [cookies, setCookie, removeCookie] = useCookies(["user", "role"]);
+  const [checkWishList, setCheckWishList] = useState(false);
+  const getData = async () => {
+    const res = await fetch("http://localhost:8000/check_course_in_favorite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course._id,
+      }),
+    });
+    let dataRes = await res.json();
+    if (cookies.user) {
+      setCheckWishList(dataRes.status);
+    }
+
+    console.log(dataRes);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl hover:shadow-xl  hover:scale-105 duration-500">
       <div>
         <button
           className="w-full h-48 focus:outline-none"
@@ -88,6 +112,7 @@ function CourseCard({ course, onCardClick }: any) {
             <span className="ml-2">{course._review.length} reviews</span>
           </div>
           <p className="mt-2 text-gray-500">{course._short_description}</p>
+
           <div className="mt-3 flex items-center">
             <span className="text-gray-500 text-sm font-medium">
               ${course._price.toFixed(2)}
@@ -97,6 +122,13 @@ function CourseCard({ course, onCardClick }: any) {
                 On Sale
               </span>
             )}
+            <HeartIcon
+              className={`${
+                cookies.role === "Student" && cookies.user && checkWishList
+                  ? "h-8 w-8 text-red-400 ml-auto"
+                  : `h-8 w-8 text-gray-400 ml-auto`
+              }`}
+            />
           </div>
         </div>
       </div>
@@ -105,28 +137,47 @@ function CourseCard({ course, onCardClick }: any) {
 }
 
 function CourseModal({ course, onClose, AddToCart }) {
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["user", "role"]);
   const [checkCourse, setCheckCourse] = useState(null);
-  const getData = async (course_id) => {
+  const [checkWishList, setCheckWishList] = useState(null);
+  const [showChapters, setShowChapters] = useState(false);
+  const router = useRouter();
+
+  const check_course_in_cart = async () => {
     const res = await fetch("http://localhost:8000/check_course_in_cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: cookies.user,
-        course_id: course_id,
+        course_id: course._id,
       }),
     });
     let dataRes = await res.json();
     setCheckCourse(dataRes.status);
     console.log(dataRes);
   };
-  const sendData = async (course_id) => {
-    const res = await fetch("http://localhost:8000/remove_course_from_cart", {
+
+  const check_course_in_favorite = async () => {
+    const res = await fetch("http://localhost:8000/check_course_in_favorite", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: cookies.user,
-        course_id: course_id,
+        course_id: course._id,
+      }),
+    });
+    let dataRes = await res.json();
+    setCheckWishList(dataRes.status);
+    console.log(dataRes);
+  };
+
+  const sendDataCart = async () => {
+    const res = await fetch("http://localhost:8000/remove_course_from_cart", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course._id,
       }),
     });
     let dataRes = await res.json();
@@ -134,21 +185,40 @@ function CourseModal({ course, onClose, AddToCart }) {
     console.log(dataRes);
   };
 
-  useEffect(() => {
-    getData(course._id);
-  }, []);
+  const sendDataWishList = async () => {
+    const res = await fetch("http://localhost:8000/add_to_favorite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        course_id: course._id,
+      }),
+    });
+    let dataRes = await res.json();
+    setCheckWishList(dataRes.status);
+    console.log(dataRes);
+    router.refresh();
+  };
 
   const removeCorseInCart = () => {
     if (!checkCourse) {
-      sendData(course._id);
+      sendDataCart();
     }
   };
+
+  useEffect(() => {
+    check_course_in_favorite();
+    check_course_in_cart();
+  }, []);
 
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div className="fixed inset-0 transition-opacity">
-          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+          <div
+            className="absolute inset-0 bg-gray-500 opacity-75"
+            onClick={onClose}
+          ></div>
         </div>
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
         <div
@@ -161,70 +231,89 @@ function CourseModal({ course, onClose, AddToCart }) {
             <div className="sm:flex sm:items-start">
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3
-                  className="text-lg leading-6 font-medium text-gray-900"
+                  className="text-lg leading-6 font-medium text-gray-900 flex"
                   id="modal-headline"
                 >
                   {course._name}
+                  <HeartIcon
+                    onClick={sendDataWishList}
+                    className={`hover:animate-pulse duration-500 hover:-translate-y-1 hover:scale-110 ${
+                      cookies.role === "Student" &&
+                      cookies.user &&
+                      checkWishList
+                        ? "h-8 w-8 text-red-400 ml-auto "
+                        : `h-8 w-8 text-gray-400 ml-auto`
+                    } ${
+                      cookies.role === "Student" && cookies.user
+                        ? "block"
+                        : "hidden"
+                    }`}
+                  />
                 </h3>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 ">
                     {course._categories[0]}
                   </p>
+
                   <div className="mt-2 flex items-center text-sm text-gray-500">
-                  {course._average_rating == 0 && (
-              <>
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400" />
-              </>
-            )}
-            {course._average_rating > 0 && course._average_rating <= 1 && (
-              <>
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400" />
-              </>
-            )}
-            {course._average_rating > 1 && course._average_rating <= 2 && (
-              <>
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400" />
-              </>
-            )}
-            {course._average_rating > 2 && course._average_rating <= 3 && (
-              <>
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400" />
-              </>
-            )}
-            {course._average_rating > 3 && course._average_rating <= 4 && (
-              <>
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-gray-400" />
-              </>
-            )}
-            {course._average_rating > 4 && (
-              <>
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
-                <StarIcon className="h-5 w-5 text-yellow-500" />
-              </>
-            )}
+                    {course._average_rating == 0 && (
+                      <>
+                        <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                        <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                        <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                        <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                        <StarIcon className="h-5 w-5 text-gray-400" />
+                      </>
+                    )}
+                    {course._average_rating > 0 &&
+                      course._average_rating <= 1 && (
+                        <>
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400" />
+                        </>
+                      )}
+                    {course._average_rating > 1 &&
+                      course._average_rating <= 2 && (
+                        <>
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400" />
+                        </>
+                      )}
+                    {course._average_rating > 2 &&
+                      course._average_rating <= 3 && (
+                        <>
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400" />
+                        </>
+                      )}
+                    {course._average_rating > 3 &&
+                      course._average_rating <= 4 && (
+                        <>
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                          <StarIcon className="h-5 w-5 text-gray-400" />
+                        </>
+                      )}
+                    {course._average_rating > 4 && (
+                      <>
+                        <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                        <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                        <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                        <StarIcon className="h-5 w-5 text-yellow-500 mr-1" />
+                        <StarIcon className="h-5 w-5 text-yellow-500" />
+                      </>
+                    )}
                     <span className="ml-2">
                       {course._review.length} reviews
                     </span>
@@ -232,6 +321,40 @@ function CourseModal({ course, onClose, AddToCart }) {
                   <p className="mt-3 text-base text-gray-500">
                     {course._description}
                   </p>
+                  <div className="">
+                    <button
+                      onClick={() => {
+                        setShowChapters(!showChapters);
+                      }}
+                      type="button"
+                      className={`mt-3 hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm `}
+                    >
+                      {!showChapters
+                        ? "Show All Chapters"
+                        : "Hidden All Chapters"}
+                    </button>
+                    {course._chapters &&
+                      course._chapters.map((ch) => (
+                        <div
+                          className={`p-3 mt-3 ${
+                            showChapters ? "block" : "hidden"
+                          } `}
+                        >
+                          <h1 className="text-base text-gray-500 mb-3">
+                            {ch._CourseChapter__name}
+                          </h1>
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={ch._CourseChapter__video}
+                            title="ถ่ายรูปรอบมอ โอ้ละหนอคนดีมีแฟนยังจ๊ะ || VLOG"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -240,7 +363,7 @@ function CourseModal({ course, onClose, AddToCart }) {
             <button
               onClick={onClose}
               type="button"
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+              className="hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
             >
               Close
             </button>
@@ -251,8 +374,10 @@ function CourseModal({ course, onClose, AddToCart }) {
                 AddToCart(course._id);
               }}
               type="button"
-              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
-                cookies.user && checkCourse ? "block" : "hidden"
+              className={`hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm ${
+                cookies.role === "Student" && cookies.user && checkCourse
+                  ? "block"
+                  : "hidden"
               }`}
             >
               Add To Cart
@@ -263,8 +388,10 @@ function CourseModal({ course, onClose, AddToCart }) {
                 removeCorseInCart();
               }}
               type="button"
-              className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm ${
-                cookies.user && !checkCourse ? "block" : "hidden"
+              className={`hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm ${
+                cookies.role === "Student" && cookies.user && !checkCourse
+                  ? "block"
+                  : "hidden"
               }`}
             >
               Remove From Cart

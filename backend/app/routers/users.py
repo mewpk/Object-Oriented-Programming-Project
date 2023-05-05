@@ -1,11 +1,6 @@
 from fastapi import APIRouter, Body
-
-from ..models.Cart import Cart
-
-# from ..services.services import users_service
 from ..config.database import user_collection
 from ..models.Users import Student,Instructor,Admin
-
 
 router = APIRouter()
 
@@ -66,17 +61,22 @@ async def mockuser():
             user_data3.get("role")        
         )
         user_collection.add_user(new_admin)
-        return user_collection
+    return user_collection
 
 
 @router.get("/users")
 async def get_users():
     return  user_collection.users
+
+    
     
 @router.post("/user")
 async def get_user(user_data: dict = Body(...)):
     return user_collection.get_user(user_data.get("username"))
 
+@router.get("/instructors/")
+async def get_instructors():
+    return user_collection.get_instructors()
 
 @router.get("/unverified_instructors/")
 async def get_unverified_instructors():
@@ -116,14 +116,25 @@ async def login(user_data: dict = Body(...)):
     except:
         return "please try again"
 
-@router.put("/verify_instructors/")
+@router.put("/verify_instructor/")
 async def verify_instructors(user_data: dict = Body(...)):
     try:
-        user = user_collection.verify_instructors(user_data.get("username"))
+        user = user_collection.verify_instructor(user_data.get("username"))
         if user:
             return {"message": "Verified successfully","username" : user_data.get("username") ,"verify": user}
         else:
             return {"message": "Failed to verify"}
+    except:
+        return "please try again"
+
+@router.put("/unverify_instructor/")
+async def unverify_instructors(user_data: dict = Body(...)):
+    try:
+        user = user_collection.unverify_instructor(user_data.get("username"))
+        if user:
+            return {"message": "unverified successfully","username" : user_data.get("username") ,"unverify": user}
+        else:
+            return {"message": "Failed to unverify"}
     except:
         return "please try again"
     
@@ -137,3 +148,12 @@ async def edit_profile(user_data: dict = Body(...)):
             return {"message": "Failed to Edit profile"}
     except:
         return "please try again"
+    
+@router.delete("/delete_user")
+async def delete_user(data: dict = Body(...)):
+    try :
+        user = user_collection.get_user(data.get("username"))
+        user_collection.delete_user(user)
+        return "Delete successfully"
+    except:
+        return "Fail to delete"
