@@ -1,7 +1,5 @@
 from fastapi import APIRouter, Body
-
 from ..config.database import course_collection,user_collection
-
 
 router = APIRouter()
 

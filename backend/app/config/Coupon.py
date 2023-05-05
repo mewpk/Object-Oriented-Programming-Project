@@ -36,7 +36,7 @@ class CouponCollection():
                 total = self.use_coupon_course(coupon,cart)
             discount = int((total*coupon.discounted_percent)/100 + coupon.discounted_price)   
             cart.net_coupon = cart.net_promotion - discount
-            cart.net_price = cart.net_coupon  
+            # cart.net_price = cart.net_coupon  
             return cart.net_coupon
 
     def use_coupon_course(self,coupon,cart):

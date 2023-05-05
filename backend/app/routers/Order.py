@@ -1,7 +1,5 @@
 from fastapi import APIRouter, Body
-
 from ..config.database import user_collection
-
 from ..models.Order import Order
 
 

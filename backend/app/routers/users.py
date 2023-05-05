@@ -1,11 +1,6 @@
 from fastapi import APIRouter, Body
-
-from ..models.Cart import Cart
-
-# from ..services.services import users_service
 from ..config.database import user_collection
 from ..models.Users import Student,Instructor,Admin
-
 
 router = APIRouter()
 

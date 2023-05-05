@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Body
-
 from ..config.database import coupon_collection
 from ..models.Coupon import Coupon,CouponCourse,CouponInstructor
-
 from datetime import datetime
 
 router = APIRouter()

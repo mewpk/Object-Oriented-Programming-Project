@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Body
-
 from ..config.database import review_collection, course_collection, user_collection
 from ..models.Review import Review
 
@@ -19,7 +18,6 @@ async def create_review(review_data: dict = Body(...)):
             if c.id == review_data.get("course_id"):
                 if review_data.get("rating") <= 5 and review_data.get("rating") >= 1 :
                     if review_collection.check_review_by_username(review_data.get("username"),review_data.get("course_id"))==True:
-                        print(c.id)
                         new_review = Review(review_data.get("username"),review_data.get("rating"),review_data.get("course_id"),review_data.get("description"))
                         review_collection.add_review(new_review)
                         course.add_review(new_review)

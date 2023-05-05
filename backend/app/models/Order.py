@@ -1,6 +1,5 @@
 from datetime import datetime
 class Order():
-    # order_id = 1
     def __init__ (self,id,status,course,price,net_price):
         self.__id = id
         self.__status = status
@@ -8,7 +7,6 @@ class Order():
         self.__course = course
         self.__price = price
         self.__net_price  = net_price
-        # Order.order_id += 1
         
     @property
     def id(self):

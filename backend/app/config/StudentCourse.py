@@ -1,5 +1,4 @@
 from ..models.Course import StudentCourse
-from ..config.Course import CourseCollection
 from datetime import datetime
 
 class StudentCourseCollection():
@@ -32,4 +31,5 @@ class StudentCourseCollection():
         for course in self.courses:
             if course.id == course_id:
                 self.courses.remove(course)
+
 

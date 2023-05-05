@@ -56,7 +56,7 @@ class Cart():
         for course in self.course:
             total += course.price 
         self.price = total
-        self.net_price = total
+        # self.net_price = total
         return total
     
     def total_promotion(self):
@@ -65,7 +65,7 @@ class Cart():
             total += course.promotion.net
             print(course.promotion.net)
         self.net_promotion = total
-        self.net_price = total
+        # self.net_price = total
         return total
     
     def clear_cart(self):

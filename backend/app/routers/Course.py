@@ -72,13 +72,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="The purpose of this course is to provide an introduction to the world of cybersecurity and to teach students about the various threats that exist in the digital world.",
-    chapters  = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+    chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="No prior knowledge required",
     description="This course covers the basics of cybersecurity and is intended for anyone who wants to learn more about this field.",
@@ -98,13 +98,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="The purpose of this course is to teach students how to use machine learning techniques to solve business problems.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic programming knowledge is required",
     description="This course covers the basics of machine learning and how it can be applied in a business context.",
@@ -124,13 +124,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="The purpose of this course is to teach students the basics of SQL, including how to query a database and manipulate data.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="No prior knowledge required",
     description="This course covers the basics of SQL and is intended for anyone who wants to learn how to work with databases.",
@@ -150,13 +150,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="The purpose of this course is to teach students the basics of JavaScript, including how to write scripts and manipulate the DOM.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="No prior knowledge required",
     description="This course covers the basics of JavaScript and is intended for anyone who wants to learn how to add interactivity to websites.",
@@ -176,13 +176,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="This course will teach you the fundamental concepts of artificial intelligence, including machine learning and natural language processing.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of a programming language and mathematics",
     description="In this course, you will learn how to use machine learning and natural language processing techniques to create intelligent systems.",
@@ -202,13 +202,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="This course will teach you the fundamental concepts of object-oriented programming, including encapsulation, inheritance, and polymorphism.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of a programming language",
     description="In this course, you will learn how to write code using the principles of object-oriented programming, and how to create classes and objects that represent real-world entities.",
@@ -228,13 +228,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="This course will teach you how to design and analyze algorithms and data structures using a variety of techniques.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of a programming language and mathematics",
     description="In this course, you will learn how to design and analyze algorithms and data structures using a variety of techniques, including dynamic programming, greedy algorithms, and divide-and-conquer.",
@@ -253,13 +253,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="The purpose of this course is to introduce students to the C++ programming language and its applications in various fields.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of a programming language",
     description="In this course, you will learn the basics of C++ programming language, including data types, control structures, functions, arrays, pointers, and object-oriented programming concepts.",
@@ -279,13 +279,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="This course will teach you the techniques and tools used to analyze large datasets and extract useful insights.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of programming and statistics",
     description="In this course, you will learn how to work with big data and use tools like Hadoop, Spark, and Hive to analyze large datasets. You will also learn about data mining, machine learning, and other techniques for extracting useful insights from big data.",
@@ -305,13 +305,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="This course will provide you with an overview of cloud computing concepts and services and their applications in various fields.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of computer networks and operating systems",
     description="In this course, you will learn about the basics of cloud computing, including its history, deployment models, and service models. You will also learn about popular cloud providers, such as Amazon Web Services, Microsoft Azure, and Google Cloud Platform.",
@@ -331,13 +331,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="This course will teach you the fundamental concepts and principles of cybersecurity, including threat intelligence, security policies, and risk management.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of computer systems and networks",
     description="In this course, you will learn about the different types of cyber threats and attacks, as well as the methods and technologies used to defend against them. You will also gain an understanding of security policies, risk management strategies, and compliance requirements.",
@@ -357,13 +357,13 @@ async def mock_course():
     date = datetime.now(),
     language="English",
     purpose="This course is designed to provide students with a solid understanding of computer networking, including the fundamentals of network architecture, protocols, and security.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+       chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
                     ],
     requirement="Basic knowledge of computer hardware and software",
     description="In this course, you will learn about the basics of computer networking, including network architecture, protocols, and security. You will gain an understanding of different types of networks, such as LANs, WANs, and WLANs, and learn how to set up and configure network devices. You will also learn about network security best practices and common threats, such as viruses, malware, and phishing attacks.",
@@ -375,239 +375,239 @@ async def mock_course():
     )
     course_collection.add_course(course_12)
 
-    id+=1
-    course_13 = Course(
-    id = id,
-    name="Advanced Data Science",
-    short_description="Learn advanced techniques for data analysis and machine learning",
-    date = datetime.now(),
-    language="English",
-    purpose="This course will teach you advanced techniques for data analysis and machine learning, including deep learning, natural language processing, and time series analysis.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
-                    ],
-    requirement="Proficiency in Python programming and basic understanding of data analysis and machine learning",
-    description="In this course, you will learn advanced techniques for data analysis and machine learning, including deep learning, natural language processing, and time series analysis. You will also gain experience with tools such as TensorFlow and PyTorch, and apply these techniques to real-world datasets.",
-    target="This course is suitable for experienced data analysts and machine learning engineers who want to take their skills to the next level.",
-    price=500,
-    info="This course covers advanced techniques for data analysis and machine learning.",
-    categories=["Data Science", "Machine Learning", "Deep Learning", "Natural Language Processing"],
-    instructor="Nong Preawa"
-    )
-    course_collection.add_course(course_13)
+    # id+=1
+    # course_13 = Course(
+    # id = id,
+    # name="Advanced Data Science",
+    # short_description="Learn advanced techniques for data analysis and machine learning",
+    # date = datetime.now(),
+    # language="English",
+    # purpose="This course will teach you advanced techniques for data analysis and machine learning, including deep learning, natural language processing, and time series analysis.",
+    #    chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+    #                     CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+    #                     CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+    #                     CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
+    #                 ],
+    # requirement="Proficiency in Python programming and basic understanding of data analysis and machine learning",
+    # description="In this course, you will learn advanced techniques for data analysis and machine learning, including deep learning, natural language processing, and time series analysis. You will also gain experience with tools such as TensorFlow and PyTorch, and apply these techniques to real-world datasets.",
+    # target="This course is suitable for experienced data analysts and machine learning engineers who want to take their skills to the next level.",
+    # price=500,
+    # info="This course covers advanced techniques for data analysis and machine learning.",
+    # categories=["Data Science", "Machine Learning", "Deep Learning", "Natural Language Processing"],
+    # instructor="Nong Preawa"
+    # )
+    # course_collection.add_course(course_13)
 
-    id+=1
-    course_14 = Course(
-    id = id,
-    name="Excel for Business Professionals",
-    short_description="Learn how to use Excel for business analysis and reporting",
-    date = datetime.now(),
-    language="English",
-    purpose="This course will teach you how to use Excel to analyze and visualize business data. You will learn how to use advanced functions, create charts and pivot tables, and build interactive dashboards.",
-    chapters = [CourseChapter(1,0,"First step ", "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
-                    ],
-    requirement="Basic computer skills and knowledge of spreadsheets",
-    description="In this course, you will learn how to use Excel to manage, analyze, and visualize business data. You will learn how to use advanced Excel functions, create charts and pivot tables, and build interactive dashboards. You will also learn how to automate tasks with macros and VBA.",
-    target="This course is suitable for business professionals who want to enhance their Excel skills and improve their data analysis and reporting capabilities.",
-    price=350,
-    info="This course covers the advanced Excel functions and techniques used for business data analysis and reporting.",
-    categories=["Excel", "Business Analysis"],
-    instructor="Nong Preawa"
-    )
-    course_collection.add_course(course_14)
+    # id+=1
+    # course_14 = Course(
+    # id = id,
+    # name="Excel for Business Professionals",
+    # short_description="Learn how to use Excel for business analysis and reporting",
+    # date = datetime.now(),
+    # language="English",
+    # purpose="This course will teach you how to use Excel to analyze and visualize business data. You will learn how to use advanced functions, create charts and pivot tables, and build interactive dashboards.",
+    #    chapters  = [CourseChapter(1,0,"First step ", "https://www.youtube.com/embed/aZj6VL_9mXg"),
+    #                     CourseChapter(2,0, "EP. 1 " , "https://www.youtube.com/embed/5dU0tMIp5QM"),
+    #                     CourseChapter(3,0,"EP. 2 " , "https://www.youtube.com/embed/2_b9ejo5c-Q"),
+    #                     CourseChapter(4,0,"EP. 3 " , "https://www.youtube.com/embed/EhQasD1B_6o?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(5,0,"EP. 4 " , "https://www.youtube.com/embed/DePYgzAhKeI?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(6,0,"EP. 5 " , "https://www.youtube.com/embed/nRrNES7DO14?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(7,0,"Final EP. ", "https://www.youtube.com/embed/G10ZcSKa_xw?list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W")
+    #                 ],
+    # requirement="Basic computer skills and knowledge of spreadsheets",
+    # description="In this course, you will learn how to use Excel to manage, analyze, and visualize business data. You will learn how to use advanced Excel functions, create charts and pivot tables, and build interactive dashboards. You will also learn how to automate tasks with macros and VBA.",
+    # target="This course is suitable for business professionals who want to enhance their Excel skills and improve their data analysis and reporting capabilities.",
+    # price=350,
+    # info="This course covers the advanced Excel functions and techniques used for business data analysis and reporting.",
+    # categories=["Excel", "Business Analysis"],
+    # instructor="Nong Preawa"
+    # )
+    # course_collection.add_course(course_14)
 
-    for i in range(10):
-        id+=1
-        course_data = {
-            "id" : id,
-            "name": "Basic " + categories.get(str(i)),
-            "short_description": "This is a short description",
-            "date" : datetime.now(),
-            "language": "English",
-            "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
-            "chapters": [CourseChapter(1,0,"First step to " + categories.get(str(i)), "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0,categories.get(str(i)) +" EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. of " + categories.get(str(i)) , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
-                        ],
-            "requirement": "don't have to learn anything before",
-            "description": "This is the full description for " + categories.get(str(i)),
-            "target": "The target audience for Course " + categories.get(str(i)) + "is",
-            "price": 150,
-            "info": "teach about " +categories.get(str(i)),
-            "categories": [categories.get(str(i))],
-            "instructor": "Nong Preawa"
-        }
+    # for i in range(10):
+    #     id+=1
+    #     course_data = {
+    #         "id" : id,
+    #         "name": "Basic " + categories.get(str(i)),
+    #         "short_description": "This is a short description",
+    #         "date" : datetime.now(),
+    #         "language": "English",
+    #         "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
+    #         "chapters": [CourseChapter(1,0,"First step to " + categories.get(str(i)), "https://youtu.be/aZj6VL_9mXg"),
+    #                     CourseChapter(2,0,categories.get(str(i)) +" EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
+    #                     CourseChapter(3,0,categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
+    #                     CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
+    #                     CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
+    #                     CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
+    #                     CourseChapter(7,0,"Final EP. of " + categories.get(str(i)) , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+    #                     ],
+    #         "requirement": "don't have to learn anything before",
+    #         "description": "This is the full description for " + categories.get(str(i)),
+    #         "target": "The target audience for Course " + categories.get(str(i)) + "is",
+    #         "price": 150,
+    #         "info": "teach about " +categories.get(str(i)),
+    #         "categories": [categories.get(str(i))],
+    #         "instructor": "Nong Preawa"
+    #     }
     
-        new_course = Course(
-            course_data["id"],
-            course_data["name"],
-            course_data["short_description"],
-            course_data["date"],
-            course_data["language"],
-            course_data["purpose"],
-            course_data["chapters"],
-            course_data["requirement"],
-            course_data["description"],
-            course_data["target"],
-            course_data["price"],
-            course_data["info"],
-            course_data["categories"],
-            course_data["instructor"]
-        )
-        course_collection.add_course(new_course)
+    #     new_course = Course(
+    #         course_data["id"],
+    #         course_data["name"],
+    #         course_data["short_description"],
+    #         course_data["date"],
+    #         course_data["language"],
+    #         course_data["purpose"],
+    #         course_data["chapters"],
+    #         course_data["requirement"],
+    #         course_data["description"],
+    #         course_data["target"],
+    #         course_data["price"],
+    #         course_data["info"],
+    #         course_data["categories"],
+    #         course_data["instructor"]
+    #     )
+    #     course_collection.add_course(new_course)
 
-    for i in range(10,20):
-        id+=1
-        course_data = {
-            "id" : id,
-            "name": "Basic " + categories.get(str(i)),
-            "short_description": "This is a short description ",
-            "date" : datetime.now(),
-            "language": "English",
-            "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
-            "chapters": [CourseChapter(1,0,"The Beginning of " + categories.get(str(i)), "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0,categories.get(str(i)) +" EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,"Final EP. of " + categories.get(str(i)) , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
-                        ],
-            "requirement": "don't have to learn anything before",
-            "description": "This is the full description for " + categories.get(str(i)),
-            "target": "The target audience for Course " + categories.get(str(i)) + "is",
-            "price": 250,
-            "info": "teach about " +categories.get(str(i)),
-            "categories": [categories.get(str(i))],
-            "instructor": "Pookkie Eiei"
-        }
+    # for i in range(10,20):
+    #     id+=1
+    #     course_data = {
+    #         "id" : id,
+    #         "name": "Basic " + categories.get(str(i)),
+    #         "short_description": "This is a short description ",
+    #         "date" : datetime.now(),
+    #         "language": "English",
+    #         "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
+    #         "chapters": [CourseChapter(1,0,"The Beginning of " + categories.get(str(i)), "https://youtu.be/aZj6VL_9mXg"),
+    #                     CourseChapter(2,0,categories.get(str(i)) +" EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
+    #                     CourseChapter(3,0,categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
+    #                     CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
+    #                     CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
+    #                     CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
+    #                     CourseChapter(7,0,"Final EP. of " + categories.get(str(i)) , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+    #                     ],
+    #         "requirement": "don't have to learn anything before",
+    #         "description": "This is the full description for " + categories.get(str(i)),
+    #         "target": "The target audience for Course " + categories.get(str(i)) + "is",
+    #         "price": 250,
+    #         "info": "teach about " +categories.get(str(i)),
+    #         "categories": [categories.get(str(i))],
+    #         "instructor": "Pookkie Eiei"
+    #     }
     
-        new_course = Course(
-            course_data["id"],
-            course_data["name"],
-            course_data["short_description"],
-            course_data["date"],
-            course_data["language"],
-            course_data["purpose"],
-            course_data["chapters"],
-            course_data["requirement"],
-            course_data["description"],
-            course_data["target"],
-            course_data["price"],
-            course_data["info"],
-            course_data["categories"],
-            course_data["instructor"]
-        )
-        course_collection.add_course(new_course)
+    #     new_course = Course(
+    #         course_data["id"],
+    #         course_data["name"],
+    #         course_data["short_description"],
+    #         course_data["date"],
+    #         course_data["language"],
+    #         course_data["purpose"],
+    #         course_data["chapters"],
+    #         course_data["requirement"],
+    #         course_data["description"],
+    #         course_data["target"],
+    #         course_data["price"],
+    #         course_data["info"],
+    #         course_data["categories"],
+    #         course_data["instructor"]
+    #     )
+    #     course_collection.add_course(new_course)
     
-    for i in range(20,30):
-        id+=1
-        course_data = {
-            "id" : id,
-            "name": "Basic " + categories.get(str(i)),
-            "short_description": "This is a short description",
-            "date" : datetime.now(),
-            "language": "English",
-            "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
-            "chapters": [CourseChapter(1,0,"The Beginning of " + categories.get(str(i)) , "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0,categories.get(str(i)) +" EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
-                        CourseChapter(3,0,categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
-                        CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,categories.get(str(i)) +" EP. 6 " , "https://www.youtube.com/watch?v=zC_0xOSX1dY&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
-                        CourseChapter(8,0,categories.get(str(i)) +" EP. 7 " , "https://www.youtube.com/watch?v=kC3Szw7b154&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=2"),
-                        CourseChapter(9,0,categories.get(str(i)) +" EP. 8 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(10,0,"The last EP. of " + categories.get(str(i)) , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
-                        ],
-            "requirement": "don't have to learn anything before",
-            "description": "This is the full description for " + categories.get(str(i)),
-            "target": "The target audience for Course " + categories.get(str(i)) + "is",
-            "price": 200,
-            "info": "teach about " +categories.get(str(i)),
-            "categories": [categories.get(str(i))],
-            "instructor": "Mew kuki"
-        }
+    # for i in range(20,30):
+    #     id+=1
+    #     course_data = {
+    #         "id" : id,
+    #         "name": "Basic " + categories.get(str(i)),
+    #         "short_description": "This is a short description",
+    #         "date" : datetime.now(),
+    #         "language": "English",
+    #         "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
+    #         "chapters": [CourseChapter(1,0,"The Beginning of " + categories.get(str(i)) , "https://youtu.be/aZj6VL_9mXg"),
+    #                     CourseChapter(2,0,categories.get(str(i)) +" EP. 1 " , "https://www.youtube.com/watch?v=5dU0tMIp5QM"),
+    #                     CourseChapter(3,0,categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=2_b9ejo5c-Q"),
+    #                     CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
+    #                     CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
+    #                     CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
+    #                     CourseChapter(7,0,categories.get(str(i)) +" EP. 6 " , "https://www.youtube.com/watch?v=zC_0xOSX1dY&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(8,0,categories.get(str(i)) +" EP. 7 " , "https://www.youtube.com/watch?v=kC3Szw7b154&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=2"),
+    #                     CourseChapter(9,0,categories.get(str(i)) +" EP. 8 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
+    #                     CourseChapter(10,0,"The last EP. of " + categories.get(str(i)) , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+    #                     ],
+    #         "requirement": "don't have to learn anything before",
+    #         "description": "This is the full description for " + categories.get(str(i)),
+    #         "target": "The target audience for Course " + categories.get(str(i)) + "is",
+    #         "price": 200,
+    #         "info": "teach about " +categories.get(str(i)),
+    #         "categories": [categories.get(str(i))],
+    #         "instructor": "Mew kuki"
+    #     }
     
-        new_course = Course(
-            course_data["id"],
-            course_data["name"],
-            course_data["short_description"],
-            course_data["date"],
-            course_data["language"],
-            course_data["purpose"],
-            course_data["chapters"],
-            course_data["requirement"],
-            course_data["description"],
-            course_data["target"],
-            course_data["price"],
-            course_data["info"],
-            course_data["categories"],
-            course_data["instructor"]
-        )
-        course_collection.add_course(new_course)
-    for i in range(30,50):
-        id += 1
-        course_data = {
-            "id" : id,
-            "name": "Basic " + categories.get(str(i)),
-            "short_description": f"This is a short description for Course {i}.",
-            "date" : datetime.now(),
-            "language": "English",
-            "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
-            "chapters": [CourseChapter(1,0, "Introduction to " + categories.get(str(i)), "https://youtu.be/aZj6VL_9mXg"),
-                        CourseChapter(2,0, categories.get(str(i)) +" EP. 1 ","https://www.youtube.com/watch?v=zC_0xOSX1dY&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
-                        CourseChapter(3,0, categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=kC3Szw7b154&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=2"),
-                        CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
-                        CourseChapter(7,0,categories.get(str(i)) +" EP. 6 " , "https://www.youtube.com/watch?v=zC_0xOSX1dY&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
-                        CourseChapter(8,0,categories.get(str(i)) +" EP. 7 " , "https://www.youtube.com/watch?v=kC3Szw7b154&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=2"),
-                        CourseChapter(9,0,categories.get(str(i)) +" EP. 8 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
-                        CourseChapter(10,0,categories.get(str(i)) +" EP. 9 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
-                        CourseChapter(11,0,categories.get(str(i)) +" EP. 10" , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
-                        ],
-            "requirement": "don't have to learn anything before",
-            "description": "This is the full description for " + categories.get(str(i)),
-            "target": "The target audience for Course " + categories.get(str(i)) + "is",
-            "price": 400,
-            "info": "teach about " +categories.get(str(i)),
-            "categories": [categories.get(str(i))],
-            "instructor": "lnw Pat"
-        }
+    #     new_course = Course(
+    #         course_data["id"],
+    #         course_data["name"],
+    #         course_data["short_description"],
+    #         course_data["date"],
+    #         course_data["language"],
+    #         course_data["purpose"],
+    #         course_data["chapters"],
+    #         course_data["requirement"],
+    #         course_data["description"],
+    #         course_data["target"],
+    #         course_data["price"],
+    #         course_data["info"],
+    #         course_data["categories"],
+    #         course_data["instructor"]
+    #     )
+    #     course_collection.add_course(new_course)
+    # for i in range(30,50):
+    #     id += 1
+    #     course_data = {
+    #         "id" : id,
+    #         "name": "Basic " + categories.get(str(i)),
+    #         "short_description": f"This is a short description for Course {i}.",
+    #         "date" : datetime.now(),
+    #         "language": "English",
+    #         "purpose": "The purpose of this Course is to teach all basic skills about "+ categories.get(str(i)),
+    #         "chapters": [CourseChapter(1,0, "Introduction to " + categories.get(str(i)), "https://youtu.be/aZj6VL_9mXg"),
+    #                     CourseChapter(2,0, categories.get(str(i)) +" EP. 1 ","https://www.youtube.com/watch?v=zC_0xOSX1dY&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(3,0, categories.get(str(i)) +" EP. 2 " , "https://www.youtube.com/watch?v=kC3Szw7b154&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=2"),
+    #                     CourseChapter(4,0,categories.get(str(i)) +" EP. 3 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
+    #                     CourseChapter(5,0,categories.get(str(i)) +" EP. 4 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
+    #                     CourseChapter(6,0,categories.get(str(i)) +" EP. 5 " , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5"),
+    #                     CourseChapter(7,0,categories.get(str(i)) +" EP. 6 " , "https://www.youtube.com/watch?v=zC_0xOSX1dY&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W"),
+    #                     CourseChapter(8,0,categories.get(str(i)) +" EP. 7 " , "https://www.youtube.com/watch?v=kC3Szw7b154&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=2"),
+    #                     CourseChapter(9,0,categories.get(str(i)) +" EP. 8 " , "https://www.youtube.com/watch?v=EhQasD1B_6o&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=3"),
+    #                     CourseChapter(10,0,categories.get(str(i)) +" EP. 9 " , "https://www.youtube.com/watch?v=DePYgzAhKeI&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=4"),
+    #                     CourseChapter(11,0,categories.get(str(i)) +" EP. 10" , "https://www.youtube.com/watch?v=nRrNES7DO14&list=PLoTScYm9O0GEvHKqqib-AdVFwVe_2ln8W&index=5")
+    #                     ],
+    #         "requirement": "don't have to learn anything before",
+    #         "description": "This is the full description for " + categories.get(str(i)),
+    #         "target": "The target audience for Course " + categories.get(str(i)) + "is",
+    #         "price": 400,
+    #         "info": "teach about " +categories.get(str(i)),
+    #         "categories": [categories.get(str(i))],
+    #         "instructor": "lnw Pat"
+    #     }
     
-        new_course = Course(
-            course_data["id"],
-            course_data["name"],
-            course_data["short_description"],
-            course_data["date"],
-            course_data["language"],
-            course_data["purpose"],
-            course_data["chapters"],
-            course_data["requirement"],
-            course_data["description"],
-            course_data["target"],
-            course_data["price"],
-            course_data["info"],
-            course_data["categories"],
-            course_data["instructor"]
-        )
-        course_collection.add_course(new_course)
+    #     new_course = Course(
+    #         course_data["id"],
+    #         course_data["name"],
+    #         course_data["short_description"],
+    #         course_data["date"],
+    #         course_data["language"],
+    #         course_data["purpose"],
+    #         course_data["chapters"],
+    #         course_data["requirement"],
+    #         course_data["description"],
+    #         course_data["target"],
+    #         course_data["price"],
+    #         course_data["info"],
+    #         course_data["categories"],
+    #         course_data["instructor"]
+    #     )
+    #     course_collection.add_course(new_course)
     return course_collection
 
 
@@ -698,15 +698,15 @@ async def update_promotion():
     course_collection.expire_promotion()
     return "promotion updated successfully"
     
-@router.get("/course/search_by_instructor")
+@router.post("/course/search_by_instructor")
 async def search_by_instructor(data: dict = Body(...)):
     return  course_collection.search_by_instructor(data.get("instructor_name"))
 
-@router.get("/course/search_by_course")
+@router.post("/course/search_by_course")
 async def search_by_course(data: dict = Body(...)):    
     return course_collection.search_by_course(data.get("course_name"))
 
-@router.get("/course/search_by_category")
+@router.post("/course/search_by_category")
 async def search_by_category(data: dict = Body(...)):    
     return course_collection.search_by_category(data.get("category_name"))
 

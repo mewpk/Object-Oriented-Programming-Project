@@ -1,8 +1,5 @@
 from fastapi import APIRouter, Body
-
-from ..config.database import studentcourse_collection,user_collection
-# from ..models.StudentCourse import StudentCourse
-
+from ..config.database import user_collection
 
 router = APIRouter()
 

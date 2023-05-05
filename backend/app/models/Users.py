@@ -1,7 +1,6 @@
 from .Cart import Cart
 from .Favorite import Favorite
-from ..config.database import studentcourse_collection
-from .Payment import Payment
+from ..config.database import studentcourse_collection,payment_collection
 from datetime import datetime
 
 
@@ -67,10 +66,10 @@ class Student(Account):
         self.__cart = Cart()
         self.__favorite = Favorite()
         self.__student_course = studentcourse_collection
-        self.__payment_method = []
+        self.__payment_method = payment_collection
     @property
     def review(self):
-        return self.__review
+        return self.__review        
     @property
     def orders(self) :
         return self.__orders
@@ -97,12 +96,10 @@ class Student(Account):
         return self.__orders
 
     def add_payment_method(self,payment):
-        self.payment_method.append(payment)
+        self.payment_method.add_payment_method(payment)
 
     def get_payment_method(self,type,name):
-        for payment in  self.payment_method:
-            if payment.type == type and payment.name == name:
-                return payment
+        return self.payment_method.get_payment_method(type,name)
     
     def return_amount(self):
         self.payment_method
@@ -114,16 +111,16 @@ class Student(Account):
     
     def add_order(self,order):
         self.orders.append(order)
+        self.cart.clear_cart()
         return self.orders
     
-    def close_order(self,payment):
+    def close_order(self,order_id,payment):
         for order in self.orders:
-            if order.status == "Pending":
+            if order.id == order_id:
                 order.status = "Purchased"
                 payment.amount -= order.net_price
                 self.student_course.add_course_to_student_course(order.course)
-                self.cart.clear_cart()
-        return "success"
+                return "success"
     
     def refund_order(self,order_id,payment):     
         for order in self.orders:

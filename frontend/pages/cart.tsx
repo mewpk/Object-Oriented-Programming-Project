@@ -5,7 +5,6 @@ import { useCookies } from "react-cookie";
 export default function Cart() {
   const [couponCode, setCouponCode] = useState("");
   const [cartCourse, setCartCourse] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user" , "role"]);
   const [username, setUsername] = useState(null);
   const [data , setData ] = useState({
@@ -22,9 +21,10 @@ export default function Cart() {
   })
   const handleApplyCoupon = () => {
     // Call an API or do something else to check if the coupon is valid
-    // and calculate the discount if it is
-    const discount = 0.2; // 20% discount for demonstration purposes
-    setTotalPrice((prevTotalPrice) => prevTotalPrice * (1 - discount));
+    sendData();
+    getData();
+  
+
   };
 
   const handleProceedToPayment = () => {
@@ -50,27 +50,48 @@ export default function Cart() {
     }
     
   };
+
+  const sendData = async () => {
+    const res = await fetch("http://localhost:8000/cart/apply_coupon", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user,
+        passcode : couponCode
+        
+      }),
+    });
+    let dataRes = await res.json();
+    try {
+      setCartCourse(dataRes._Cart__course);
+      setData(dataRes)
+      console.log(dataRes);
+    } catch (error) {
+      console.log(error)
+    }
+  };
   useEffect(() => {
     getData();
-    setTotalPrice(() => {
-      return data._Cart__net_price
-    })
   }, []);
 
   useEffect(() => {
     setUsername(cookies.user);
   }, [cookies]);
 
+const removeCorseInCart =async (course_id: string) => {
+  const res = await fetch("http://localhost:8000/remove_course_from_cart", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: cookies.user,
+      course_id: course_id,
+    }),
+  });
+  let dataRes = await res.json();
+  console.log(dataRes);
+  getData();
+}
 
-
-
-  const handleRemoveCourse = (id) => {
-    setCartCourse((prevData) => prevData.filter((course) => course.id !== id));
-    setTotalPrice((prevTotalPrice) => {
-      const courseToRemove = cartCourse.find((course) => course.id === id);
-      return prevTotalPrice - courseToRemove._price;
-    });
-  };
 
 
   return (
@@ -114,7 +135,7 @@ export default function Cart() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {cartCourse.map((course) => (
+            {cartCourse && cartCourse.map((course) => (
               <tr key={course._id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
@@ -141,6 +162,17 @@ export default function Cart() {
             <td className="px-6 py-4 whitespace-nowrap text-right">
               <div className="text-sm text-gray-900">${course._price}</div>
             </td>
+            <td  className="px-6 py-4 whitespace-nowrap text-right">
+            <button
+              onClick={() => {
+                removeCorseInCart(course._id);
+              }}
+              type="button"
+              className={`hover:animate-pulse w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm `}
+            >
+              Remove From Cart
+            </button>
+            </td>
           </tr>
         ))}
         <tr className="bg-gray-50">
@@ -148,7 +180,7 @@ export default function Cart() {
             Total Price
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-gray-900">
-            ${totalPrice}
+            ${data._Cart__net_price}
           </td>
         </tr>
       </tbody>
@@ -180,6 +212,7 @@ export default function Cart() {
     >
       Proceed to Payment
     </button>
+   
   </div>
 </main>
 );

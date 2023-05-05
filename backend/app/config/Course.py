@@ -1,4 +1,3 @@
-# from ..models.Course import Course
 from ..models.CourseChapter import CourseChapter
 from datetime import datetime
 class CourseCollection():

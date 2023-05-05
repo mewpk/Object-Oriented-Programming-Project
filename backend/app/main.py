@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import  users, Course , Coupon,Categories,Order,StudentCourse,Review,Favorite,Cart,Payment
+from .routers import  users, Course , Coupon,Categories,Order,StudentCourse,Review,Favorite,Cart,Payment,mock
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -17,6 +17,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+app.include_router(mock.router)
 app.include_router(users.router)
 app.include_router(Course.router)
 app.include_router(Coupon.router)
