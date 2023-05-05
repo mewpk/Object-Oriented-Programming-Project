@@ -52,6 +52,11 @@ const Navbar = () => {
                 Coupon
               </a>
             </Link>
+            <Link legacyBehavior href="/payment">
+              <a className={`${cookies.role === "Student" && username ?   "block" : "hidden" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4`}>
+              Payment
+              </a>
+            </Link>
             <Link legacyBehavior href="/addcourse">
               <a className={`${cookies.role === "Instructor" && username ?  "block" : "hidden" } text-gray-200 hover:text-yellow-200  hover:font-bold text-sm py-2 px-4`}>
                 Add Courses

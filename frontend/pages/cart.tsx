@@ -21,15 +21,34 @@ export default function Cart() {
   })
   const handleApplyCoupon = () => {
     // Call an API or do something else to check if the coupon is valid
-    sendData();
+    sendDataCoupon();
     getData();
   
 
   };
-
-  const handleProceedToPayment = () => {
-    // Call an API or do something else to proceed to payment
+  const sendDataPayment = async () => {
+    const res = await fetch("http://localhost:8000/add_order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: cookies.user
+      }),
+    });
+    let dataRes = await res.json();
+    try {
+      setCartCourse(dataRes._Cart__course);
+      setData(dataRes)
+      console.log(dataRes);
+    } catch (error) {
+      console.log(error)
+    }
   };
+  const handleProceedToPayment = () => {
+    sendDataPayment()
+    Router.push("/payment")
+  };
+
+  
 
   const getData = async () => {
     const res = await fetch("http://localhost:8000/cart", {
@@ -51,7 +70,7 @@ export default function Cart() {
     
   };
 
-  const sendData = async () => {
+  const sendDataCoupon = async () => {
     const res = await fetch("http://localhost:8000/cart/apply_coupon", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

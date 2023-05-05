@@ -25,7 +25,12 @@ async def add_order(data : dict = Body(...)):
     except:
         return "try again"
     
-@router.post("/refund order/")
+@router.post("/all_pending_order")
+async def pending(data : dict = Body(...)):
+    student = user_collection.get_user(data.get("username"))
+    return student.pending_orders()
+    
+@router.post("/refund_order/")
 async def refund_order(data : dict = Body(...)):
     try :
         student = user_collection.get_user(data.get("username"))

@@ -1,14 +1,15 @@
 from fastapi import APIRouter, Body
-from ..config.database import user_collection,coupon_collection,course_collection
+from ..config.database import user_collection,coupon_collection,course_collection,studentcourse_collection
 from ..models.Users import Student,Instructor,Admin
 from ..models.Coupon import Coupon,CouponCourse,CouponInstructor
 from ..models.Order import Order
+from ..models.Course import Course
 from random import random,randint
 
 router = APIRouter()
 
 @router.get("/mock/")
-async def mock_everything():
+async def mock_everything_except_course():
    for i in range(50):
       #mock Student
       user_data1 ={
@@ -218,9 +219,11 @@ async def mock_everything():
 
    # for i in range(50):
    #    student = user_collection.get_user(f"username{i}")
-   #    course = course_collection.get_course(random.randint(1, 12))
+   #    course_id = randint(1, 12)
+   #    course = course_collection.get_course(course_id)
+   #    student.student_course.add_student_course(course)
    #    new_order = Order(len(student.orders)+1,"Purchased",course,course.price,course.price)
    #    student.add_order(new_order)
-
+   
    return "Mock info successful"
    

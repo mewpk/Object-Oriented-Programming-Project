@@ -150,7 +150,7 @@ async def edit_profile(user_data: dict = Body(...)):
         return "please try again"
     
 @router.delete("/delete_user")
-async def add_chapter(data: dict = Body(...)):
+async def delete_user(data: dict = Body(...)):
     try :
         user = user_collection.get_user(data.get("username"))
         user_collection.delete_user(user)

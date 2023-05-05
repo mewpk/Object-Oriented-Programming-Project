@@ -21,6 +21,10 @@ class StudentCourseCollection():
             student_course = StudentCourse(course.id,course.name,course.short_description,datetime.strptime(course.date, '%d/%m/%Y'),course.language,course.purpose,course.chapters,course.requirement,course.description,course.target,course.price,course.info,course.categories,course.instructor)
             self.courses.append(student_course)
 
+    def add_student_course(self,course):
+        print("p")
+        self.courses.append(course)
+
     def check_course(self,course_id):
         for course in self.courses:
             if course.id == course_id:
