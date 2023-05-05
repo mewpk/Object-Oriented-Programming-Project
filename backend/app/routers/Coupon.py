@@ -34,7 +34,7 @@ async def create_coupon(coupon: dict = Body(...)):
     except: 
         return "please try again"
     
-@router.put("/update_coupon")
+@router.get("/update_coupon")
 async def update_coup():
     return str(coupon_collection.expire_coupon(datetime.now()))
 

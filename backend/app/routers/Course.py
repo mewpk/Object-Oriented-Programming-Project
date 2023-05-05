@@ -5,6 +5,8 @@ from ..models.CourseChapter import CourseChapter
 from ..models.Promotion import Promotion
 from datetime import datetime
 
+id = 0
+
 router = APIRouter()
 @router.get("/mockcourse")
 async def mock_course():
@@ -61,8 +63,10 @@ async def mock_course():
     "49": "Tableau",
     "50": "SAP",
     }
+    global id
+    id += 1
     course_1 =Course(
-    id = len(course_collection.courses)+1,  
+    id = id,  
     name = "Introduction to Cybersecurity",
     short_description="Learn the basics of cybersecurity",    
     date = datetime.now(),
@@ -86,8 +90,9 @@ async def mock_course():
     )
     course_collection.add_course(course_1)
 
+    id += 1
     course_2 = Course( 
-    id = len(course_collection.courses)+1,
+    id = id,
     name = "Machine Learning for Business",
     short_description="Learn how to use machine learning in business",   
     date = datetime.now(),
@@ -111,8 +116,9 @@ async def mock_course():
     )
     course_collection.add_course(course_2)
 
+    id+=1
     course_3 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Introduction to SQL",
     short_description="Learn the basics of SQL",
     date = datetime.now(),
@@ -136,8 +142,9 @@ async def mock_course():
     )
     course_collection.add_course(course_3)
 
+    id += 1
     course_4 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Introduction to JavaScript",
     short_description="Learn the basics of JavaScript",
     date = datetime.now(),
@@ -161,8 +168,9 @@ async def mock_course():
     )
     course_collection.add_course(course_4)
 
+    id+= 1
     course_5 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Introduction to Artificial Intelligence",
     short_description="Learn the basics of AI",
     date = datetime.now(),
@@ -186,9 +194,9 @@ async def mock_course():
     )
     course_collection.add_course(course_5)
 
-
+    id+=1
     course_6 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Introduction to Object-Oriented Programming",
     short_description="Learn the basics of OOP",
     date = datetime.now(),
@@ -212,8 +220,9 @@ async def mock_course():
     )
     course_collection.add_course(course_6)
 
+    id+=1
     course_7 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Algorithms and Data Structures",
     short_description="Learn to design and analyze algorithms and data structures",
     date = datetime.now(),
@@ -236,8 +245,9 @@ async def mock_course():
     instructor="Mew kuki")
     course_collection.add_course(course_7)
 
+    id+=1
     course_8 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="The Basics of C++ Programming",
     short_description="Learn the basics of C++ programming language and its applications",
     date = datetime.now(),
@@ -261,8 +271,9 @@ async def mock_course():
     )
     course_collection.add_course(course_8)
     
+    id+=1
     course_9 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Big Data Analytics",
     short_description="Learn techniques and tools for analyzing large datasets",
     date = datetime.now(),
@@ -286,8 +297,9 @@ async def mock_course():
     )
     course_collection.add_course(course_9)
 
+    id+=1
     course_10 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Introduction to Cloud Computing",
     short_description="Get an overview of cloud computing and its applications",
     date = datetime.now(),
@@ -311,8 +323,9 @@ async def mock_course():
     )
     course_collection.add_course(course_10)
 
+    id+=1
     course_11 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Cybersecurity Fundamentals",
     short_description="Learn the fundamentals of cybersecurity",
     date = datetime.now(),
@@ -336,8 +349,9 @@ async def mock_course():
     )
     course_collection.add_course(course_11)
 
+    id+=1
     course_12 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="The Essentials of Computer Networking",
     short_description="Learn the basics of computer networking, including network architecture, protocols, and security.",
     date = datetime.now(),
@@ -361,8 +375,9 @@ async def mock_course():
     )
     course_collection.add_course(course_12)
 
+    id+=1
     course_13 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Advanced Data Science",
     short_description="Learn advanced techniques for data analysis and machine learning",
     date = datetime.now(),
@@ -386,8 +401,9 @@ async def mock_course():
     )
     course_collection.add_course(course_13)
 
+    id+=1
     course_14 = Course(
-    id = len(course_collection.courses)+1,
+    id = id,
     name="Excel for Business Professionals",
     short_description="Learn how to use Excel for business analysis and reporting",
     date = datetime.now(),
@@ -412,8 +428,9 @@ async def mock_course():
     course_collection.add_course(course_14)
 
     for i in range(10):
+        id+=1
         course_data = {
-            "id" : len(course_collection.courses)+1,
+            "id" : id,
             "name": "Basic " + categories.get(str(i)),
             "short_description": "This is a short description",
             "date" : datetime.now(),
@@ -455,8 +472,9 @@ async def mock_course():
         course_collection.add_course(new_course)
 
     for i in range(10,20):
+        id+=1
         course_data = {
-            "id" : len(course_collection.courses)+1,
+            "id" : id,
             "name": "Basic " + categories.get(str(i)),
             "short_description": "This is a short description ",
             "date" : datetime.now(),
@@ -498,8 +516,9 @@ async def mock_course():
         course_collection.add_course(new_course)
     
     for i in range(20,30):
+        id+=1
         course_data = {
-            "id" : len(course_collection.courses)+1,
+            "id" : id,
             "name": "Basic " + categories.get(str(i)),
             "short_description": "This is a short description",
             "date" : datetime.now(),
@@ -543,8 +562,9 @@ async def mock_course():
         )
         course_collection.add_course(new_course)
     for i in range(30,50):
+        id += 1
         course_data = {
-            "id" : len(course_collection.courses)+1,
+            "id" : id,
             "name": "Basic " + categories.get(str(i)),
             "short_description": f"This is a short description for Course {i}.",
             "date" : datetime.now(),
@@ -600,42 +620,83 @@ async def get_course():
 async def create_course(course_data: dict = Body(...)):
     try:
         all_chapters = []
-        for chapter in course_data.get("chapters"):
-            new_chapter = CourseChapter(len(all_chapters)+1,0,chapter.name,chapter.video)
+        for chapter in course_data.get("chapters"):      
+            new_chapter = CourseChapter(len(all_chapters)+1,0,chapter.get("name"),chapter.get("video"))
             all_chapters.append(new_chapter)
-
-        new_course = Course(len(course_collection.courses)+1,course_data.get("name"),course_data.get("short_description"),datetime.now,course_data.get("language")
+        stamp_date = datetime.now()
+        global id
+        id+=1
+        new_course = Course(id,course_data.get("name"),course_data.get("short_description"),stamp_date,course_data.get("language")
                             ,course_data.get("purpose"),all_chapters,course_data.get("requirement"),course_data.get("description"),course_data.get("target")
-                        ,course_data.get("price"),course_data.get("promotion"),course_data.get("info"),course_data.get("categories"),course_data.get("instructor"))
+                            ,course_data.get("price"),course_data.get("info"),course_data.get("categories"),course_data.get("instructor"))
         data = course_collection.add_course(new_course)
         if new_course and data:
-            return {"message": "Course created successfully", "course": data}
+            return {"message": "created successfully", "course": data}
         else:
             return {"message": "Failed to create course"}
     except:
         return "please try again"
     
-@router.post("/course/add_chapter")
-async def create_chapter(data: dict = Body(...)):
+@router.put("/edit_course")
+async def edit_course(data: dict = Body(...)):
     try:
-        course = course_collection.get_course(data.get("course_id"))
-        new_chapter = CourseChapter(0,data.get("name"),data.get("video"))
-        course.add_chapter(new_chapter)
-        course.promotion.net_promotion_price(course.price)
-        return "added chapter successfully"
+        all_chapters = []
+        for chapter in data.get("chapters"):      
+            new_chapter = CourseChapter(len(all_chapters)+1,0,chapter.get("name"),chapter.get("video"))
+            all_chapters.append(new_chapter)
+
+        course = course_collection.edit_course(data.get("course_id"),data.get("name"),data.get("short_description"),data.get("language")
+                            ,data.get("purpose"),all_chapters,data.get("requirement"),data.get("description"),data.get("target")
+                            ,data.get("price"),data.get("info"),data.get("categories"))
+        return {"messege" : "edit successfuly" , "course" : course}
     except:
         return "please try again"
+    
+@router.delete("/delete_course")
+async def delete_course(data: dict = Body(...)):
+    try :
+        course = course_collection.get_course(data.get("course_id"))
+        course.delete_course(course)
+        return "Delete successfuly"
+    except :
+        return "Fail to delete"
+    
+@router.post("/add_chapter")
+async def add_chapter(data: dict = Body(...)):
+    try :
+        course = course_collection.get_course(data.get("course_id"))
+        for chapter in data.get("chapters"):
+            course.add_chapter(chapter.get("name"),chapter.get("video"))
+        return {"message": "Successfull added chapter" , "course": course}
+    except :
+        return "Unsuccessful added chapter"
+
+@router.delete("/delete_chapter")
+async def delete_chapter(data: dict = Body(...)):
+    try :
+        course = course_collection.get_course(data.get("course_id"))
+        chapter = course.get_chapter_by_id(data.get("chapter_id"))
+        course.delete_chapter(chapter)
+        return {"message": "Successfully delete chapter" , "course": course}
+    except:
+        return "Unsuccessfully delete chapter"
+
     
 @router.post("/course/add_promotion")
 async def create_promotion(data: dict = Body(...)):
     try:
         course = course_collection.get_course(data.get("course_id"))
         new_promotion = Promotion(data.get("percent"),data.get("start_date"),data.get("end_date"),' ')
-        course.add_promotion(new_promotion)
+        course.promotion.add_promotion(new_promotion)
         course.promotion.net_promotion_price(course.price)
         return "added promotion successfully"
     except:
         return "please try again"
+    
+@router.get("/update_promotion")
+async def update_promotion():
+    course_collection.expire_promotion()
+    return "promotion updated successfully"
     
 @router.get("/course/search_by_instructor")
 async def search_by_instructor(data: dict = Body(...)):

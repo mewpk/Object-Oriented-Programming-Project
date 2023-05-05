@@ -153,3 +153,12 @@ async def edit_profile(user_data: dict = Body(...)):
             return {"message": "Failed to Edit profile"}
     except:
         return "please try again"
+    
+@router.delete("/delete_user")
+async def add_chapter(data: dict = Body(...)):
+    try :
+        user = user_collection.get_user(data.get("username"))
+        user_collection.delete_user(user)
+        return "Delete successfully"
+    except:
+        return "Fail to delete"

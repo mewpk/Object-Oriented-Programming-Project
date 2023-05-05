@@ -42,7 +42,7 @@ class CouponCollection():
     def use_coupon_course(self,coupon,cart):
         for course in cart.course:
             if course.id == coupon.course_id :
-                return course.price
+                return course.price 
 
     def use_coupon_instructor(self,coupon,cart):
         total = 0

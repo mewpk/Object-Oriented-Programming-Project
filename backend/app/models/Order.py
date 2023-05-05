@@ -1,14 +1,14 @@
 from datetime import datetime
 class Order():
-    order_id = 1
-    def __init__ (self,status,course,price,net_price):
-        self.__id = Order.order_id
+    # order_id = 1
+    def __init__ (self,id,status,course,price,net_price):
+        self.__id = id
         self.__status = status
         self.__date = datetime.now() 
         self.__course = course
         self.__price = price
         self.__net_price  = net_price
-        Order.order_id += 1
+        # Order.order_id += 1
         
     @property
     def id(self):
@@ -34,15 +34,6 @@ class Order():
         self.__status = status
         return self.__status
 
-    def close_order(self):
-        print("to close order")
-        if self.status == "Pending":
-            self.status = "Success"
-        return True
-
-    def refund_order(self):
-        if (datetime.now() - self.date).days <= 7:
-            self.status = "Refuned"
         
 
  

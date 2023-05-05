@@ -35,7 +35,6 @@ image = [
   },
 ]
 class Course():
-    # stamp_time = datetime.now()
     def __init__(self,id,name,short_description,date,language,purpose,chapters,requirement,description,target,price,info,categories,instructor):
         self._id = id
         self._name = name
@@ -50,11 +49,10 @@ class Course():
         self._description = description
         self._target = target
         self._price = price
-        self._promotion = Promotion(0,'1/1/2022','1/1/2022',price)
+        self._promotion = Promotion(0,'1/1/2000','1/1/2500',price)
         self._info = info
         self._categories = categories
         self._instructor = instructor
-        # Course.id_counter += 1
         self._image = image[random.randint(0,len(image)-1)].get("src")
     @property
     def id(self):
@@ -114,16 +112,75 @@ class Course():
     def id(self,id):
         self._id = id
         return self._id
+    @name.setter
+    def name(self,name):
+        self._name = name
+        return self._name
+    @short_description.setter
+    def short_description(self,short_description):
+        self._short_description = short_description
+        return self._short_description
+    @language.setter
+    def language(self,language):
+        self._language = language
+        return self._language
+    @purpose.setter
+    def purpose(self,purpose):
+        self._purpose = purpose
+        return self.purpose
+    @chapters.setter
+    def chapers(self,chapters):
+        self._chapters = chapters
+        return self._chapters
+    @requirement.setter
+    def requirement(self,requirement):
+        self._requirement = requirement
+        return self._requirement
+    @description.setter
+    def description(self,description):
+        self._description = description
+        return self._description
+    @target.setter
+    def target(self,target):
+        self._target = target
+        return self._target
+    @price.setter
+    def price(self,price):
+        self._price = price
+        return self._price
+    @info.setter
+    def info(self,info):
+        self._info = info
+        return self._info
+    @categories.setter
+    def categories(self,categories):
+        self._categories = categories
+        return self._categories
+    @instructor.setter
+    def instructor(self,instructor):
+        self._instructor = instructor
+        return self._instructor
+    @image.setter
+    def image(self,image):
+        self._image = image
+        return self._image
     @average_rating.setter
     def average_rating(self,average_rating):
         self._average_rating = average_rating
         return self._average_rating
-    
-    # def run_id(self):
-    #     if 
-    
-    # def add_chapter(self,chapter):
-    #     self.chapters.append(chapter)
+
+    def delete_chapter(self,chapter):
+        self.chapers.remove(chapter)
+
+    def add_chapter(self,name,video):
+        last_chapter = self.chapters[len(self.chapers)-1]
+        new_chapter = CourseChapter(last_chapter.id+1,0,name,video)
+        self.chapters.append(new_chapter)
+
+    def get_chapter_by_id(self,chapter_id):
+        for chapter in self.chapers:
+            if chapter.id == chapter_id:
+                return chapter
 
     def add_promotion(self,promotion):
         self.promotion.percent = promotion.percent
@@ -142,24 +199,16 @@ class Course():
 
 
 class StudentCourse(Course):
-    def __init__(self,studentcourse_id,id,name,short_description,date,language,purpose,chapters,requirement,description,target,price,info,categories,instructor,all_progress=0):
-        self.__studentcourse_id = studentcourse_id
+    def __init__(self,id,name,short_description,date,language,purpose,chapters,requirement,description,target,price,info,categories,instructor,all_progress=0):
         super().__init__(id,name,short_description,date,language,purpose,chapters,requirement,description,target,price,info,categories,instructor)
         self.__all_progress = all_progress
     @property
     def all_progress(self):
         return self.__all_progress
-    @property
-    def studentcourse_id(self):
-        return self.__studentcourse_id
     @all_progress.setter
     def all_progress(self,all_progress):
         self.__all_progress = all_progress
         return self.__all_progress
-    @studentcourse_id.setter
-    def studentcourse_id(self,studentcourse_id):
-        self.__studentcourse_id = studentcourse_id
-        return self.__studentcourse_id
     
     def calculate_progress(self):
         all_progress = 0
